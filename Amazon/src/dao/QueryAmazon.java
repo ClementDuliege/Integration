@@ -157,7 +157,7 @@ public class QueryAmazon {
 	
 	
 	
-	
+	     //guygyu
 	
 	public static void query4Amazon() {
 		/*
