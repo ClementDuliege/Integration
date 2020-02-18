@@ -27,7 +27,7 @@ public class QueryAmazon {
 		QueryDaoFR fr = new QueryDaoFR();
 		QueryDaoCHN chn = new QueryDaoCHN();
 
-		String[][] listFirstA = {{"1", "aa"}, {"4", "bb"}, {"7", "cc"}};
+		String[][] listFirstA = {{"121", "aa"}, {"4", "bb"}, {"7", "cc"}};
 		String[][] listFirstB = {{"2", "dd"}, {"5", "ee"}, {"8", "gg"}};
 		String[][] listFirstC = {{"3", "hh"}, {"4", "ii"}, {"6", "jj"}};
 		
