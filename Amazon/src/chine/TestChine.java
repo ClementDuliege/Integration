@@ -10,6 +10,7 @@ public class TestChine {
 		chine.salaryBonus();
 		chine.salarywithpaidLeave();
 		chine.highterSalarya();
+		chine.bestAge();
 
 	}
 

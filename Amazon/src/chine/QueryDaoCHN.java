@@ -6,7 +6,9 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -17,19 +19,21 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 
+
+
 	public class QueryDaoCHN {
 	
 		
 	
-	private String csvFile = "Amazon_CHINE.csv";
-    private String line = "";
-    private String cvsSplitBy = ";";
-    private String[][] tabPaySlip = new String[250][250];
-    public int sizeTab;
+	private static String csvFile = "Amazon_CHINE.csv";
+    private static String line = "";
+    private static String cvsSplitBy = ";";
+    private static String[][] tabPaySlip = new String[250][250];
+    public static int sizeTab = 0;
 		
 	
 		public QueryDaoCHN() {
-			
+			RecupTab();
 		}
 			
 		
@@ -119,8 +123,7 @@ import javax.swing.table.DefaultTableModel;
 			e.printStackTrace();
 		}
 	}
-	public String[][] RecupTab() {
-		sizeTab = 0;
+	public static String[][] RecupTab() {
 		try (BufferedReader reader = new BufferedReader(new FileReader(csvFile))) {
 		   	 try {
 				reader.readLine();
@@ -151,41 +154,58 @@ import javax.swing.table.DefaultTableModel;
 		// TODO Auto-generated catch block
 		e1.printStackTrace();
 	}
-		System.out.println(tabPaySlip[0][1]);
 		return tabPaySlip;
 		
 }
 	/*Requete 1*/
 	public void highterSalarya() {/*On récupère le plus haut salaire*/
-	     int salary = 0;
-	     int cpt = 0;
-	     String id = "0";
-	     //int hightsalary[] = null ;
-	     //new hightsalary[100];
-	     HashMap<String,Integer>map = new HashMap<String,Integer>();
-	     int [] highterSalary = new int [250];
-	     
-	     RecupTab();
-		    for(int i=0; i<sizeTab; i++) {/*we recover the salary*/
-		    	salary = Integer.parseInt(tabPaySlip[i][4]);
-		    	id = String.valueOf(Integer.parseInt(id) + 1);
-		    	map.put(id, salary);
-		    	
-		    }
+		int max = 0;
+	    String firstname = null;
+	    int cpt = 0;
+	    int indice =0;
+	    int [] hightersalary = new int [250];
+	    String[]name = new String [250];
+	    int[]salary = new int [250];
+	    
+		int debut=0;
+	    String col[] = { "Salaires" , "prenom"};
+		String cont[][] = new String[10][2];
 	
-	     Arrays.sort(highterSalary);
-	     SortMapByValueExample.sortByValue(map);
-	     
-	     for (Map.Entry<String, Integer> en : map.entrySet()) { 
-	            System.out.println("Key = " + en.getKey() +  
-	                          ", Value = " + en.getValue()); 
-	        } 
+	    
+	            for(int i = 0; i<sizeTab; i++) {
+	            name[indice]=tabPaySlip[i][2];
+	            salary[indice]=Integer.parseInt(tabPaySlip[i][4]);
+	            
+	            indice++;
+	            
+	            //On recherche le plus gros salaire
+		             max = Integer.parseInt(tabPaySlip[i][4]); //converse Sting tab in Int tab 
+		             hightersalary [cpt] = max;//
+		             Arrays.sort(hightersalary);// sort tab 
+		            
+	                        
+	
+			}
+	   
+	        for(int i = hightersalary.length-1; i>hightersalary.length-10; i--) {//on read the ten highter salarys 
+	       	 for(int j=0; j < salary.length; j++) {
+	       		 if(hightersalary[i]==salary[j]) {
+	       			 firstname = name[j];	 
+	       		 } 
+	       	}
+	       
+			cont[debut][0] = hightersalary[i] + "";
+	        cont[debut][1] = firstname;
+	        debut++;
+	        System.out.println("Highter salary : "+ hightersalary[i] + ", Firstname : " + firstname );
+	        }	
+	    
+	   
+		
 	}
 	
 	public String[][] query1() {/*On récupère le plus haut salaire*/
-		String csvFile = "Amazon_CHINE.csv";
-	    String line = "";
-	    String cvsSplitBy = ";";
+
 	    int max = 0;
 	    String firstname = null;
 	    int cpt = 0;
@@ -198,23 +218,19 @@ import javax.swing.table.DefaultTableModel;
 	    String col[] = { "Salaires" , "prenom"};
 		String cont[][] = new String[10][2];
 	
-	    try (BufferedReader reader = new BufferedReader(new FileReader(csvFile))) {
-	   	 reader.readLine();/*On lit la première ligne car c'est les infos des colonnes*/
-	        while ((line = reader.readLine()) != null) {/*On lit toutes les lignes de notre fichier*/
-	
-	           //On stocke dans notre tableau nos différents éléments graçe à notre séparateur
-	            String[]payslip = line.split(cvsSplitBy);
-	            name[indice]=payslip[2];
-	            salary[indice]=Integer.parseInt(payslip[4]);
+	    
+	            for(int i = 0; i<sizeTab; i++) {
+	            name[indice]=tabPaySlip[i][2];
+	            salary[indice]=Integer.parseInt(tabPaySlip[i][4]);
 	            
 	            indice++;
+	            
 	            //On recherche le plus gros salaire
-	          if(payslip[4]!=" salaire") {
-		             max = Integer.parseInt(payslip[4]); //converse Sting tab in Int tab 
+		             max = Integer.parseInt(tabPaySlip[i][4]); //converse Sting tab in Int tab 
 		             hightersalary [cpt] = max;//
 		             Arrays.sort(hightersalary);// sort tab 
 		            
-	            }              
+	                        
 	
 			}
 	   
@@ -231,12 +247,20 @@ import javax.swing.table.DefaultTableModel;
 	        //System.out.println("Highter salary : "+ hightersalary[i] + ", Firstname : " + firstname );
 	        }	
 	    
-	    } catch (IOException e) {
-	        e.printStackTrace();
-	    	}
+	   
 		return cont;
 	}
+	public static int query2() {
+		int paidLeave=0;
+	    int sumPaidLeave=0;
+	    for(int i=0; i<sizeTab; i++) {
+	    	paidLeave = Integer.parseInt(tabPaySlip[i][6]);
+	    	sumPaidLeave += paidLeave;
+	    }
+		
 	
+		return sumPaidLeave;
+	}
 	public void selectPayslip() {
 		String csvFile = "Amazon_CHINE.csv";
 	    String line = "";
@@ -315,7 +339,6 @@ import javax.swing.table.DefaultTableModel;
 		
 	    int paidLeave=0;
 	    int sumPaidLeave=0;
-	    RecupTab();
 	    for(int i=0; i<sizeTab; i++) {
 	    	paidLeave = Integer.parseInt(tabPaySlip[i][6]);
 	    	sumPaidLeave += paidLeave;
@@ -323,6 +346,46 @@ import javax.swing.table.DefaultTableModel;
 		
 	}
 	/*Requête 3*/
+	public static String[][] query3() {
+		  	int paidLeave = 0, paidLeaveMax = 0;
+		    int salary = 0, salaryMax = 0;
+		    int tmp = 0;
+		    int[] tabPaidLeave = new int[250];
+		    int[] id = new int[250];
+		    String[][] querytab3 = new String[5][3];
+		    HashMap<Integer,Integer> mapPaidLeave = new HashMap<Integer,Integer>();
+		    for(int k=0; k<sizeTab; k++) {/*we shearch the smallest paidleave*/
+		    	paidLeave = Integer.parseInt(tabPaySlip[k][6]);
+		    	if(paidLeave > paidLeaveMax) {
+		    		paidLeaveMax = paidLeave;
+		    	}
+		    }
+		    for(int j=0; j<sizeTab; j++) {/*we shearch the smallest paidleave*/
+				salary = Integer.parseInt(tabPaySlip[j][4]);
+				paidLeave = Integer.parseInt(tabPaySlip[j][6]);
+				if(paidLeave == paidLeaveMax) {
+					if(salary > salaryMax) {
+						id[tmp] = j;
+						tabPaidLeave[tmp] = salary;
+						salaryMax = salary;
+						tmp++;
+					}
+				}
+			}           
+			for(int i=tmp; i>tmp-6; i--) {
+				 querytab3[i][0] = tabPaySlip[id[i]][2];//prénom
+		    	 querytab3[i][1] = tabPaySlip[id[i]][4];//salaire
+		    	 querytab3[i][2] = tabPaySlip[id[i]][6];//paidLeave	    		 
+		    	 i++;
+				/*we post the 5 biggest salary with max paid leave */
+				System.out.println("salarywithpaidLeave");
+				System.out.println("id : " + tabPaySlip[id[i]][0] + " salaire :" + tabPaySlip[id[i]][4]);
+			}
+			System.out.println("--------------------------------------------");
+		
+		return querytab3;
+		
+	}
 	public void salarywithpaidLeave() {
 	    
 	    
@@ -332,7 +395,6 @@ import javax.swing.table.DefaultTableModel;
 	    int[] tabPaidLeave = new int[250];
 	    int[] id = new int[250];
 	    HashMap<Integer,Integer> mapPaidLeave = new HashMap<Integer,Integer>();
-	    RecupTab();
 	    for(int k=0; k<sizeTab; k++) {/*we shearch the smallest paidleave*/
 	    	paidLeave = Integer.parseInt(tabPaySlip[k][6]);
 	    	if(paidLeave > paidLeaveMax) {
@@ -351,13 +413,50 @@ import javax.swing.table.DefaultTableModel;
 				}
 			}
 		}           
-		for(int i=tmp-1; i>tmp-6; i--) {
+		for(int i=tmp; i>tmp-6; i--) {
 			/*we post the 5 biggest salary with max paid leave */
-			System.out.println("salary with paidLeave : " + tabPaySlip[id[i]][0] + " salaire :" + tabPaySlip[id[i]][4]);
+			System.out.println("salarywithpaidLeave");
+			System.out.println("id : " + tabPaySlip[id[i]][0] + " salaire :" + tabPaySlip[id[i]][4]);
 		}
-	
+		System.out.println("--------------------------------------------");
 	}
 	/*Requête 4 */
+	public static String[][] query4() {
+		
+		 	int salary = 0, salaryBonus = 0;
+		    int bonus = 0;
+		    int[] id = new int[250];
+		    String[] tabSalaryBonus = new String[250];
+		    int i = 0, salaryMax = 0;
+		    String[][] querytab3 = new String[100][3];
+		    HashMap<Integer,Integer> mapSalaryBonus= new HashMap<Integer,Integer>(); 
+		    
+				for(int k=0; k<sizeTab; k++) {/*we shearch the smallest paidleave*/
+					salary = Integer.parseInt(tabPaySlip[k][4]);
+					bonus = Integer.parseInt(tabPaySlip[k][5]);
+					salaryBonus = salary +(salary * bonus)/100;/*We add bonus in percent*/
+					mapSalaryBonus.put(k, salaryBonus);
+				}
+				for (Map.Entry mapentry : mapSalaryBonus.entrySet()) {
+					salary = (int) mapentry.getValue();
+					if(salary>salaryMax) {/*We put best salary with bonus in tab and the id correspondding*/
+						id[i] = (int) mapentry.getKey();
+						tabSalaryBonus[i] = (String) mapentry.getValue();
+						salaryMax = (int) mapentry.getValue();
+						i++;
+					}
+				}		
+				for(int j=i-1; j>i-4; j--) {
+					querytab3[j][0] = tabPaySlip[id[j]][1];
+			   	 	querytab3[j][1] = tabSalaryBonus[j];
+			   	 	querytab3[j][2] = tabPaySlip[id[j]][5];
+					/*We post the 3 best salary with bonus include */
+					System.out.println("salaryBonus");
+					System.out.println("Nom : " + tabPaySlip[id[j]][1] + " : salaire avec bonus: "+tabSalaryBonus[j]);
+				}
+				System.out.println("--------------------------------------------");
+   	 	return querytab3;
+	}
 	public void salaryBonus() {	    
 	    int salary = 0, salaryBonus = 0;
 	    int bonus = 0;
@@ -365,7 +464,6 @@ import javax.swing.table.DefaultTableModel;
 	    int[] tabSalaryBonus = new int[250];
 	    int i = 0, salaryMax = 0;
 	    HashMap<Integer,Integer> mapSalaryBonus= new HashMap<Integer,Integer>(); 
-	    RecupTab();
 	    
 			for(int k=0; k<sizeTab; k++) {/*we shearch the smallest paidleave*/
 				salary = Integer.parseInt(tabPaySlip[k][4]);
@@ -382,17 +480,18 @@ import javax.swing.table.DefaultTableModel;
 					i++;
 				}
 			}		
-			for(int j=i-1; j>i-4; j--) {
+			for(int j=i; j>i-4; j--) {
 				/*We post the 3 best salary with bonus include */
-				System.out.println(tabPaySlip[id[j]][1] + " : salaire avec bonus: "+tabSalaryBonus[j]);
+				System.out.println("salaryBonus");
+				System.out.println("Nom : " + tabPaySlip[id[j]][1] + " : salaire avec bonus: "+tabSalaryBonus[j]);
 			}
+			System.out.println("--------------------------------------------");
 	}
 	/*Requête 5*/
 	public void meduimSalary() {
 	    int cmp = 0;
 	    int sommeSalary=0, salary = 0;
 	    int meduimSalary=0;
-	    RecupTab();
 	    
 		for(int k=0; k<sizeTab; k++) {/*we shearch the smallest paidleave*/
 			salary = Integer.parseInt(tabPaySlip[k][4]);
@@ -401,16 +500,17 @@ import javax.swing.table.DefaultTableModel;
 		}
 	          
 	       meduimSalary = sommeSalary/(cmp);
-	       System.out.println(meduimSalary);
+	       System.out.println("salaire moyen : " + meduimSalary);
+	       System.out.println("-------------------------------------------");
 	
 	}
-	/*Requête 6*/
+	/*Requête 9*/
 	public void bestEmployees() {
 	    int paidleaveMin=30, paidleave = 0;
 		int	bonusMax = 0, bonus = 0;
 		int salaryMax = 0, salary = 0;
 		int tmp = 0;
-		RecupTab();
+		
 	    
 				for(int k=0; k<sizeTab; k++) {/*we shearch the smallest paidleave*/
 					paidleave = Integer.parseInt(tabPaySlip[k][6]);
@@ -437,14 +537,16 @@ import javax.swing.table.DefaultTableModel;
 						}
 					}
 				}
-				System.out.println(tabPaySlip[tmp][2]);
+				System.out.println("bestEmployees");
+				System.out.println("The best employees : " +tabPaySlip[tmp][2]);
+				System.out.println("--------------------------------------------");
 	    
 }
 	public void minAgeSalary() {
 	int minAge = 50, age = 0;
 	int maxSalary = 0, salary = 0;
 	int tmp = 0;
-	RecupTab();
+	
 		for(int i=0; i<sizeTab; i++) {/*we shearch the smallest age*/
 			age = Integer.parseInt(tabPaySlip[i][3]);
 			if (age < minAge) {
@@ -460,9 +562,34 @@ import javax.swing.table.DefaultTableModel;
 			}
 		}
 	}
-		System.out.println("-------"+ tabPaySlip[tmp][1]);
-		System.out.println(tabPaySlip[tmp][2]);
+		System.out.println("minAgeSalary");
+		System.out.println("Nom : " +tabPaySlip[tmp][1] + "Prenom : " +tabPaySlip[tmp][2]);
+		System.out.println("--------------------------------------------");
 }
+	//requête 10
+	public void bestAge() {
+	int salary = 0;
+	int age = 0;
+	int sommeAge = 0, moyAge = 0;
+	ArrayList<Salarier> ar = new ArrayList<Salarier>();
+		for(int i=0; i<sizeTab; i++) {/*we shearch the smallest age*/
+			salary = Integer.parseInt(tabPaySlip[i][4]);
+			ar.add(new Salarier(i,salary));
+		}
+		//Trie tableau
+	
+		Collections.sort(ar, new Sortbyroll());//Trie l'arrayList en fonction du salaire et ajuste l'id correspondant
+		for (int i=ar.size()-1; i>ar.size()-40; i--) { 
+           System.out.println("id : " + ar.get(i).getId() + "salaire : " + ar.get(i).getSalary()); 
+            age =Integer.parseInt(tabPaySlip[ar.get(i).getId()][3]);
+            sommeAge += age;
+            //System.out.println(sommeAge);
+            moyAge = sommeAge/40;
+            
+    } 
+		System.out.println("age moyen : " + moyAge);
+	
+	}
 	public void ajouter(PaySlipCHN payslip) {
 		// TODO Auto-generated method stub
 		
