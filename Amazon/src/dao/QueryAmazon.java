@@ -140,7 +140,7 @@ public class QueryAmazon {
 	// Requête N°2 DEJA FINI
 	public static void query2Amazon() {
 		int paid_leave;
-		paid_leave = QueryDaoFR.query2() + QueryDaoUSA.query2() + QueryDaoCHN.sumPaidLeave();
+		paid_leave = QueryDaoFR.query2() + QueryDaoUSA.query2();
 		System.out.println("Requête 2 : l'addition des congés = " + paid_leave + "\n");
 	}
 	
