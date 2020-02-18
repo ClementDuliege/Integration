@@ -9,6 +9,7 @@ public class TestChine {
 		chine.meduimSalary();
 		chine.salaryBonus();
 		chine.salarywithpaidLeave();
+		chine.highterSalarya();
 
 	}
 

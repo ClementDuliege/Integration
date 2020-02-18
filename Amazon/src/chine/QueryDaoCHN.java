@@ -59,12 +59,7 @@ import javax.swing.table.DefaultTableModel;
 			                
 			    	writer.append(payslip.getBonus());
 			    	writer.append(separator);
-			                
-			                
-			                
-			            
-			    	
-			        
+			                        
 			    	writer.close();
 			    } catch (IOException e) {
 			        e.printStackTrace();
@@ -74,12 +69,7 @@ import javax.swing.table.DefaultTableModel;
 	
 	
 	public void CSVReader() {
-	
-	   
-	
-	       
-	
-	        try (BufferedReader reader = new BufferedReader(new FileReader(csvFile))) {
+		try (BufferedReader reader = new BufferedReader(new FileReader(csvFile))) {
 	
 	            while ((line = reader.readLine()) != null) {/*On lit toutes les lignes de notre fichier*/
 	
@@ -92,11 +82,9 @@ import javax.swing.table.DefaultTableModel;
 	
 	        } catch (IOException e) {
 	            e.printStackTrace();
-	        
-	
 	    }
-	
 	}
+	
 	public void recupCSV() {
 		
 	    String payslip2[][] = new String [250][250];
@@ -169,37 +157,29 @@ import javax.swing.table.DefaultTableModel;
 }
 	/*Requete 1*/
 	public void highterSalarya() {/*On récupère le plus haut salaire*/
-	     int max = 0;
+	     int salary = 0;
 	     int cpt = 0;
+	     String id = "0";
 	     //int hightsalary[] = null ;
 	     //new hightsalary[100];
-	     int [] hightersalary = new int [250];
-	
-	     try (BufferedReader reader = new BufferedReader(new FileReader(csvFile))) {
-	    	 reader.readLine();/*On lit la première ligne car c'est les infos des colonnes*/
-	         while ((line = reader.readLine()) != null) {/*On lit toutes les lignes de notre fichier*/
-	
-	            //On stocke dans notre tableau nos différents éléments graçe à notre séparateur
-	             String[]payslip = line.split(cvsSplitBy);
-	
-	             //On recherche le plus gros salaire
-	           if(payslip[4]!=" salaire") {
-		             max = Integer.parseInt(payslip[4]); //converse Sting tab in Int tab 
-		             hightersalary [cpt] = max;//
-		             Arrays.sort(hightersalary);// sort tab 
-		            
-	             }              
-	
-	         }
-	         for(int tmp = hightersalary.length-1; tmp>=hightersalary.length-10; tmp--) {//on read the ten highter salarys 
-	         //System.out.println(tmp);
-	         System.out.println("Highter salary : "+ hightersalary[tmp] );
-	         }
-	     } catch (IOException e) {
-	         e.printStackTrace();
+	     HashMap<String,Integer>map = new HashMap<String,Integer>();
+	     int [] highterSalary = new int [250];
 	     
+	     RecupTab();
+		    for(int i=0; i<sizeTab; i++) {/*we recover the salary*/
+		    	salary = Integer.parseInt(tabPaySlip[i][4]);
+		    	id = String.valueOf(Integer.parseInt(id) + 1);
+		    	map.put(id, salary);
+		    	
+		    }
 	
-	 }
+	     Arrays.sort(highterSalary);
+	     SortMapByValueExample.sortByValue(map);
+	     
+	     for (Map.Entry<String, Integer> en : map.entrySet()) { 
+	            System.out.println("Key = " + en.getKey() +  
+	                          ", Value = " + en.getValue()); 
+	        } 
 	}
 	
 	public String[][] query1() {/*On récupère le plus haut salaire*/
@@ -333,37 +313,13 @@ import javax.swing.table.DefaultTableModel;
 	/*Requête 2*/
 	public void sumPaidLeave() {
 		
-		String csvFile = "Amazon_CHINE.csv";
-	    String line = "";
-	    String cvsSplitBy = ";";
-	    String[]paidLeave;
-	    int[]intpPaidLeave;
-	    int indice;
-	    int paidleave=0;
+	    int paidLeave=0;
 	    int sumPaidLeave=0;
-	    
-		try (BufferedReader reader = new BufferedReader(new FileReader(csvFile))) {
-		   	 reader.readLine();/*On lit la première ligne car c'est les infos des colonnes*/
-		        while ((line = reader.readLine()) != null) {/*On lit toutes les lignes de notre fichier*/
-	
-		           //On stocke dans notre tableau nos différents éléments graçe à notre séparateur
-		            String[]payslip = line.split(cvsSplitBy);
-		            paidleave = Integer.parseInt(payslip[6]);
-		            sumPaidLeave += paidleave;
-					
-		            
-		            
-		            
-			            
-		            }              
-	
-				} catch (FileNotFoundException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+	    RecupTab();
+	    for(int i=0; i<sizeTab; i++) {
+	    	paidLeave = Integer.parseInt(tabPaySlip[i][6]);
+	    	sumPaidLeave += paidLeave;
+	    }
 		
 	}
 	/*Requête 3*/

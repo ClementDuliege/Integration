@@ -135,9 +135,84 @@ public class QueryAmazon {
 	  return result;
 	}
 	
+	
+	
+	// Requête N°2 DEJA FINI
+	public static void query2Amazon() {
+		int paid_leave;
+		paid_leave = QueryDaoFR.query2() + QueryDaoUSA.query2() + QueryDaoCHN.sumPaidLeave();
+		System.out.println("Requête 2 : l'addition des congés = " + paid_leave + "\n");
+	}
+	
+	
+	
+	public static void query3Amazon() {
+		/*
+	 LA ON FAIT CE QUE LE PROF A DIT DU COUP JE SORT TT LES ELT NON TRIE DE CHAQUE BDD
+	 DONC TOI TU VAS TOUT FUSIONNER ENSUITE TU RECUPERE LES 5 PLUS GROS CONGES ET QUE PARMIS SES 5 LA BAH TU LES TRIE  
+	 EN FONCTION DE LEUR SALAIRE
+	 */
+	}
+	
+	
+	
+	
+	
+	
+	public static void query4Amazon() {
+		/*
+	 DANS MA REQUETE JE SORT TOUT LES ELEMENT DE LA TABLES SALAIRE MAIS TRIER TU LA VERRA JAI MI DES COMMENTAIR
+	 DU COUP TU PPREND LES 3 PREMIER DE CHAQUE BDD DONC DE CHAQUE TABLEAU ET TU TRIE TU PEUT REUTILISER TON TRI
+	*/	
+	}
+	
+	
+	
+	
+	// REGARD CE QUE JAFFICHE AVC LA REQUETE PR COMPRENDRE
+	// C LA REQUETE LA PLUS DUR ELLE EST LONGUE DU COUP JE VAIS TAIDER A LA FAIRE ON SE PARTAGERA LE TRUC
+	public static void query5Amazon() {
+		/*
+	 TU VA RECUPERER LES 5 PREMIER ET LES 5 DERNIER ELT DE CHAQUE BDD VU QUELLE SERONT TRIER
+	 ENSUITE TA DEUX CHOIX SOIT 
+			1) TU CREER 2 TAB, UN AVC LES 15 PREM ET LAUTRE AVC LES 15 DER ET TU PREND PR LES DEUX LES 5 PREM/DER
+			2) TU MET TT DANS UN TAB TU LES TRI EN FCT DU CONGES ET TU RECUP LES 5PREM ET LES 5DER QUE TU FOU DS UN TAB
+	 DANS TOUT LES CAS ON DEVRA FAIRE LES DEUX POUR LAUTRE REQUETE DE COMPARAISON
+	  */
+	 
+	}
+	
+	
+	
+	
+	// SA JE LE FAIT 
+	public static void query6Amazon() {
+		System.out.println("Requête 6 : " + QueryDaoFR.query6()+ "	" + QueryDaoUSA.query6() + "\n");
+	}
+	
+	// SA C LAUTRE REQUETE DE COMPARAISON DU COUP ON FRA EN FCT DU CHOIX QUON A CHOISI POUR CELLE DAVANT
+	public static void query7Amazon() {
+	}
+	
+	// CLEMENT LA FERA ELLE EST GRV FACILE YA QUE 3 ELT 
+	public static void query8Amazon() {
+	}
+	
+	// FAUT VOIR SI ON GARDE CETTE REQUETE 
+	public static void query9Amazon() {
+	}
+	
+	// PAREIL QUE LA 9
+	public static void query10Amazon() {
+	}
+	
+	
+	
 	public static void main (String [] args) {				
 		
-		mainSort();		
+		mainSort();	
+		query2Amazon();
+		query6Amazon();
 		
 	}
 
