@@ -580,7 +580,7 @@ import javax.swing.table.DefaultTableModel;
 	
 		Collections.sort(ar, new Sortbyroll());//Trie l'arrayList en fonction du salaire et ajuste l'id correspondant
 		for (int i=ar.size()-1; i>ar.size()-40; i--) { 
-           System.out.println("id : " + ar.get(i).getId() + "salaire : " + ar.get(i).getSalary()); 
+           //System.out.println("id : " + ar.get(i).getId() + "salaire : " + ar.get(i).getSalary()); 
             age =Integer.parseInt(tabPaySlip[ar.get(i).getId()][3]);
             sommeAge += age;
             //System.out.println(sommeAge);
