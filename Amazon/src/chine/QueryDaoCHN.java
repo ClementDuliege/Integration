@@ -649,20 +649,20 @@ import javax.swing.table.DefaultTableModel;
 	int salary = 0;
 	ArrayList<Salarier> ar = new ArrayList<Salarier>();
 	
-		for(int i=0; i<sizeTab; i++) {/*we shearch the smallest age*/
+		for(int i=0; i<sizeTab; i++) {//we shearch the smallest age
 			age = Integer.parseInt(tabPaySlip[i][3]);
 			if (age < minAge) {
 				minAge = age;
 			}
 		}
 		
-		for(int j=0; j<sizeTab; j++) {/*we shearch the biggest salary*/
+		for(int j=0; j<sizeTab; j++) {//we shearch the biggest salary
 			salary = Integer.parseInt(tabPaySlip[j][4]);
 			if(Integer.parseInt(tabPaySlip[j][3])==minAge) 
 				ar.add(new Salarier(j,salary));
 		}
 		
-		Collections.sort(ar, new Sortbyroll());
+		Collections.sort(ar, new Sortbyroll());//Sort the ArrayList in function of salary with id corresponding
 		System.err.println("------Requête9--------------minAgeSalary-----------------------");
 		
 		for (int i=ar.size()-1; i>=ar.size()-3; i--) {  
@@ -684,7 +684,6 @@ import javax.swing.table.DefaultTableModel;
 	public void bestAge() {
 	int salary = 0;
 	int age = 0;
-	int cpt = 0;
 	int sommeAge = 0, moyAge = 0;
 	ArrayList<Salarier> ar = new ArrayList<Salarier>();
 		for(int i=0; i<sizeTab; i++) {//we recuperate the id and salary associated */
