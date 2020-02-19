@@ -109,28 +109,30 @@ public class QueryDaoFR{
 		return querytab3;
 	}
 	
-	// Affichage croissant des plus gros salaires avec les bonus compris
+	// Affichage TRIER des salaires ayant les bonus compris dedans
 		public static String[][] query4() {
 			String[][] querytab3 = new String[100][3];
 			try {
-				String selectQuery = "SELECT firstname, salary, bonus FROM payslip INNER JOIN employees ON employees.id_employees = payslip.id_payslip ORDER BY salary DESC;";                
-			
+				// Affichage decroissant du nom, salire, bonus en fonction du salaire calculer avec les bonus
+				String selectQuery = "SELECT firstname, (salary+(salary*bonus)/100)AS salary, bonus FROM payslip INNER JOIN employees ON employees.id_employees = payslip.id_payslip ORDER BY salary DESC;";                
+				
 				Connection dbConnection = JdbcConnectionFR.getConnection();
 				Statement state = dbConnection.createStatement();
 				ResultSet result = state.executeQuery(selectQuery);
 				
 				int i=0;
 			    while(result.next()){ 
+			    	 // initialisation des colonne qu'on utilise
 			    	 int salaire = result.getInt("salary");
 			    	 int bonus = result.getInt("bonus");
 			    	 String prenom = result.getString("firstname");
-			    	 salaire =salaire + (salaire * bonus)/100;
+			    	 // Remplissag du tableau avec pour colonnes : 1=prenom, 2=salaire, 3=bonus
 			    	 querytab3[i][0] = prenom;
 			    	 querytab3[i][1] = Integer.toString(salaire);
 			    	 querytab3[i][2] = Integer.toString(bonus);	    		 
 			    	 i++;
-			   	    }
-			    
+			   	}
+			    				    
 			    result.close();
 			    state.close();
 			      
@@ -143,7 +145,7 @@ public class QueryDaoFR{
 		
 	// LA YA UN AFFICHAGE CROISSANT EN FONCTION DES CONGES
 	public static String[][] query5() {
-		String[][] querytab3 = new String[100][3];
+		String[][] querytab = new String[100][3];
 		try {
 			String selectQuery = "SELECT firstname, bonus, paid_leave FROM payslip INNER JOIN employees ON employees.id_employees = payslip.id_payslip ORDER BY paid_leave ASC;";                
 
@@ -156,11 +158,12 @@ public class QueryDaoFR{
 		    	 int bonus = result.getInt("bonus");
 		    	 int paidLeave = result.getInt("paid_leave");
 		    	 String prenom = result.getString("firstname");
-		    	 querytab3[i][0] = prenom;
-		    	 querytab3[i][1] = Integer.toString(bonus);
-		    	 querytab3[i][2] = Integer.toString(paidLeave);	    		 
+		    	 // Remplissage du tableau avec pour colonnes : 1=prenom, 2=bonus, 3=conges
+		    	 querytab[i][0] = prenom;
+		    	 querytab[i][1] = Integer.toString(bonus);
+		    	 querytab[i][2] = Integer.toString(paidLeave);	    		 
 		    	 i++;
-		   	    }
+		   	}
 		    
 		    result.close();
 		    state.close();
@@ -168,10 +171,10 @@ public class QueryDaoFR{
 		} catch (SQLException se) {
 			System.err.println(se.getMessage());
 		}
-		return querytab3;
+		return querytab;
 	}
 	
-	
+	// Retourn un entier qui serat la moyenne
 	public static int query6() {
 		int averageSalary = 0;
 		int allSalary = 0;
@@ -184,6 +187,38 @@ public class QueryDaoFR{
 			
 			int i=0;
 		    while(result.next()){ 
+		    	// Moyenne des salaires de la colonne 'salary'
+		    	 int salary = result.getInt("salary");
+		    	 allSalary += salary;
+		    	 i++;
+		    	 averageSalary = allSalary/i;
+		    }
+		    	
+		    System.out.println(averageSalary);
+
+		    result.close();
+		    state.close();
+		      
+		} catch (SQLException se) {
+			System.err.println(se.getMessage());
+		}
+		return averageSalary;
+	}
+	
+	// Somme des bonus
+	public static int query7() {
+		int averageSalary = 0;
+		int allSalary = 0;
+		try {
+			String selectQuery = "SELECT salary FROM payslip;";                
+
+			Connection dbConnection = JdbcConnectionFR.getConnection();
+			Statement state = dbConnection.createStatement();
+			ResultSet result = state.executeQuery(selectQuery);
+			
+			int i=0;
+		    while(result.next()){ 
+		    	// Moyenne des salaires de la colonne 'salary'
 		    	 int salary = result.getInt("salary");
 		    	 allSalary += salary;
 		    	 i++;
@@ -202,8 +237,36 @@ public class QueryDaoFR{
 	}
 	
 	
-	
-	
-	
+	public static String[][] query8() {
+		String[][] querytab = new String[100][4];
+		try {
+			String selectQuery = "SELECT lastname, salary, bonus, paid_leave FROM payslip INNER JOIN employees ON employees.id_employees = payslip.id_payslip ORDER BY bonus DESC, paid_leave;";                
+
+			Connection dbConnection = JdbcConnectionFR.getConnection();
+			Statement state = dbConnection.createStatement();
+			ResultSet result = state.executeQuery(selectQuery);
+			
+			int i=0;
+		    while(result.next()){ 
+		    	 int bonus = result.getInt("bonus");
+		    	 int paidLeave = result.getInt("paid_leave");
+		    	 int salary = result.getInt("salary");
+		    	 String prenom = result.getString("lastname");
+		    	 // Remplissage du tableau avec pour colonnes : 1=prenom, 2=bonus, 3=conges
+		    	 querytab[i][0] = prenom;
+		    	 querytab[i][1] = Integer.toString(salary);	    
+		    	 querytab[i][2] = Integer.toString(bonus);
+		    	 querytab[i][3] = Integer.toString(paidLeave);	    		 
+		    	 i++;
+		   	}
+		    
+		    result.close();
+		    state.close();
+		      
+		} catch (SQLException se) {
+			System.err.println(se.getMessage());
+		}
+		return querytab;
+	}
 	
 }

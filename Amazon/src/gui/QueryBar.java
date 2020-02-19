@@ -66,6 +66,7 @@ public class QueryBar extends JPanel implements ActionListener{
 	
 	public void usa() {
 		QueryDaoUSA usa = new QueryDaoUSA();
+		
 		DefaultTableModel model = new DefaultTableModel(usa.query1(), QueryDaoUSA.getCol());
 	    JTable table = new JTable(model);
 	    table.setShowGrid(true);
@@ -82,9 +83,9 @@ public class QueryBar extends JPanel implements ActionListener{
 	}
 	
 	public void fr() {
-		QueryDaoFR fr = new QueryDaoFR();
-		
-		DefaultTableModel model = new DefaultTableModel(fr.query3(), QueryDaoUSA.getCol());
+		String col[] = { "je fait apr", "je fait apr", "je fait apr", "je fait apr" };
+
+		DefaultTableModel model = new DefaultTableModel(QueryDaoFR.query8(), col);
 	    JTable table = new JTable(model);
 	   
 	    table.setShowVerticalLines(true);
