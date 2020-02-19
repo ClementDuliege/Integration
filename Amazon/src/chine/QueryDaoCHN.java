@@ -511,6 +511,49 @@ import javax.swing.table.DefaultTableModel;
 			}
 
 	}
+/*Requête5----------------------------------------------------------------------------------------------------------------------------------------------	
+	 
+-----------------------------------------------------------------------------------------------------------------------------------------------*/
+
+	public void BonusWithPaidLeave() {
+		int paidLeaveMin=30, paidLeaveMax = 0, paidLeave = 0;
+		int sommeBonusMin = 0, moyBonusMin = 0;
+		int sommeBonusMax = 0, moyBonusMax = 0;
+		int cptMin = 0, cptMax = 0;
+		
+		for(int i=0; i<sizeTab; i++) {//we shearch the smallest paidleave
+			paidLeave = Integer.parseInt(tabPaySlip[i][6]);
+			if (paidLeave < paidLeaveMin) {
+				paidLeaveMin = paidLeave;
+			}
+		}
+		
+		for(int i=0; i<sizeTab; i++) {//we shearch the smallest paidleave
+			paidLeave = Integer.parseInt(tabPaySlip[i][6]);
+			if (paidLeave > paidLeaveMax) {
+				paidLeaveMax = paidLeave;
+			}
+		}
+		
+		for(int i=0; i<sizeTab; i++) {
+			paidLeave = Integer.parseInt(tabPaySlip[i][6]);
+			if(paidLeaveMin == paidLeave) {
+				sommeBonusMin += Integer.parseInt(tabPaySlip[i][5]);
+				cptMin ++;
+			}
+			if(paidLeaveMax == paidLeave) {
+				sommeBonusMax += Integer.parseInt(tabPaySlip[i][5]);
+				cptMax ++;
+			}
+		}
+		moyBonusMin = sommeBonusMin/cptMin;
+		moyBonusMax = sommeBonusMax/cptMax;
+		System.err.println("------Requête5--------------BonusWithPaidLeave-----------------------");
+		System.out.println("Le bonus moyen des employés ayant pris le moins de congés : " + moyBonusMin);
+		System.out.println("Le bonus moyen des employés ayant pris le plus de congés : " + moyBonusMax);
+	}
+	
+	
 /*Requête6----------------------------------------------------------------------------------------------------------------------------------------------	
 	 
 -----------------------------------------------------------------------------------------------------------------------------------------------*/
@@ -534,11 +577,26 @@ import javax.swing.table.DefaultTableModel;
 
 	
 	}
+	
 /*Requête7----------------------------------------------------------------------------------------------------------------------------------------------	
 	 
 -----------------------------------------------------------------------------------------------------------------------------------------------*/
+	public void sumBonus() {
+		int bonus=0;
+	    int sumBonus=0;
+	    for(int i=0; i<sizeTab; i++) {
+	    	bonus = Integer.parseInt(tabPaySlip[i][5]);
+	    	sumBonus += bonus;
+	    }
+	    System.err.println("------Requête7--------------sumBonus-----------------------");
+	    System.out.println("sumBonus");
+		System.out.println("Somme des bonus : " + sumBonus);
+	}
+/*Requête8----------------------------------------------------------------------------------------------------------------------------------------------	
+	 
+-----------------------------------------------------------------------------------------------------------------------------------------------*/
 
-	//Requête 7
+	//Requête 8
 	/**
 	 * Method allowing to get the best employee in function of his bonus and paid leave
 	 */
@@ -574,7 +632,7 @@ import javax.swing.table.DefaultTableModel;
 						}
 					}
 				}
-				System.err.println("------Requête7--------------bestEmployees-----------------------");
+				System.err.println("------Requête8--------------bestEmployees-----------------------");
 				System.out.println("bestEmployees");
 				System.out.println("The best employees : " +tabPaySlip[tmp][2]);
 	    

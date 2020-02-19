@@ -8,7 +8,9 @@ public class TestChine {
 		chine.sumPaidLeave();
 		chine.salarywithpaidLeave();
 		chine.salaryBonus();
+		chine.BonusWithPaidLeave();
 		chine.meduimSalary();
+		chine.sumBonus();
 		chine.bestEmployees();
 		chine.minAgeSalary();
 		chine.bestAge();
