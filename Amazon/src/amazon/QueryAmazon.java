@@ -185,20 +185,7 @@ public class QueryAmazon {
 	 
 	}
 	
-	
-	
-	
-	// SA JE LE FAIT 
-	public static String query6Amazon() {
-		HashMap<String, Integer> query = new HashMap<String, Integer>();
-		
-		query.put("…tats-Unis", QueryDaoUSA.query6());
-		query.put("France", QueryDaoFR.query6());
-		//query.put("Chine", QueryDaoCHN.query6());  CLEMENT JAI BESOIN DE RECUP TA REQUETE 6 JUSTE EN L'APPELANT STP
 
-	    String display = "Salaire moyen de chaque pays :\n…tats-Unis : "+query.get("…tats-Unis")+"\nFrance : "+query.get("France")+"\nChine : "+query.get("Chine");
-		return display;
-	}
 	
 	/*
 	 *  CLEMENT FAIT LA STP ELLE EST VITE FAIT TU RECUP JUSTE LES METHODE QUERY6 DE CHAQUE BDD ET TU LES FOU DANS UN
@@ -240,7 +227,6 @@ public class QueryAmazon {
 		
 		mainSort();	
 		query2Amazon();
-		query6Amazon();
 		
 	}
 
