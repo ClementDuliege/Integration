@@ -6,6 +6,10 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -17,6 +21,8 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+
+import usa.JdbcConnectionUSA;
 
 
 
@@ -514,7 +520,47 @@ import javax.swing.table.DefaultTableModel;
 /*Requête5----------------------------------------------------------------------------------------------------------------------------------------------	
 	 
 -----------------------------------------------------------------------------------------------------------------------------------------------*/
+	public static String[][] query5() {
+		String[][] querytab3 = new String[100][3];
+		int paidLeaveMin=30, paidLeaveMax = 0, paidLeave = 0;
+		int sommeBonusMin = 0, moyBonusMin = 0;
+		int sommeBonusMax = 0, moyBonusMax = 0;
+		int cptMin = 0, cptMax = 0;
+		
+		for(int i=0; i<sizeTab; i++) {//we shearch the smallest paidleave
+			paidLeave = Integer.parseInt(tabPaySlip[i][6]);
+			if (paidLeave < paidLeaveMin) {
+				paidLeaveMin = paidLeave;
+			}
+		}
+		
+		for(int i=0; i<sizeTab; i++) {//we shearch the smallest paidleave
+			paidLeave = Integer.parseInt(tabPaySlip[i][6]);
+			if (paidLeave > paidLeaveMax) {
+				paidLeaveMax = paidLeave;
+			}
+		}
+		
+		for(int i=0; i<sizeTab; i++) {
+			paidLeave = Integer.parseInt(tabPaySlip[i][6]);
+			if(paidLeaveMin == paidLeave) {
+				sommeBonusMin += Integer.parseInt(tabPaySlip[i][5]);
+				cptMin ++;
+			}
+			if(paidLeaveMax == paidLeave) {
+				sommeBonusMax += Integer.parseInt(tabPaySlip[i][5]);
+				cptMax ++;
+			}
+		}
+		moyBonusMin = sommeBonusMin/cptMin;
+		moyBonusMax = sommeBonusMax/cptMax;
+		querytab3[0][0] = "";
+   	 	querytab3[0][1] = Integer.toString(moyBonusMax);
+   	 	querytab3[0][2] = Integer.toString(paidLeaveMax);	 
 
+		return querytab3;
+	}
+	
 	public void BonusWithPaidLeave() {
 		int paidLeaveMin=30, paidLeaveMax = 0, paidLeave = 0;
 		int sommeBonusMin = 0, moyBonusMin = 0;
@@ -557,7 +603,19 @@ import javax.swing.table.DefaultTableModel;
 /*Requête6----------------------------------------------------------------------------------------------------------------------------------------------	
 	 
 -----------------------------------------------------------------------------------------------------------------------------------------------*/
-	
+	public static int query6() {
+		 int sommeSalary=0, salary = 0;
+		 int averageSalary=0;
+		    
+			for(int k=0; k<sizeTab; k++) {/*we make the average to the salaries of the company's employees*/
+				salary = Integer.parseInt(tabPaySlip[k][4]);
+				sommeSalary = sommeSalary + salary;
+			}
+		          
+		averageSalary = sommeSalary/(sizeTab);
+		       
+		return averageSalary;
+	}
 	//Requête 6
 	/**
 	 * Method allowing to get the meduim salary to the society
@@ -581,6 +639,17 @@ import javax.swing.table.DefaultTableModel;
 /*Requête7----------------------------------------------------------------------------------------------------------------------------------------------	
 	 
 -----------------------------------------------------------------------------------------------------------------------------------------------*/
+	public static int query7() {
+		int bonus=0;
+	    int sumBonus=0;
+	    for(int i=0; i<sizeTab; i++) {
+	    	bonus = Integer.parseInt(tabPaySlip[i][5]);
+	    	sumBonus += bonus;
+	    }
+		return sumBonus;
+	}
+
+	
 	public void sumBonus() {
 		int bonus=0;
 	    int sumBonus=0;
@@ -595,7 +664,47 @@ import javax.swing.table.DefaultTableModel;
 /*Requête8----------------------------------------------------------------------------------------------------------------------------------------------	
 	 
 -----------------------------------------------------------------------------------------------------------------------------------------------*/
-
+	public static String[][] query8() {
+		String[][] querytab = new String[100][5];
+		 int paidleaveMin=30, paidleave = 0;
+			int	bonusMax = 0, bonus = 0;
+			int salaryMax = 0, salary = 0;
+			int tmp = 0;
+			
+		    
+					for(int k=0; k<sizeTab; k++) {//we shearch the smallest paidleave
+						paidleave = Integer.parseInt(tabPaySlip[k][6]);
+						if (paidleave < paidleaveMin) {
+							paidleaveMin = paidleave;
+						}
+					}
+					
+					for(int m=0; m<sizeTab; m++) {//we shearch the biggest bonus among the smallest paidleave*
+						bonus = Integer.parseInt(tabPaySlip[m][5]);
+						if(Integer.parseInt(tabPaySlip[m][6])==paidleaveMin) {
+							if(bonus > bonusMax) {
+								bonusMax = bonus;
+							}
+						}
+					}
+					
+					for(int l=0; l<sizeTab; l++) {/*we shearch the biggest salary among the biggest bonus and the smallest paidleave*/
+						if((Integer.parseInt(tabPaySlip[l][5])==bonusMax) &&(Integer.parseInt(tabPaySlip[l][6])==paidleaveMin)) {
+							salary = Integer.parseInt(tabPaySlip[l][4]);
+							if(salary > salaryMax) {
+								salaryMax = salary;
+								tmp = l;
+							}
+						}
+					}
+					querytab[0][0] = tabPaySlip[tmp][1];
+			    	 querytab[0][1] = tabPaySlip[tmp][2];
+			    	 querytab[0][2] = tabPaySlip[tmp][4];
+			    	 querytab[0][3] = tabPaySlip[tmp][5];
+			    	 querytab[0][4] = tabPaySlip[tmp][6]; 
+		return querytab;
+	}
+	
 	//Requête 8
 	/**
 	 * Method allowing to get the best employee in function of his bonus and paid leave
@@ -640,6 +749,40 @@ import javax.swing.table.DefaultTableModel;
 /*Requête9----------------------------------------------------------------------------------------------------------------------------------------------	
 	 
 -----------------------------------------------------------------------------------------------------------------------------------------------*/
+	public static String[][] query9() {
+		String[][] querytab = new String[1][3];
+		int minAge = 50, age = 0;
+		int salary = 0;
+		ArrayList<Salarier> ar = new ArrayList<Salarier>();
+		
+			for(int i=0; i<sizeTab; i++) {//we shearch the smallest age
+				age = Integer.parseInt(tabPaySlip[i][3]);
+				if (age < minAge) {
+					minAge = age;
+				}
+			}
+			
+			for(int j=0; j<sizeTab; j++) {//we shearch the biggest salary
+				salary = Integer.parseInt(tabPaySlip[j][4]);
+				if(Integer.parseInt(tabPaySlip[j][3])==minAge) 
+					ar.add(new Salarier(j,salary));
+			}
+			
+			Collections.sort(ar, new Sortbyroll());//Sort the ArrayList in function of salary with id corresponding
+			System.err.println("------Requête9--------------minAgeSalary-----------------------");
+			
+			for (int i=ar.size()-1; i>=ar.size()-3; i--) {  
+				age =Integer.parseInt(tabPaySlip[ar.get(i).getId()][3]);//we recuperate age with the id of ArrayList
+		        String nom = tabPaySlip[ar.get(i).getId()][1]; 
+		        String prenom = tabPaySlip[ar.get(i).getId()][1];
+		        salary = ar.get(i).getSalary();
+		        querytab[i][0] = nom;
+		    	querytab[i][1] = Integer.toString(age);  		 
+		    	querytab[i][2] = Integer.toString(salary);
+			} 
+			return querytab;
+	}
+	
 	//Requête9
 	/**
 	 * Method allowing to get the 3 best salary for the youngest peoples
@@ -677,6 +820,32 @@ import javax.swing.table.DefaultTableModel;
 /*Requête10----------------------------------------------------------------------------------------------------------------------------------------------	
 	 
 -----------------------------------------------------------------------------------------------------------------------------------------------*/
+	public static String[][] query10() {
+		String[][] querytab = new String[40][2];
+		int salary = 0;
+		int age = 0;
+		int sommeAge = 0, moyAge = 0;
+		ArrayList<Salarier> ar = new ArrayList<Salarier>();
+			for(int i=0; i<sizeTab; i++) {//we recuperate the id and salary associated */
+				salary = Integer.parseInt(tabPaySlip[i][4]);
+				ar.add(new Salarier(i,salary));
+			}	
+			Collections.sort(ar, new Sortbyroll());//Sort the ArrayList in function of salary with id corresponding
+			System.err.println("------Requête10--------------bestAge-----------------------");
+			for (int i=ar.size()-1; i>=ar.size()-40; i--) {  
+	            age =Integer.parseInt(tabPaySlip[ar.get(i).getId()][3]);//we recuperate age with the id of ArrayList
+	            sommeAge += age;
+	            moyAge = sommeAge/40;    
+	    } 
+			querytab[0][0] = Integer.toString(salary);
+		    querytab[0][1] = Integer.toString(moyAge);  	
+			System.out.println("Age with best meduim salary : " + moyAge);
+		
+		return querytab;
+		
+	}
+	
+	
 	//requête 10
 	/**
 	 * Method allowing to get the medium age with the best salary
