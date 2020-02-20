@@ -19,6 +19,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import amazon.QueryAmazon;
 import chine.QueryDaoCHN;
 import france.QueryDaoFR;
 import usa.JdbcConnectionUSA;
@@ -85,7 +86,7 @@ public class QueryBar extends JPanel implements ActionListener{
 	public void fr() {
 		String col[] = { "je fait apr", "je fait apr", "je fait apr", "je fait apr", "je fait apr" };
 
-		DefaultTableModel model = new DefaultTableModel(QueryDaoUSA.query5(), col);
+		DefaultTableModel model = new DefaultTableModel(QueryDaoUSA.query8(), col);
 	    JTable table = new JTable(model);
 	   
 	    table.setShowVerticalLines(true);

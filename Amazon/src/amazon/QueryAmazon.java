@@ -1,10 +1,12 @@
-package dao;
+package amazon;
 
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashMap;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -187,8 +189,15 @@ public class QueryAmazon {
 	
 	
 	// SA JE LE FAIT 
-	public static void query6Amazon() {
-		System.out.println("Requête 6 : " + QueryDaoFR.query6()+ "	" + QueryDaoUSA.query6() + "\n");
+	public static String query6Amazon() {
+		HashMap<String, Integer> query = new HashMap<String, Integer>();
+		
+		query.put("États-Unis", QueryDaoUSA.query6());
+		query.put("France", QueryDaoFR.query6());
+		//query.put("Chine", QueryDaoCHN.query6());  CLEMENT JAI BESOIN DE RECUP TA REQUETE 6 JUSTE EN L'APPELANT STP
+
+	    String display = "Salaire moyen de chaque pays :\nÉtats-Unis : "+query.get("États-Unis")+"\nFrance : "+query.get("France")+"\nChine : "+query.get("Chine");
+		return display;
 	}
 	
 	/*

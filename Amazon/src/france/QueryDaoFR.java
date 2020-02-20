@@ -194,8 +194,6 @@ public class QueryDaoFR{
 		    	 averageSalary = allSalary/i;
 		    }
 		    	
-		    System.out.println(averageSalary);
-
 		    result.close();
 		    state.close();
 		      
@@ -205,12 +203,11 @@ public class QueryDaoFR{
 		return averageSalary;
 	}
 	
-	// Somme des bonus
+	// Somme des bonus je retourne un entier
 	public static int query7() {
-		int averageSalary = 0;
-		int allSalary = 0;
+		int allBonus = 0;
 		try {
-			String selectQuery = "SELECT salary FROM payslip;";                
+			String selectQuery = "SELECT bonus FROM payslip;";                
 
 			Connection dbConnection = JdbcConnectionFR.getConnection();
 			Statement state = dbConnection.createStatement();
@@ -218,14 +215,13 @@ public class QueryDaoFR{
 			
 			int i=0;
 		    while(result.next()){ 
-		    	// Moyenne des salaires de la colonne 'salary'
-		    	 int salary = result.getInt("salary");
-		    	 allSalary += salary;
+		    	// somme des bonus de la colonne 'bonus'
+		    	 int bonus = result.getInt("bonus");
+		    	 allBonus += bonus;
 		    	 i++;
-		    	 averageSalary = allSalary/i;
 		    }
 		    	
-		    System.out.println(averageSalary);
+		    System.out.println(allBonus);
 
 		    result.close();
 		    state.close();
@@ -233,8 +229,9 @@ public class QueryDaoFR{
 		} catch (SQLException se) {
 			System.err.println(se.getMessage());
 		}
-		return averageSalary;
+		return allBonus;
 	}
+	
 	
 	
 	public static String[][] query8() {
@@ -289,7 +286,7 @@ public class QueryDaoFR{
 		    	 int age = result.getInt("age");
 		    	 int salary = result.getInt("salary");
 		    	 String nom = result.getString("lastname");
-		    	 // Remplissage du tableau avec pour colonnes : 1=nom, 2=age, 3=salaire
+		    	 // Remplissage du tableau avec pour colonnes : 1=nom, 2=age, 3=salaire   	 
 		    	 querytab[i][0] = nom;
 		    	 querytab[i][1] = Integer.toString(age);  		 
 		    	 querytab[i][2] = Integer.toString(salary);  		 
