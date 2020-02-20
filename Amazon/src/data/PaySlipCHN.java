@@ -1,4 +1,4 @@
-package chine;
+package data;
 
 public class PaySlipCHN {
 

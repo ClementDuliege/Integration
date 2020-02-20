@@ -1,4 +1,4 @@
-package usa;
+package connection;
 
 import java.sql.*;
 import java.sql.Connection;

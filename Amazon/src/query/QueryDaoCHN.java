@@ -1,4 +1,4 @@
-package chine;
+package query;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -17,6 +17,10 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+
+import data.PaySlipCHN;
+import data.Salarier;
+import data.Sortbyroll;
 
 
 

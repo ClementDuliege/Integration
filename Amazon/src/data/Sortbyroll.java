@@ -1,4 +1,4 @@
-package chine;
+package data;
 
 import java.util.Comparator;
 

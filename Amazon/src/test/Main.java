@@ -1,8 +1,8 @@
-package usa;
+package test;
 
 import amazon.QueryAmazon;
-import france.QueryDaoFR;
 import gui.Display;
+import query.QueryDaoFR;
 
 public class Main {
 

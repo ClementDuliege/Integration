@@ -20,10 +20,10 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import amazon.QueryAmazon;
-import chine.QueryDaoCHN;
-import france.QueryDaoFR;
-import usa.JdbcConnectionUSA;
-import usa.QueryDaoUSA;
+import connection.JdbcConnectionUSA;
+import query.QueryDaoCHN;
+import query.QueryDaoFR;
+import query.QueryDaoUSA;
 
 
 public class QueryBar extends JPanel implements ActionListener{

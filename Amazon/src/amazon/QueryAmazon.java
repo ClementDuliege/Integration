@@ -16,9 +16,9 @@ import javax.swing.table.DefaultTableModel;
 
 import org.postgresql.core.Query;
 
-import chine.QueryDaoCHN;
-import france.QueryDaoFR;
-import usa.QueryDaoUSA;
+import query.QueryDaoCHN;
+import query.QueryDaoFR;
+import query.QueryDaoUSA;
 
 public class QueryAmazon {
 	
