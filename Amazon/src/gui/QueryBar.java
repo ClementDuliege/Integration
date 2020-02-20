@@ -83,9 +83,9 @@ public class QueryBar extends JPanel implements ActionListener{
 	}
 	
 	public void fr() {
-		String col[] = { "je fait apr", "je fait apr", "je fait apr", "je fait apr" };
+		String col[] = { "je fait apr", "je fait apr", "je fait apr", "je fait apr", "je fait apr" };
 
-		DefaultTableModel model = new DefaultTableModel(QueryDaoFR.query8(), col);
+		DefaultTableModel model = new DefaultTableModel(QueryDaoUSA.query5(), col);
 	    JTable table = new JTable(model);
 	   
 	    table.setShowVerticalLines(true);

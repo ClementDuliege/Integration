@@ -251,6 +251,136 @@ public class QueryDaoUSA{
 	}
 
 	
+	// Somme des bonus
+		public static int query7() {
+			int averageSalary = 0;
+			int allSalary = 0;
+			try {
+				String selectQuery = "SELECT salary FROM payslip;";                
+
+				Connection dbConnection = JdbcConnectionUSA.getConnection();
+				Statement state = dbConnection.createStatement();
+				ResultSet result = state.executeQuery(selectQuery);
+				
+				int i=0;
+			    while(result.next()){ 
+			    	// Moyenne des salaires de la colonne 'salary'
+			    	 int salary = result.getInt("salary");
+			    	 allSalary += salary;
+			    	 i++;
+			    	 averageSalary = allSalary/i;
+			    }
+			    	
+			    System.out.println(averageSalary);
+
+			    result.close();
+			    state.close();
+			      
+			} catch (SQLException se) {
+				System.err.println(se.getMessage());
+			}
+			return averageSalary;
+		}
+	
+	public static String[][] query8() {
+		String[][] querytab = new String[100][5];
+		try {
+			String selectQuery = "SELECT lastname, firstname, salary, bonus, paid_leave FROM payslip INNER JOIN employees ON employees.id_employees = payslip.id_payslip WHERE (bonus = (SELECT MAX(bonus) FROM payslip)) AND (paid_leave = (SELECT MIN(paid_leave) FROM payslip));";                
+
+			Connection dbConnection = JdbcConnectionUSA.getConnection();
+			Statement state = dbConnection.createStatement();
+			ResultSet result = state.executeQuery(selectQuery);
+			
+			int i=0;
+		    while(result.next()){ 
+		    	 int bonus = result.getInt("bonus");
+		    	 int paidLeave = result.getInt("paid_leave");
+		    	 int salary = result.getInt("salary");
+		    	 String prenom = result.getString("firstname");
+		    	 String nom = result.getString("lastname");
+		    	 // Remplissage du tableau avec pour colonnes : 1=nom, 2=prenom, 3=salaire, 4=bonus, 5=paid_leave
+		    	 querytab[i][0] = nom;
+		    	 querytab[i][1] = prenom;
+		    	 querytab[i][2] = Integer.toString(salary);
+		    	 querytab[i][3] = Integer.toString(bonus);
+		    	 querytab[i][4] = Integer.toString(paidLeave);    		 
+		    	 i++;
+		   	}
+		    
+		    result.close();
+		    state.close();
+		      
+		} catch (SQLException se) {
+			System.err.println(se.getMessage());
+		}
+		return querytab;
+	}
+	
+	// SOUS FORME DE TABLEAU JE TE DONNE LE PLUS JEUNE SALARIER
+		public static String[][] query9() {
+			String[][] querytab = new String[1][3];
+			try {
+				// JE SORT LE PLUS JEUNES SALARIERS AVEC LE PLUS GROS SALAIRE 
+				String selectQuery = "SELECT lastname, salary, age FROM payslip INNER JOIN employees ON employees.id_employees = payslip.id_payslip ORDER BY age ASC, salary DESC LIMIT 1;";
+				
+				
+				Connection dbConnection = JdbcConnectionUSA.getConnection();
+				Statement state = dbConnection.createStatement();
+				ResultSet result = state.executeQuery(selectQuery);
+				
+				int i=0;
+			    while(result.next()){ 
+			    	 int age = result.getInt("age");
+			    	 int salary = result.getInt("salary");
+			    	 String nom = result.getString("lastname");
+			    	 // Remplissage du tableau avec pour colonnes : 1=nom, 2=age, 3=salaire
+			    	 querytab[i][0] = nom;
+			    	 querytab[i][1] = Integer.toString(age);  		 
+			    	 querytab[i][2] = Integer.toString(salary);  		 
+			    	 i++;
+			   	}
+			    
+			    result.close();
+			    state.close();
+			      
+				} catch (SQLException se) {
+					System.err.println(se.getMessage());
+				}
+				return querytab;
+		}
+			
+		// JE SORT UN TABLEAU A 2 COLONNE AVEC 40 ELEMENT 	
+		public static String[][] query10() {
+			String[][] querytab = new String[40][2];
+			try {
+				// JE RECUPERE LES 40 PLUS GROS SALAIRE EN AFFICHANT LES AGE
+				String selectQuery = "SELECT salary, age FROM payslip INNER JOIN employees ON employees.id_employees = payslip.id_payslip ORDER BY salary DESC LIMIT 40;";
+					
+				
+				Connection dbConnection = JdbcConnectionUSA.getConnection();
+				Statement state = dbConnection.createStatement();
+				ResultSet result = state.executeQuery(selectQuery);
+					
+				int i=0;
+				while(result.next()){ 
+					int age = result.getInt("age");
+				    int salary = result.getInt("salary");
+				    	 // Remplissage du tableau avec pour colonnes : 1=nom, 2=age, 3=salaire
+				    querytab[i][0] = Integer.toString(salary);
+				    querytab[i][1] = Integer.toString(age);  		 
+				    i++;
+				   
+				}
+				    
+				result.close();
+				state.close();
+				      
+			} catch (SQLException se) {
+				System.err.println(se.getMessage());
+			}
+			return querytab;
+			
+		}
 
 	public static String[] getCol() {
 		return col;
