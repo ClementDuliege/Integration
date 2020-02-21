@@ -16,7 +16,6 @@ import javax.swing.table.DefaultTableModel;
 
 import connection.JdbcConnectionFR;
 import connection.JdbcConnectionUSA;
-import gui.Display;
 
 public class QueryDaoUSA{
 	private static String cont[][] = new String[10][2];
@@ -24,11 +23,6 @@ public class QueryDaoUSA{
 	
 	public QueryDaoUSA() {
 		
-		
-		
-		
-		//guiQuery();
-		//selectPayslip();
 		
 	}
 	

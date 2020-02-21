@@ -13,19 +13,17 @@ public class JdbcConnectionFR{
     private static Connection connection;
     
     
-    
-    public static Connection getConnection() {		
-        Connection conn = null;
-        try {
-            conn = DriverManager.getConnection(url, user, password);
-            System.out.println("Connected to the PostgreSQL server successfully.");
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
- 
-        return conn;
-    }
- 
+	public static Connection getConnection() {		
+		if (connection == null) {
+			try {
+				connection = DriverManager.getConnection(url, user, password);
+				System.out.println("Connection Postgres Reussi !");
+			} catch (Exception e) {
+				System.err.println("Connection failed : " + e.getMessage());			
+			}
+		}
+		return connection;
+	}
    
    
 }

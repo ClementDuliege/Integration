@@ -21,7 +21,7 @@ public class JdbcConnectionUSA {
 		if (connection == null) {
 			try {
 				connection = DriverManager.getConnection(url, user, password);
-				System.out.println("Connection Reussi !");
+				System.out.println("Connection Mysql Reussi !");
 			} catch (Exception e) {
 				System.err.println("Connection failed : " + e.getMessage());			
 			}
