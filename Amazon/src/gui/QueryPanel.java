@@ -30,7 +30,7 @@ public class QueryPanel extends JPanel implements ActionListener{
 	private JRadioButton check3 = new JRadioButton("Requête 3");
 	private JRadioButton check4 = new JRadioButton("Requête 4");
 	private JRadioButton check5 = new JRadioButton("Requête 5");
-	private JRadioButton check6 = new JRadioButton("Requête6");
+	private JRadioButton check6 = new JRadioButton("Requête 6");
 	private JRadioButton check7 = new JRadioButton("Requête 7");
 	private JRadioButton check8 = new JRadioButton("Requête 8");
 	private JRadioButton check9 = new JRadioButton("Requête 9");
@@ -138,12 +138,6 @@ public class QueryPanel extends JPanel implements ActionListener{
     	try {
 	    	Object source = e.getSource();
 			if(source == button){
-				label = new JLabel(amazon6.toString());
-				label.setForeground(Color.RED);
-				label.setSize(5, 50);
-				Gui.getRp().add(label);
-				label.setVisible(true);
-				Gui.getRp().validate();
 				String str = group.getSelection().getActionCommand();
 				System.out.println(str);
 				switch (str) {
@@ -163,7 +157,11 @@ public class QueryPanel extends JPanel implements ActionListener{
 						System.out.println("requete 5");
 						break;
 					case "6":
-							
+						label = new JLabel(amazon6.toString());
+						label.setForeground(Color.RED);
+						label.setSize(5, 50);
+						Gui.getRp().add(label);
+						Gui.getRp().validate();
 						break;
 					case "7":
 						System.out.println("requete 7");
