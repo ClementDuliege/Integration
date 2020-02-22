@@ -12,7 +12,7 @@ import query.QueryDaoUSA;
 
 public class Query5Amazon {
 	
-	public static void mainSort() {
+	public static String[][] mainSort() {
 		QueryDaoUSA usa = new QueryDaoUSA();
 		QueryDaoFR fr = new QueryDaoFR();
 		QueryDaoCHN chn = new QueryDaoCHN();
@@ -38,18 +38,19 @@ public class Query5Amazon {
 		
 		String[][] listMaxFinal = new String[5][3];
 		String[][] listMinFinal = new String[5][3];
+		String[][] listTotFinal = new String[10][3];
 		
 		
 		/* Remplissage liste Max */
-		listMax = addListElementTwoDimension (listFirstA, listMax);	
-		String[][] listRemoveMax = QueryAmazonUsual.getAndDeleteMaxElementTwoDimension(listFirstA, 1);	
+		listMax = addListElementTwoDimension (usa.query5(), listMax);	
+		String[][] listRemoveMax = QueryAmazonUsual.getAndDeleteMaxElementTwoDimension(usa.query5(), 1);	
 		for (int i=1; i<5; i++) {
 			listMax = addListElementTwoDimension (listRemoveMax, listMax);	
 			listRemoveMax = QueryAmazonUsual.getAndDeleteMaxElementTwoDimension(listRemoveMax, 1);
 		}
 		
-		listMax = addListElementTwoDimension (listFirstB, listMax);
-		listRemoveMax = QueryAmazonUsual.getAndDeleteMaxElementTwoDimension(listFirstB, 1);	
+		listMax = addListElementTwoDimension (fr.query5(), listMax);
+		listRemoveMax = QueryAmazonUsual.getAndDeleteMaxElementTwoDimension(fr.query5(), 1);	
 		for (int i=1; i<5; i++) {
 			listMax = addListElementTwoDimension (listRemoveMax, listMax);	
 			listRemoveMax = QueryAmazonUsual.getAndDeleteMaxElementTwoDimension(listRemoveMax, 1);
@@ -77,15 +78,15 @@ public class Query5Amazon {
 		}
 		
 		/* Remplissage liste Min */
-		listMin = addListMinElementTwoDimension (listFirstA, listMin);	
-		String[][] listRemoveMin = QueryAmazonUsual.getAndDeleteMinElementTwoDimension(listFirstA, 1);	
+		listMin = addListMinElementTwoDimension (usa.query5(), listMin);	
+		String[][] listRemoveMin = QueryAmazonUsual.getAndDeleteMinElementTwoDimension(usa.query5(), 1);	
 		for (int i=1; i<5; i++) {
 			listMin = addListMinElementTwoDimension (listRemoveMin, listMin);	
 			listRemoveMin = QueryAmazonUsual.getAndDeleteMinElementTwoDimension(listRemoveMin, 1);
 		}
 		
-		listMin = addListMinElementTwoDimension (listFirstB, listMin);	
-		listRemoveMin = QueryAmazonUsual.getAndDeleteMinElementTwoDimension(listFirstB, 1);	
+		listMin = addListMinElementTwoDimension (fr.query5(), listMin);	
+		listRemoveMin = QueryAmazonUsual.getAndDeleteMinElementTwoDimension(fr.query5(), 1);	
 		for (int i=1; i<5; i++) {
 			listMin = addListMinElementTwoDimension (listRemoveMin, listMin);	
 			listRemoveMin = QueryAmazonUsual.getAndDeleteMinElementTwoDimension(listRemoveMin, 1);
@@ -112,20 +113,23 @@ public class Query5Amazon {
 		for (int i = 0; i < listMinFinal.length == true ; i++) {
 			System.out.println("Bonus: " + listMinFinal[i][0] + ", Congé: " + listMinFinal[i][1] + ", Prenom: " + listMinFinal[i][2]);
 		}
+		
+		/* Fusion en une liste */
+		String[][] listMerge = QueryAmazonUsual.mergeArrayTwoDimension(listMaxFinal,listMinFinal);
+		listTotFinal = addListElementTwoDimension (listMerge, listTotFinal);
+		String[][] listRemoveTotAll = QueryAmazonUsual.getAndDeleteMinElementTwoDimension(listMerge, 1);	
+		for (int i=1; i<10; i++) {
+			listTotFinal = addListMinElementTwoDimension (listRemoveTotAll, listTotFinal);	
+			listRemoveTotAll = QueryAmazonUsual.getAndDeleteMinElementTwoDimension(listRemoveTotAll, 1);
+		}
+		
+		System.out.println("Liste Total: ");
+		for (int i = 0; i < listTotFinal.length == true ; i++) {
+			System.out.println("Bonus: " + listTotFinal[i][0] + ", Congé: " + listTotFinal[i][1] + ", Prenom: " + listTotFinal[i][2]);
+		}
+		
+		return listTotFinal;
 	
-	/*
-		DefaultTableModel model = new DefaultTableModel(listFirstMax, QueryDaoUSA.getCol());
-	    JTable table = new JTable(model);
-	    table.setShowGrid(true);
-	    table.setShowVerticalLines(true);
-	    JFrame frame = new JFrame("Affichage JTable");
-	    JPanel panel = new JPanel();
-	    JScrollPane pane = new JScrollPane(table);
-	    panel.add(pane);
-	    frame.add(panel);
-	    frame.setSize(500, 250);
-	    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	    frame.setVisible(true);*/
 	
 	}
 

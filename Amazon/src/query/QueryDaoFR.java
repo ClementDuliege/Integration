@@ -94,9 +94,9 @@ public class QueryDaoFR{
 		    	 int salaire = result.getInt("salary");
 		    	 int paidLeave = result.getInt("paid_leave");
 		    	 String prenom = result.getString("firstname");
-		    	 querytab3[i][0] = prenom;
-		    	 querytab3[i][1] = Integer.toString(salaire);
-		    	 querytab3[i][2] = Integer.toString(paidLeave);	    		 
+		    	 querytab3[i][0] = Integer.toString(salaire);
+		    	 querytab3[i][1] = Integer.toString(paidLeave);
+		    	 querytab3[i][2] = prenom;	    		 
 		    	 i++;
 		   	    }
 		    
@@ -159,9 +159,9 @@ public class QueryDaoFR{
 		    	 int paidLeave = result.getInt("paid_leave");
 		    	 String prenom = result.getString("firstname");
 		    	 // Remplissage du tableau avec pour colonnes : 1=prenom, 2=bonus, 3=conges
-		    	 querytab[i][0] = prenom;
-		    	 querytab[i][1] = Integer.toString(bonus);
-		    	 querytab[i][2] = Integer.toString(paidLeave);	    		 
+		    	 querytab[i][0] = Integer.toString(bonus);
+		    	 querytab[i][1] = Integer.toString(paidLeave);
+		    	 querytab[i][2] = prenom;	    		 
 		    	 i++;
 		   	}
 		    

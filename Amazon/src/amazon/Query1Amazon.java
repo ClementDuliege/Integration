@@ -12,11 +12,10 @@ import query.QueryDaoUSA;
 
 public class Query1Amazon {
 	
-	public static void mainSort() {
+	public static String[][] mainSort() {
 		QueryDaoUSA usa = new QueryDaoUSA();
 		QueryDaoFR fr = new QueryDaoFR();
 		QueryDaoCHN chn = new QueryDaoCHN();
-		//AHHHHH
 
 
 		String[][] listMerge1 = QueryAmazonUsual.mergeArrayTwoDimension(usa.query1(),fr.query1());
@@ -33,24 +32,13 @@ public class Query1Amazon {
 			listRemoveFirstA = QueryAmazonUsual.getAndDeleteMaxElementTwoDimension(listRemoveFirstA, 0);
 		  }
 		
-		System.out.println("Toutes 10 les valeurs max sont dans cette liste: ");
+		System.out.println("Toutes les 10 valeurs max sont dans cette liste: ");
 		for (int i = 0; i < listFirstMax.length == true ; i++) {
 			System.out.println("Salaire: " + listFirstMax[i][0] + ", Prenom: " + listFirstMax[i][1]);
 		}
 		
 	
-		DefaultTableModel model = new DefaultTableModel(listFirstMax, QueryDaoUSA.getCol());
-	    JTable table = new JTable(model);
-	    table.setShowGrid(true);
-	    table.setShowVerticalLines(true);
-	    JFrame frame = new JFrame("Affichage JTable");
-	    JPanel panel = new JPanel();
-	    JScrollPane pane = new JScrollPane(table);
-	    panel.add(pane);
-	    frame.add(panel);
-	    frame.setSize(500, 250);
-	    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	    frame.setVisible(true);
+		return listFirstMax;
 	
 	}
 

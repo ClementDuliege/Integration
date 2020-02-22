@@ -12,18 +12,18 @@ import query.QueryDaoUSA;
 
 public class Query3Amazon {
 	
-	public static void mainSort() {
+	public static String[][] mainSort() {
 		QueryDaoUSA usa = new QueryDaoUSA();
 		QueryDaoFR fr = new QueryDaoFR();
 		QueryDaoCHN chn = new QueryDaoCHN();
 		
-		String[][] listFirstA = {{"10", "27", "aa"}, {"40", "30", "bb"}, {"70", "30", "cc"}};
-		String[][] listFirstB = {{"20", "2", "dd"}, {"50", "24", "ee"}, {"80", "18", "gg"}};
+		
 		String[][] listFirstC = {{"30", "7", "hh"}, {"40", "9", "ii"}, {"60", "10", "jj"}, 
 				{"15", "6", "kk"}, {"201", "4", "ll"},};
+		// Je laisse la list C en attendant d'avoir la requête 3 fonctionnelle de Clément
 
 
-		String[][] listMerge1 = QueryAmazonUsual.mergeArrayTwoDimension(listFirstA, listFirstB);
+		String[][] listMerge1 = QueryAmazonUsual.mergeArrayTwoDimension(usa.query3(), fr.query3());
 		String[][] listMerge2 = QueryAmazonUsual.mergeArrayTwoDimension(listMerge1,listFirstC);		
 		
 		String[][] listFirstMaxPaid_leave = new String[5][3];
@@ -54,18 +54,7 @@ public class Query3Amazon {
 		}
 		
 	
-		/*DefaultTableModel model = new DefaultTableModel(listFirstMax, QueryDaoUSA.getCol());
-	    JTable table = new JTable(model);
-	    table.setShowGrid(true);
-	    table.setShowVerticalLines(true);
-	    JFrame frame = new JFrame("Affichage JTable");
-	    JPanel panel = new JPanel();
-	    JScrollPane pane = new JScrollPane(table);
-	    panel.add(pane);
-	    frame.add(panel);
-	    frame.setSize(500, 250);
-	    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	    frame.setVisible(true);*/
+		return listFirstMaxSalary;
 	
 	}
 	
