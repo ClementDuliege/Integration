@@ -10,11 +10,20 @@ import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
+import com.sun.xml.internal.messaging.saaj.packaging.mime.util.QEncoderStream;
+
+import amazon.Query1Amazon;
+import amazon.Query4Amazon;
 import amazon.Query6Amazon;
+import query.QueryDaoUSA;
 
 public class QueryPanel extends JPanel implements ActionListener{
 	private static final long serialVersionUID = 1L;
@@ -22,6 +31,10 @@ public class QueryPanel extends JPanel implements ActionListener{
 	private Query6Amazon amazon6 = new Query6Amazon();
 	private JLabel label;
 	private Color amazon2 = new Color(245,195,79);
+	
+	private JTable table = new JTable();
+    private JScrollPane pane = new JScrollPane();
+
 	
 	private JButton button = new JButton("Valider");
 	
@@ -43,8 +56,9 @@ public class QueryPanel extends JPanel implements ActionListener{
         this.setLayout(gl);
         this.setBackground(amazon2);
 		this.setBorder(BorderFactory.createEmptyBorder(40,40,40,40));
-		
-		
+				
+		label = new JLabel();
+		label.setForeground(Color.BLACK);
 		
 		button.setBackground(Color.white);
         button.addActionListener(this);
@@ -98,72 +112,68 @@ public class QueryPanel extends JPanel implements ActionListener{
 		
 	}
     
-    /*
-    public void display() {
-		if(group.getSelection().getActionCommand()!="1") {
-			
-		}else if(group.getSelection().getActionCommand()!="2") {
-			
+    
+    public void radioVisibility() {
+		if(group.getSelection().getActionCommand()=="2" || group.getSelection().getActionCommand()=="6" || group.getSelection().getActionCommand()=="7") {
+			label.setVisible(true);			
+			pane.setVisible(false);
+		} else {
+			label.setVisible(false);
 		}
-		else if(group.getSelection().getActionCommand()!="3") {
-			
-		}
-		else if(group.getSelection().getActionCommand()!="4") {
-			
-		}
-		else if(group.getSelection().getActionCommand()!="5") {
-			
-		}
-		else if(group.getSelection().getActionCommand()!="6") {
-			
-		}
-		else if(group.getSelection().getActionCommand()!="7") {
-			
-		}
-		else if(group.getSelection().getActionCommand()!="8") {
-			
-		}
-		else if(group.getSelection().getActionCommand()!="9") {
-			
-		}
-		else if(group.getSelection().getActionCommand()!="10") {
-			
-		}
-	}
-    */
+    }
+    
+    public void displayJlabel() {
+    	Gui.getRp().add(label, BorderLayout.CENTER);
+		Gui.getRp().validate();
+    }
+    
+    public void displayJtable() {
+		table.setShowGrid(true);
+		table.setShowVerticalLines(true);
+		pane.getViewport().add(table);
+		Gui.getRp().add(pane);
+		pane.setVisible(true);
+		Gui.getRp().validate();
+    }
     
     
     @Override
 	public void actionPerformed(ActionEvent e) {
     	try {
 	    	Object source = e.getSource();
+	    	radioVisibility();    	
 			if(source == button){
 				String str = group.getSelection().getActionCommand();
 				System.out.println(str);
 				switch (str) {
 					case "1":
+					    table = new JTable(new DefaultTableModel(Query1Amazon.mainSort(), Query1Amazon.getCol()));				    
+					    displayJtable();
 						System.out.println("requete 1");
 						break;
 					case "2":
+						label.setText("YOUPIIIIIIIII");
+						displayJlabel();
 						System.out.println("requete 2");
 						break;
 					case "3":
 						System.out.println("requete 3");
 						break;
 					case "4":
+						table = new JTable(new DefaultTableModel(Query4Amazon.mainSort(), Query4Amazon.getCol()));
+					    displayJtable();
 						System.out.println("requete 4");
 						break;
 					case "5":
 						System.out.println("requete 5");
 						break;
 					case "6":
-						label = new JLabel(amazon6.toString());
-						label.setForeground(Color.RED);
-						label.setSize(5, 50);
-						Gui.getRp().add(label);
-						Gui.getRp().validate();
+						label.setText(Query6Amazon.query6());
+						displayJlabel();
 						break;
 					case "7":
+						label.setText("YOUPII    7777");
+						displayJlabel();
 						System.out.println("requete 7");
 						break;
 					case "9":

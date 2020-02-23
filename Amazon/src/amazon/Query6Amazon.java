@@ -10,26 +10,17 @@ import query.QueryDaoFR;
 import query.QueryDaoUSA;
 
 public class Query6Amazon {
-	private String display;
+	private static String display;
 	
-	public String toString() {
+	public static String query6() {
 		HashMap<String, Integer> query = new HashMap<String, Integer>();
 		
 		query.put("…tats-Unis", QueryDaoUSA.query6());
 		query.put("France", QueryDaoFR.query6());
-		//query.put("Chine", QueryDaoCHN.query6());
-		display = "Salaire moyen de chaque pays :\n…tats-Unis : "+query.get("…tats-Unis")+"\nFrance : "+query.get("France")+"\nChine : "+query.get("Chine");
+		query.put("Chine", QueryDaoCHN.query6());
+		display = "Salaire moyen de chaque pays :\n…tats-Unis : "+query.get("…tats-Unis")+"\n France : "+query.get("France")+"\n Chine : "+query.get("Chine");
 		System.out.println(display);
 	    return display;
 	}
-	
-	public String getDisplay() {
-		return display;
-	}
-
-	public void setDisplay(String display) {
-		this.display = display;
-	}
-
 	
 }

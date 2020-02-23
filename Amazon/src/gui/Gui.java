@@ -50,10 +50,10 @@ public class Gui extends JFrame{
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setLayout(new BorderLayout());
 		this.getContentPane().add(rp, BorderLayout.CENTER);
-		
 		this.getContentPane().add(qp, BorderLayout.WEST);
 		this.add(title, BorderLayout.NORTH);
-
+		//rp.setLayout(new BorderLayout());
+		
 		label.setFont(police);
         label.setForeground(Color.WHITE);
 		

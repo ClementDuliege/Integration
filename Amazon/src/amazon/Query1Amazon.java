@@ -12,6 +12,9 @@ import query.QueryDaoUSA;
 
 public class Query1Amazon {
 	
+	private static String col[] = { "Salaire", "Prenom"};
+
+	
 	public static String[][] mainSort() {
 		QueryDaoUSA usa = new QueryDaoUSA();
 		QueryDaoFR fr = new QueryDaoFR();
@@ -19,7 +22,7 @@ public class Query1Amazon {
 
 
 		String[][] listMerge1 = QueryAmazonUsual.mergeArrayTwoDimension(usa.query1(),fr.query1());
-		String[][] listMerge2 = QueryAmazonUsual.mergeArrayTwoDimension(listMerge1,chn.query1());		
+		String[][] listMerge2 = QueryAmazonUsual.mergeArrayTwoDimension(listMerge1,fr.query1());		
 		
 		String[][] listFirstMax = new String[10][2];
 		
@@ -60,6 +63,16 @@ public class Query1Amazon {
 		  return arrayMax;	
 				
 		}
+
+
+	public static String[] getCol() {
+		return col;
+	}
+
+
+	public static void setCol(String col[]) {
+		Query1Amazon.col = col;
+	}
 	
 	
 	

@@ -6,6 +6,8 @@ import query.QueryDaoUSA;
 
 public class Query4Amazon {
 	
+	private static String col[] = { "Prenom", "Salaire", "Bonus"};
+
 	public static String[][] mainSort() {
 		QueryDaoUSA usa = new QueryDaoUSA();
 		QueryDaoFR fr = new QueryDaoFR();
@@ -110,5 +112,17 @@ public class Query4Amazon {
 		  return arrayMax;	
 				
 		}
+
+
+	public static String[] getCol() {
+		return col;
+	}
+
+
+	public static void setCol(String[] col) {
+		Query4Amazon.col = col;
+	}
+	
+	
 
 }
