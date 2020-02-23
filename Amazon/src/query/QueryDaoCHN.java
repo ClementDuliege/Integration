@@ -23,58 +23,14 @@ import com.sun.org.glassfish.gmbal.ParameterNames;
 import data.PaySlipCHN;
 import data.Salarier;
 import data.Sortbyroll;
+import data.RecupTab;
 
 
 
 
 	public class QueryDaoCHN {
 	
-		
-	
-	private static String csvFile = "Amazon_CHINE.csv";
-    private static String line = "";
-    private static String cvsSplitBy = ";";
-    private static String[][] tabPaySlip = new String[250][250];
-    private static int sizeTab = 0;
-		
-	
-		
 
-	public static String[][] RecupTab() {
-		try (BufferedReader reader = new BufferedReader(new FileReader(csvFile))) {
-		   	 try {
-				reader.readLine();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}/*On lit la première ligne car c'est les infos des colonnes*/
-		        
-				
-				while ((line = reader.readLine()) != null) {/*On lit toutes les lignes de notre fichier*/
-	
-		           //On stocke dans notre tableau nos différents éléments graçe à notre séparateur
-		            String[]payslip = line.split(cvsSplitBy);
-		            int j=0;
-		            
-		            while(j != 7) {
-		            	tabPaySlip[sizeTab][j]=payslip[j];
-		            	j++;
-		            }
-		            sizeTab++;
-				}
-		
-		
-	} catch (FileNotFoundException e1) {
-		// TODO Auto-generated catch block
-		e1.printStackTrace();
-	} catch (IOException e1) {
-		// TODO Auto-generated catch block
-		e1.printStackTrace();
-	}
-		return tabPaySlip;
-		
-}
-	
 /*Requête1----------------------------------------------------------------------------------------------------------------------------------------------	
 	 
 -----------------------------------------------------------------------------------------------------------------------------------------------*/	
@@ -85,7 +41,7 @@ import data.Sortbyroll;
 	 * @return tab with higher salary and the name to the person associated.
 	 */
 	public static String[][] query1() {
-		RecupTab();
+		RecupTab.recupTab();
 	    int max = 0;
 	    String firstname = null;
 	    int cpt = 0;
@@ -99,14 +55,14 @@ import data.Sortbyroll;
 		String cont[][] = new String[10][2];
 	
 	    
-	            for(int i = 0; i<sizeTab; i++) {
-	            name[indice]=tabPaySlip[i][2];
-	            salary[indice]=Integer.parseInt(tabPaySlip[i][4]);
+	            for(int i = 0; i<RecupTab.sizeTab; i++) {
+	            name[indice]=RecupTab.tabPaySlip[i][2];
+	            salary[indice]=Integer.parseInt(RecupTab.tabPaySlip[i][4]);
 	            
 	            indice++;
 	            
 	            //On recherche le plus gros salaire
-		             max = Integer.parseInt(tabPaySlip[i][4]); //converse Sting tab in Int tab 
+		             max = Integer.parseInt(RecupTab.tabPaySlip[i][4]); //converse Sting tab in Int tab 
 		             hightersalary [cpt] = max;//
 		             Arrays.sort(hightersalary);// sort tab            
 			}
@@ -138,11 +94,11 @@ import data.Sortbyroll;
 	 * @return the sum of paid leave with number of persons in the society.
 	 */
 	public static int query2() {
-		RecupTab();
+		RecupTab.recupTab();
 		int paidLeave=0;
 	    int sumPaidLeave=0;
-	    for(int i=0; i<sizeTab; i++) {
-	    	paidLeave = Integer.parseInt(tabPaySlip[i][6]);
+	    for(int i=0; i<RecupTab.sizeTab; i++) {
+	    	paidLeave = Integer.parseInt(RecupTab.tabPaySlip[i][6]);
 	    	sumPaidLeave += paidLeave;
 	    }
 		
@@ -162,23 +118,22 @@ import data.Sortbyroll;
 	 * @return tab of the 5 best salaries with biggest paid leave.
 	 */
 	public static String[][] query3() {
-		RecupTab();
-		  int paidLeave = 0, paidLeaveMax = 0;
-		  int salary = 0, salaryMax = 0;
-		  int tmp = 0;
-		  int[] tabPaidLeave = new int[250];
-		  int[] id = new int[250];
-		  String[][] querytab3 = new String[5][3];
-		  HashMap<Integer,Integer> mapPaidLeave = new HashMap<Integer,Integer>();
-		   for(int k=0; k<sizeTab; k++) {/*we shearch the smallest paidleave*/
-			   paidLeave = Integer.parseInt(tabPaySlip[k][6]);
+		RecupTab.recupTab();
+		int paidLeave = 0, paidLeaveMax = 0;
+		int salary = 0, salaryMax = 0;
+		int tmp = 0;
+		int[] tabPaidLeave = new int[250];
+		int[] id = new int[250];
+		String[][] querytab3 = new String[5][3];
+		   for(int k=0; k<RecupTab.sizeTab; k++) {/*we shearch the smallest paidleave*/
+			   paidLeave = Integer.parseInt(RecupTab.tabPaySlip[k][6]);
 			   if(paidLeave > paidLeaveMax) {
 				   paidLeaveMax = paidLeave;
 		    	}
 		    }
-		    for(int j=0; j<sizeTab; j++) {/*we shearch the smallest paidleave*/
-				salary = Integer.parseInt(tabPaySlip[j][4]);
-				paidLeave = Integer.parseInt(tabPaySlip[j][6]);
+		    for(int j=0; j<RecupTab.sizeTab; j++) {/*we shearch the smallest paidleave*/
+				salary = Integer.parseInt(RecupTab.tabPaySlip[j][4]);
+				paidLeave = Integer.parseInt(RecupTab.tabPaySlip[j][6]);
 				if(paidLeave == paidLeaveMax) {
 					if(salary > salaryMax) {
 						id[tmp] = j;
@@ -189,13 +144,13 @@ import data.Sortbyroll;
 				}
 			}           
 			for(int i=tmp; i>tmp-6; i--) {
-				 querytab3[i][0] = tabPaySlip[id[i]][2];//prénom
-		    	 querytab3[i][1] = tabPaySlip[id[i]][4];//salaire
-		    	 querytab3[i][2] = tabPaySlip[id[i]][6];//paidLeave	    		 
+				 querytab3[i][0] = RecupTab.tabPaySlip[id[i]][2];//prénom
+		    	 querytab3[i][1] = RecupTab.tabPaySlip[id[i]][4];//salaire
+		    	 querytab3[i][2] = RecupTab.tabPaySlip[id[i]][6];//paidLeave	    		 
 		    	 i++;
 				/*we post the 5 biggest salary with max paid leave */
 				System.out.println("salarywithpaidLeave");
-				System.out.println("id : " + tabPaySlip[id[i]][0] + " salaire :" + tabPaySlip[id[i]][4]);
+				System.out.println("id : " + RecupTab.tabPaySlip[id[i]][0] + " salaire :" + RecupTab.tabPaySlip[id[i]][4]);
 			}
 		
 		return querytab3;
@@ -213,7 +168,7 @@ import data.Sortbyroll;
 	 * @return tab of the 3 best salaries with bonus included.
 	 */
 	public static String[][] query4() {
-		RecupTab();
+		RecupTab.recupTab();
 		int salary = 0, salaryBonus = 0;
 		int bonus = 0;
 		int[] id = new int[250];
@@ -222,9 +177,9 @@ import data.Sortbyroll;
 		String[][] querytab3 = new String[100][3];
 		HashMap<Integer,Integer> mapSalaryBonus= new HashMap<Integer,Integer>(); 
 		    
-				for(int k=0; k<sizeTab; k++) {/*we shearch the smallest paidleave*/
-					salary = Integer.parseInt(tabPaySlip[k][4]);
-					bonus = Integer.parseInt(tabPaySlip[k][5]);
+				for(int k=0; k<RecupTab.sizeTab; k++) {/*we shearch the smallest paidleave*/
+					salary = Integer.parseInt(RecupTab.tabPaySlip[k][4]);
+					bonus = Integer.parseInt(RecupTab.tabPaySlip[k][5]);
 					salaryBonus = salary +(salary * bonus)/100;/*We add bonus in percent*/
 					mapSalaryBonus.put(k, salaryBonus);
 				}
@@ -238,12 +193,12 @@ import data.Sortbyroll;
 					}
 				}		
 				for(int j=i-1; j>i-4; j--) {
-					querytab3[j][0] = tabPaySlip[id[j]][1];
+					querytab3[j][0] = RecupTab.tabPaySlip[id[j]][1];
 			   	 	querytab3[j][1] = tabSalaryBonus[j];
-			   	 	querytab3[j][2] = tabPaySlip[id[j]][5];
+			   	 	querytab3[j][2] = RecupTab.tabPaySlip[id[j]][5];
 					/*We post the 3 best salary with bonus include */
 					System.out.println("salaryBonus");
-					System.out.println("Nom : " + tabPaySlip[id[j]][1] + " : salaire avec bonus: "+tabSalaryBonus[j]);
+					System.out.println("Nom : " + RecupTab.tabPaySlip[id[j]][1] + " : salaire avec bonus: "+tabSalaryBonus[j]);
 				}
 
    	 	return querytab3;
@@ -260,35 +215,35 @@ import data.Sortbyroll;
 	 * @return the average bonus for the biggest paid leave and the smallest paid leave
 	 */
 	public static String[][] query5() {
-			RecupTab();
+			RecupTab.recupTab();
 			String[][] querytab = new String[100][3];
 			int paidLeaveMin=30, paidLeaveMax = 0, paidLeave = 0;
 			int sommeBonusMin = 0, moyBonusMin = 0;
 			int sommeBonusMax = 0, moyBonusMax = 0;
 			int cptMin = 0, cptMax = 0;
 			
-			for(int i=0; i<sizeTab; i++) {//we shearch the smallest paidleave
-				paidLeave = Integer.parseInt(tabPaySlip[i][6]);
+			for(int i=0; i<RecupTab.sizeTab; i++) {//we shearch the smallest paidleave
+				paidLeave = Integer.parseInt(RecupTab.tabPaySlip[i][6]);
 				if (paidLeave < paidLeaveMin) {
 					paidLeaveMin = paidLeave;
 				}
 			}
 			
-			for(int i=0; i<sizeTab; i++) {//we shearch the smallest paidleave
-				paidLeave = Integer.parseInt(tabPaySlip[i][6]);
+			for(int i=0; i<RecupTab.sizeTab; i++) {//we shearch the smallest paidleave
+				paidLeave = Integer.parseInt(RecupTab.tabPaySlip[i][6]);
 				if (paidLeave > paidLeaveMax) {
 					paidLeaveMax = paidLeave;
 				}
 			}
 			
-			for(int i=0; i<sizeTab; i++) {
-				paidLeave = Integer.parseInt(tabPaySlip[i][6]);
+			for(int i=0; i<RecupTab.sizeTab; i++) {
+				paidLeave = Integer.parseInt(RecupTab.tabPaySlip[i][6]);
 				if(paidLeaveMin == paidLeave) {
-					sommeBonusMin += Integer.parseInt(tabPaySlip[i][5]);
+					sommeBonusMin += Integer.parseInt(RecupTab.tabPaySlip[i][5]);
 					cptMin ++;
 				}
 				if(paidLeaveMax == paidLeave) {
-					sommeBonusMax += Integer.parseInt(tabPaySlip[i][5]);
+					sommeBonusMax += Integer.parseInt(RecupTab.tabPaySlip[i][5]);
 					cptMax ++;
 				}
 			}
@@ -311,16 +266,17 @@ import data.Sortbyroll;
 		 * @return the meduim salary to the society
 		 */
 		public static int query6() {
-			RecupTab();
+			RecupTab.recupTab();
 			int sommeSalary=0, salary = 0;
 		    int averageSalary=0;
 		    
-			for(int k=0; k<sizeTab; k++) {/*we make the average to the salaries of the company's employees*/
-				salary = Integer.parseInt(tabPaySlip[k][4]);
+			for(int k=0; k<RecupTab.sizeTab; k++) {/*we make the average to the salaries of the company's employees*/
+				salary = Integer.parseInt(RecupTab.tabPaySlip[k][4]);
 				sommeSalary = sommeSalary + salary;
 			}
 		          
-		       averageSalary = sommeSalary/(sizeTab);
+		       averageSalary = sommeSalary/(RecupTab.sizeTab);
+		       System.out.println(salary);
 		       return averageSalary;
 		}
 		
@@ -337,11 +293,11 @@ import data.Sortbyroll;
 		 * @return the sum of employees of society
 		 */
 		public static int query7() {
-			RecupTab();
+			RecupTab.recupTab();
 			int bonus=0;
 		    int sumBonus=0;
-		    for(int i=0; i<sizeTab; i++) {
-		    	bonus = Integer.parseInt(tabPaySlip[i][5]);
+		    for(int i=0; i<RecupTab.sizeTab; i++) {
+		    	bonus = Integer.parseInt(RecupTab.tabPaySlip[i][5]);
 		    	sumBonus += bonus;
 		    }
 		    return sumBonus;
@@ -358,7 +314,7 @@ import data.Sortbyroll;
 		 * @return the best employee in function of his bonus and paid leave
 		 */
 		public static String[][] query8() {
-			RecupTab();
+			RecupTab.recupTab();
 			String[][] querytab = new String[1][5];
 			int paidleaveMin=30, paidleave = 0;
 			int	bonusMax = 0, bonus = 0;
@@ -366,36 +322,36 @@ import data.Sortbyroll;
 			int tmp = 0;
 			
 		    
-					for(int k=0; k<sizeTab; k++) {//we shearch the smallest paidleave
-						paidleave = Integer.parseInt(tabPaySlip[k][6]);
+					for(int k=0; k<RecupTab.sizeTab; k++) {//we shearch the smallest paidleave
+						paidleave = Integer.parseInt(RecupTab.tabPaySlip[k][6]);
 						if (paidleave < paidleaveMin) {
 							paidleaveMin = paidleave;
 						}
 					}
 					
-					for(int m=0; m<sizeTab; m++) {//we shearch the biggest bonus among the smallest paidleave*
-						bonus = Integer.parseInt(tabPaySlip[m][5]);
-						if(Integer.parseInt(tabPaySlip[m][6])==paidleaveMin) {
+					for(int m=0; m<RecupTab.sizeTab; m++) {//we shearch the biggest bonus among the smallest paidleave*
+						bonus = Integer.parseInt(RecupTab.tabPaySlip[m][5]);
+						if(Integer.parseInt(RecupTab.tabPaySlip[m][6])==paidleaveMin) {
 							if(bonus > bonusMax) {
 								bonusMax = bonus;
 							}
 						}
 					}
 					
-					for(int l=0; l<sizeTab; l++) {/*we shearch the biggest salary among the biggest bonus and the smallest paidleave*/
-						if((Integer.parseInt(tabPaySlip[l][5])==bonusMax) &&(Integer.parseInt(tabPaySlip[l][6])==paidleaveMin)) {
-							salary = Integer.parseInt(tabPaySlip[l][4]);
+					for(int l=0; l<RecupTab.sizeTab; l++) {/*we shearch the biggest salary among the biggest bonus and the smallest paidleave*/
+						if((Integer.parseInt(RecupTab.tabPaySlip[l][5])==bonusMax) &&(Integer.parseInt(RecupTab.tabPaySlip[l][6])==paidleaveMin)) {
+							salary = Integer.parseInt(RecupTab.tabPaySlip[l][4]);
 							if(salary > salaryMax) {
 								salaryMax = salary;
 								tmp = l;
 							}
 						}
 					}
-					 querytab[0][0] = tabPaySlip[tmp][1];//name
-			    	 querytab[0][1] = tabPaySlip[tmp][2];//firstname
-			    	 querytab[0][2] = tabPaySlip[tmp][4];//salary
-			    	 querytab[0][3] = tabPaySlip[tmp][5];//bonus
-			    	 querytab[0][4] = tabPaySlip[tmp][6];//paid leave
+					 querytab[0][0] = RecupTab.tabPaySlip[tmp][1];//name
+			    	 querytab[0][1] = RecupTab.tabPaySlip[tmp][2];//firstname
+			    	 querytab[0][2] = RecupTab.tabPaySlip[tmp][4];//salary
+			    	 querytab[0][3] = RecupTab.tabPaySlip[tmp][5];//bonus
+			    	 querytab[0][4] = RecupTab.tabPaySlip[tmp][6];//paid leave
 			return querytab;
 		}
 		
@@ -410,22 +366,22 @@ import data.Sortbyroll;
 		 * @return tab of the 3 best salaries for the youngest peoples
 		 */
 		public static String[][] query9() {
-			RecupTab();
+			RecupTab.recupTab();
 			String[][] querytab = new String[3][3];
 			int minAge = 50, age = 0;
 			int salary = 0;
 			ArrayList<Salarier> ar = new ArrayList<Salarier>();
 			
-				for(int i=0; i<sizeTab; i++) {//we shearch the smallest age
-					age = Integer.parseInt(tabPaySlip[i][3]);
+				for(int i=0; i<RecupTab.sizeTab; i++) {//we shearch the smallest age
+					age = Integer.parseInt(RecupTab.tabPaySlip[i][3]);
 					if (age < minAge) {
 						minAge = age;
 					}
 				}
 				
-				for(int j=0; j<sizeTab; j++) {//we shearch the biggest salary
-					salary = Integer.parseInt(tabPaySlip[j][4]);
-					if(Integer.parseInt(tabPaySlip[j][3])==minAge) 
+				for(int j=0; j<RecupTab.sizeTab; j++) {//we shearch the biggest salary
+					salary = Integer.parseInt(RecupTab.tabPaySlip[j][4]);
+					if(Integer.parseInt(RecupTab.tabPaySlip[j][3])==minAge) 
 						ar.add(new Salarier(j,salary));
 				}
 				
@@ -433,8 +389,8 @@ import data.Sortbyroll;
 				System.err.println("------Requête9--------------minAgeSalary-----------------------");
 				
 				for (int i=ar.size()-1; i>=ar.size()-3; i--) {  
-					age =Integer.parseInt(tabPaySlip[ar.get(i).getId()][3]);//we recuperate age with the id of ArrayList
-			        String nom = tabPaySlip[ar.get(i).getId()][1]; 
+					age =Integer.parseInt(RecupTab.tabPaySlip[ar.get(i).getId()][3]);//we recuperate age with the id of ArrayList
+			        String nom = RecupTab.tabPaySlip[ar.get(i).getId()][1]; 
 			        //String prenom = tabPaySlip[ar.get(i).getId()][1];
 			        salary = ar.get(i).getSalary();
 			        querytab[i][0] = nom;
@@ -455,20 +411,20 @@ import data.Sortbyroll;
 		 * @return tab of 40 salaries with age corresponding 
 		 */
 		public static String[][] query10() {
-			RecupTab();
+			RecupTab.recupTab();
 			String[][] querytab = new String[40][2];
 			int salary = 0;
 			int age = 0;
 			int sommeAge = 0, moyAge = 0;
 			ArrayList<Salarier> ar = new ArrayList<Salarier>();
-				for(int i=0; i<sizeTab; i++) {//we recuperate the id and salary associated */
-					salary = Integer.parseInt(tabPaySlip[i][4]);
+				for(int i=0; i<RecupTab.sizeTab; i++) {//we recuperate the id and salary associated */
+					salary = Integer.parseInt(RecupTab.tabPaySlip[i][4]);
 					ar.add(new Salarier(i,salary));
 				}	
 				Collections.sort(ar, new Sortbyroll());//Sort the ArrayList in function of salary with id corresponding
 				for (int i=ar.size()-1; i>=ar.size()-40; i--) {  
-		            age =Integer.parseInt(tabPaySlip[ar.get(i).getId()][3]);//we recuperate age with the id of ArrayList
-		            salary = Integer.parseInt(tabPaySlip[ar.get(i).getId()][4]);
+		            age =Integer.parseInt(RecupTab.tabPaySlip[ar.get(i).getId()][3]);//we recuperate age with the id of ArrayList
+		            salary = Integer.parseInt(RecupTab.tabPaySlip[ar.get(i).getId()][4]);
 		            sommeAge += age;
 		            moyAge = sommeAge/40;   
 		            querytab[i][0] = Integer.toString(salary);
