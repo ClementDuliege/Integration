@@ -39,8 +39,8 @@ public class Query4Amazon {
 			listRemove = QueryAmazonUsual.getAndDeleteMaxElementTwoDimension(listRemove, 2);
 		}
 		
-		listAll = addListElementTwoDimension (listFirstC, listAll);
-		listRemove = QueryAmazonUsual.getAndDeleteMaxElementTwoDimension(listFirstC, 2);	
+		listAll = addListElementTwoDimension (chn.query4(), listAll);
+		listRemove = QueryAmazonUsual.getAndDeleteMaxElementTwoDimension(chn.query4(), 2);	
 		for (int i=1; i<5; i++) {
 			listAll = addListElementTwoDimension (listRemove, listAll);	
 			listRemove = QueryAmazonUsual.getAndDeleteMaxElementTwoDimension(listRemove, 2);

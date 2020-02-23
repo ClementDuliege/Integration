@@ -12,11 +12,14 @@ import query.QueryDaoUSA;
 
 public class Query5Amazon {
 	
+	private static String col[] = { "Prenom", "Salaire", "Bonus"};
+
+	
 	public static String[][] mainSort() {
 		QueryDaoUSA usa = new QueryDaoUSA();
 		QueryDaoFR fr = new QueryDaoFR();
 		QueryDaoCHN chn = new QueryDaoCHN();
-		
+				
 		String[][] listFirstA = {{"1", "500", "a"}, {"2", "51", "b"}, {"3", "52", "c"}
 		,{"4", "53", "d"}, {"5", "54", "e"}, {"6", "55", "f"}
 		,{"7", "56", "g"}, {"8", "57", "h"}, {"9", "58", "i"}
@@ -56,8 +59,8 @@ public class Query5Amazon {
 			listRemoveMax = QueryAmazonUsual.getAndDeleteMaxElementTwoDimension(listRemoveMax, 1);
 		}
 		
-		listMax = addListElementTwoDimension (listFirstC, listMax);
-		listRemoveMax = QueryAmazonUsual.getAndDeleteMaxElementTwoDimension(listFirstC, 1);	
+		listMax = addListElementTwoDimension (chn.query5(), listMax);
+		listRemoveMax = QueryAmazonUsual.getAndDeleteMaxElementTwoDimension(chn.query5(), 1);	
 		for (int i=1; i<5; i++) {
 			listMax = addListElementTwoDimension (listRemoveMax, listMax);	
 			listRemoveMax = QueryAmazonUsual.getAndDeleteMaxElementTwoDimension(listRemoveMax, 1);
@@ -93,8 +96,8 @@ public class Query5Amazon {
 		}
 		
 		
-		listMin = addListMinElementTwoDimension (listFirstC, listMin);	
-		listRemoveMin = QueryAmazonUsual.getAndDeleteMinElementTwoDimension(listFirstC, 1);	
+		listMin = addListMinElementTwoDimension (chn.query5(), listMin);	
+		listRemoveMin = QueryAmazonUsual.getAndDeleteMinElementTwoDimension(chn.query5(), 1);	
 		for (int i=1; i<5; i++) {
 			listMin = addListMinElementTwoDimension (listRemoveMin, listMin);	
 			listRemoveMin = QueryAmazonUsual.getAndDeleteMinElementTwoDimension(listRemoveMin, 1);
@@ -173,5 +176,15 @@ public class Query5Amazon {
 		  return arrayMax;	
 				
 		}
+
+
+	public static String[] getCol() {
+		return col;
+	}
+
+
+	public static void setCol(String[] col) {
+		Query5Amazon.col = col;
+	}
 
 }

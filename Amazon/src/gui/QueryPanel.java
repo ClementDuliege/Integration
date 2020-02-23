@@ -22,6 +22,7 @@ import com.sun.xml.internal.messaging.saaj.packaging.mime.util.QEncoderStream;
 
 import amazon.Query1Amazon;
 import amazon.Query4Amazon;
+import amazon.Query5Amazon;
 import amazon.Query6Amazon;
 import query.QueryDaoUSA;
 
@@ -165,6 +166,8 @@ public class QueryPanel extends JPanel implements ActionListener{
 						System.out.println("requete 4");
 						break;
 					case "5":
+						table = new JTable(new DefaultTableModel(Query5Amazon.mainSort(), Query5Amazon.getCol()));
+					    displayJtable();
 						System.out.println("requete 5");
 						break;
 					case "6":

@@ -22,7 +22,7 @@ public class Query1Amazon {
 
 
 		String[][] listMerge1 = QueryAmazonUsual.mergeArrayTwoDimension(usa.query1(),fr.query1());
-		String[][] listMerge2 = QueryAmazonUsual.mergeArrayTwoDimension(listMerge1,fr.query1());		
+		String[][] listMerge2 = QueryAmazonUsual.mergeArrayTwoDimension(listMerge1,chn.query1());		
 		
 		String[][] listFirstMax = new String[10][2];
 		
