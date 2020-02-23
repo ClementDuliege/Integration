@@ -167,6 +167,7 @@ import data.RecupTab;
 	/**
 	 * @return tab of the 3 best salaries with bonus included.
 	 */
+	@SuppressWarnings("rawtypes")
 	public static String[][] query4() {
 		RecupTab.recupTab();
 		int salary = 0, salaryBonus = 0;
@@ -174,6 +175,7 @@ import data.RecupTab;
 		int[] id = new int[250];
 		String[] tabSalaryBonus = new String[250];
 		int i = 0, salaryMax = 0;
+		int value = 0;
 		String[][] querytab3 = new String[100][3];
 		HashMap<Integer,Integer> mapSalaryBonus= new HashMap<Integer,Integer>(); 
 		    
@@ -187,7 +189,8 @@ import data.RecupTab;
 					salary = (int) mapentry.getValue();
 					if(salary>salaryMax) {/*We put best salary with bonus in tab and the id correspondding*/
 						id[i] = (int) mapentry.getKey();
-						tabSalaryBonus[i] = (String) mapentry.getValue();
+						value = (int) mapentry.getValue();
+						tabSalaryBonus[i] = Integer.toString(value);
 						salaryMax = (int) mapentry.getValue();
 						i++;
 					}
