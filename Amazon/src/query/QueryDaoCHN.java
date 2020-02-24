@@ -221,42 +221,13 @@ import data.RecupTab;
 	 */
 	public static String[][] query5() {
 			RecupTab.recupTab();
-			String[][] querytab = new String[100][3];
-			int paidLeaveMin=30, paidLeaveMax = 0, paidLeave = 0;
-			int sommeBonusMin = 0, moyBonusMin = 0;
-			int sommeBonusMax = 0, moyBonusMax = 0;
-			int cptMin = 0, cptMax = 0;
-			
-			for(int i=0; i<RecupTab.sizeTab; i++) {//we shearch the smallest paidleave
-				paidLeave = Integer.parseInt(RecupTab.tabPaySlip[i][6]);
-				if (paidLeave < paidLeaveMin) {
-					paidLeaveMin = paidLeave;
-				}
-			}
-			
-			for(int i=0; i<RecupTab.sizeTab; i++) {//we shearch the smallest paidleave
-				paidLeave = Integer.parseInt(RecupTab.tabPaySlip[i][6]);
-				if (paidLeave > paidLeaveMax) {
-					paidLeaveMax = paidLeave;
-				}
-			}
+			String[][] querytab = new String[250][3];
 			
 			for(int i=0; i<RecupTab.sizeTab; i++) {
-				paidLeave = Integer.parseInt(RecupTab.tabPaySlip[i][6]);
-				if(paidLeaveMin == paidLeave) {
-					sommeBonusMin += Integer.parseInt(RecupTab.tabPaySlip[i][5]);
-					cptMin ++;
-				}
-				if(paidLeaveMax == paidLeave) {
-					sommeBonusMax += Integer.parseInt(RecupTab.tabPaySlip[i][5]);
-					cptMax ++;
-				}
+				querytab[i][0] = RecupTab.tabPaySlip[i][5];
+	   	 		querytab[i][1] = RecupTab.tabPaySlip[i][6];
+	   	 		querytab[i][2] = RecupTab.tabPaySlip[i][2];
 			}
-			moyBonusMin = sommeBonusMin/cptMin;
-			moyBonusMax = sommeBonusMax/cptMax;
-			querytab[0][0] = Integer.toString(paidLeaveMin);
-	   	 	querytab[0][1] = Integer.toString(paidLeaveMax);
-	   	 	querytab[0][2] = Integer.toString(moyBonusMin);
 			return querytab;
 		}
 		
