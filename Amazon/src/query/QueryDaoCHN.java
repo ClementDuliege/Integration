@@ -168,8 +168,7 @@ import data.RecupTab;
 	/**
 	 * @return tab of the 3 best salaries with bonus included.
 	 */
-	@SuppressWarnings("rawtypes")
-	public static String[][] query4() {
+		public static String[][] query4() {
 		RecupTab.recupTab();
 		int salary = 0, salaryBonus = 0;
 		int bonus = 0;
@@ -177,6 +176,7 @@ import data.RecupTab;
 		String[] tabSalaryBonus = new String[250];
 		int i = 0, salaryMax = 0;
 		int value = 0;
+		int cpt = 0;
 		String[][] querytab3 = new String[100][3];
 		HashMap<Integer,Integer> mapSalaryBonus= new HashMap<Integer,Integer>(); 
 		    
@@ -197,12 +197,13 @@ import data.RecupTab;
 					}
 				}		
 				for(int j=i-1; j>i-4; j--) {
-					querytab3[j][0] = RecupTab.tabPaySlip[id[j]][1];
-			   	 	querytab3[j][1] = tabSalaryBonus[j];
-			   	 	querytab3[j][2] = RecupTab.tabPaySlip[id[j]][5];
+					querytab3[cpt][0] = RecupTab.tabPaySlip[id[j]][1];
+			   	 	querytab3[cpt][1] = tabSalaryBonus[j];
+			   	 	querytab3[cpt][2] = RecupTab.tabPaySlip[id[j]][5];
+			   	 	cpt++;
 					/*We post the 3 best salary with bonus include */
-					//System.out.println("salaryBonus");
-					//System.out.println("Nom : " + RecupTab.tabPaySlip[id[j]][1] + " : salaire avec bonus: "+tabSalaryBonus[j]);
+					System.out.println("salaryBonus");
+					System.out.println("Nom : " + RecupTab.tabPaySlip[id[j]][1] + " : salaire avec bonus: "+tabSalaryBonus[j]);
 				}
 
    	 	return querytab3;
