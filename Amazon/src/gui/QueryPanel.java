@@ -18,12 +18,15 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-import com.sun.xml.internal.messaging.saaj.packaging.mime.util.QEncoderStream;
 
+import amazon.Query10Amazon;
 import amazon.Query1Amazon;
+import amazon.Query3Amazon;
 import amazon.Query4Amazon;
 import amazon.Query5Amazon;
 import amazon.Query6Amazon;
+import amazon.Query7Amazon;
+import amazon.Query9Amazon;
 import query.QueryDaoUSA;
 
 public class QueryPanel extends JPanel implements ActionListener{
@@ -158,6 +161,8 @@ public class QueryPanel extends JPanel implements ActionListener{
 						System.out.println("requete 2");
 						break;
 					case "3":
+						table = new JTable(new DefaultTableModel(Query3Amazon.mainSort(), Query3Amazon.getCol()));
+						displayJtable();
 						System.out.println("requete 3");
 						break;
 					case "4":
@@ -175,15 +180,22 @@ public class QueryPanel extends JPanel implements ActionListener{
 						displayJlabel();
 						break;
 					case "7":
-						label.setText("YOUPII    7777");
+						table = new JTable(new DefaultTableModel(Query7Amazon.mainSort(), Query7Amazon.getCol()));
 						displayJlabel();
 						System.out.println("requete 7");
 						break;
-					case "9":
+					case "8":						
 						System.out.println("requete 8");
 						break;
-					case "10":
+					case "9":		
+						table = new JTable(new DefaultTableModel(Query9Amazon.mainSort(), Query9Amazon.getCol()));
+						displayJtable();
 						System.out.println("requete 9");
+						break;
+					case "10":
+						label.setText(Query10Amazon.mainSort());
+						displayJlabel();
+						System.out.println("requete 10");
 						break;
 							
 					default:

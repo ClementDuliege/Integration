@@ -12,7 +12,7 @@ import query.QueryDaoUSA;
 
 public class Query5Amazon {
 	
-	private static String col[] = { "Prenom", "Salaire", "Bonus"};
+	private static String col[] = { "Bonus", "Congé", "Prenom"};
 
 	
 	public static String[][] mainSort() {
@@ -151,9 +151,9 @@ public class Query5Amazon {
 		  String element = QueryAmazonUsual.getElementFromMinTwoDimension (array, min, 1, 0);
 		  String element2 = QueryAmazonUsual.getElementFromMinTwoDimension (array, min, 1, 2);
 		  
-		//Ajout de la valeur maximum dans la liste
+		//Ajout de la valeur minimum dans la liste
 		  for (int i = 0; i < arrayMax.length; i++) {
-			  if (QueryAmazonUsual.isStringInt(arrayMax, i, 0) == false) {
+			  if (QueryAmazonUsual.isStringInt(arrayMax, i, 1) == false) {
 				  arrayMax[i][0] = element;
 				  arrayMax[i][1] = Integer.toString(min);
 				  arrayMax[i][2] = element2;

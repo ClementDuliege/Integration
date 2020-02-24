@@ -95,7 +95,7 @@ public class QueryAmazon {
 	 * YEN A QUI ON LE MEME AGE IL FAUT QUE TU ME RECUP LE GARS QUI A LE PLUS GROS SALAIRES TU ME RETOURNE SA SOUS FORME DE TABLEAU DU COUP TA 1 ELTM DEDANS
 	 */
 	public static void query9Amazon() {
-		
+		Query9Amazon.mainSort();
 	}
 	
 	
@@ -106,7 +106,7 @@ public class QueryAmazon {
 	 */
 	public static void query10Amazon() {
 		
-		
+		Query10Amazon.mainSort();
 		/*CALCULE DE LAGE MOYEN
 	    ageSom += age;
 	    ageMoy = ageSom/40;
@@ -118,7 +118,7 @@ public class QueryAmazon {
 	public static void main (String [] args) {				
 		
 		//mainSort();	
-		query5Amazon();
+		query10Amazon();
 		
 	}
 

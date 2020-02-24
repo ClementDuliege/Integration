@@ -6,7 +6,9 @@ import query.QueryDaoUSA;
 
 public class Query7Amazon {
 	
-	public static void mainSort() {
+	private static String col[] = { "Bonus", "Congé", "Prenom"};
+	
+	public static String[][] mainSort() {
 		QueryDaoUSA usa = new QueryDaoUSA();
 		QueryDaoFR fr = new QueryDaoFR();
 		QueryDaoCHN chn = new QueryDaoCHN();
@@ -123,21 +125,10 @@ public class Query7Amazon {
 		for (int i = 0; i < listFinal.length == true ; i++) {
 			System.out.println("Bonus: " + listFinal[i][0] + ", Congé: " + listFinal[i][1] + ", Prenom: " + listFinal[i][2]);
 		}
+		
+		return listFinal;
 	
-	/*
-		DefaultTableModel model = new DefaultTableModel(listFirstMax, QueryDaoUSA.getCol());
-	    JTable table = new JTable(model);
-	    table.setShowGrid(true);
-	    table.setShowVerticalLines(true);
-	    JFrame frame = new JFrame("Affichage JTable");
-	    JPanel panel = new JPanel();
-	    JScrollPane pane = new JScrollPane(table);
-	    panel.add(pane);
-	    frame.add(panel);
-	    frame.setSize(500, 250);
-	    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	    frame.setVisible(true);*/
-	
+
 	}
 
 	
@@ -180,5 +171,14 @@ public class Query7Amazon {
 		  return arrayMax;	
 				
 		}
+	
+	public static String[] getCol() {
+		return col;
+	}
+
+
+	public static void setCol(String col[]) {
+		Query7Amazon.col = col;
+	}
 
 }

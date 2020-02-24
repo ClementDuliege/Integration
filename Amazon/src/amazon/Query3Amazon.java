@@ -12,6 +12,8 @@ import query.QueryDaoUSA;
 
 public class Query3Amazon {
 	
+	private static String col[] = { "Salaire","congés" ,"Prenom"};
+	
 	public static String[][] mainSort() {
 		QueryDaoUSA usa = new QueryDaoUSA();
 		QueryDaoFR fr = new QueryDaoFR();
@@ -123,5 +125,14 @@ public class Query3Amazon {
 		  return array;	
 				
 		}
+	
+	public static String[] getCol() {
+		return col;
+	}
+
+
+	public static void setCol(String col[]) {
+		Query3Amazon.col = col;
+	}
 
 }

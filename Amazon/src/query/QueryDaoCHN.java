@@ -343,9 +343,10 @@ import data.RecupTab;
 		 */
 		public static String[][] query9() {
 			RecupTab.recupTab();
-			String[][] querytab = new String[3][3];
+			String[][] querytab = new String[1][3];
 			int minAge = 50, age = 0;
 			int salary = 0;
+			int cpt = 0;
 			ArrayList<Salarier> ar = new ArrayList<Salarier>();
 			
 				for(int i=0; i<RecupTab.sizeTab; i++) {//we shearch the smallest age
@@ -362,17 +363,17 @@ import data.RecupTab;
 				}
 				
 				Collections.sort(ar, new Sortbyroll());//Sort the ArrayList in function of salary with id corresponding
-				System.err.println("------Requête9--------------minAgeSalary-----------------------");
+				//System.err.println("------Requête9--------------minAgeSalary-----------------------");
 				
-				for (int i=ar.size()-1; i>=ar.size()-1; i--) {  
+				int i=ar.size()-1;
 					age =Integer.parseInt(RecupTab.tabPaySlip[ar.get(i).getId()][3]);//we recuperate age with the id of ArrayList
 			        String nom = RecupTab.tabPaySlip[ar.get(i).getId()][1]; 
 			        //String prenom = tabPaySlip[ar.get(i).getId()][1];
 			        salary = ar.get(i).getSalary();
-			        querytab[i][0] = nom;
-			    	querytab[i][1] = Integer.toString(age);  		 
-			    	querytab[i][2] = Integer.toString(salary);
-				} 
+			        querytab[cpt][0] = nom;
+			    	querytab[cpt][1] = Integer.toString(age);  		 
+			    	querytab[cpt][2] = Integer.toString(salary);
+				
 			return querytab;
 		}
 		
@@ -392,6 +393,7 @@ import data.RecupTab;
 			int salary = 0;
 			int age = 0;
 			int sommeAge = 0, moyAge = 0;
+			int cpt = 0;
 			ArrayList<Salarier> ar = new ArrayList<Salarier>();
 				for(int i=0; i<RecupTab.sizeTab; i++) {//we recuperate the id and salary associated */
 					salary = Integer.parseInt(RecupTab.tabPaySlip[i][4]);
@@ -403,8 +405,9 @@ import data.RecupTab;
 		            salary = Integer.parseInt(RecupTab.tabPaySlip[ar.get(i).getId()][4]);
 		            sommeAge += age;
 		            moyAge = sommeAge/40;   
-		            querytab[i][0] = Integer.toString(salary);
-				    querytab[i][1] = Integer.toString(age);
+		            querytab[cpt][0] = Integer.toString(salary);
+				    querytab[cpt][1] = Integer.toString(age);
+				    cpt++;
 		    } 
 			return querytab;
 		}

@@ -314,10 +314,10 @@ public class QueryDaoUSA{
 	
 	// SOUS FORME DE TABLEAU JE TE DONNE LE PLUS JEUNE SALARIER
 		public static String[][] query9() {
-			String[][] querytab = new String[3][3];
+			String[][] querytab = new String[1][3];
 			try {
 				// JE SORT LE PLUS JEUNES SALARIERS AVEC LE PLUS GROS SALAIRE 
-				String selectQuery = "SELECT lastname, salary, age FROM payslip INNER JOIN employees ON employees.id_employees = payslip.id_payslip ORDER BY age ASC, salary DESC LIMIT 3;";
+				String selectQuery = "SELECT lastname, salary, age FROM payslip INNER JOIN employees ON employees.id_employees = payslip.id_payslip ORDER BY age ASC, salary DESC LIMIT 1;";
 				
 				
 				Connection dbConnection = JdbcConnectionUSA.getConnection();
