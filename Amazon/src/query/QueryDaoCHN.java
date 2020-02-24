@@ -122,6 +122,7 @@ import data.RecupTab;
 		int paidLeave = 0, paidLeaveMax = 0;
 		int salary = 0, salaryMax = 0;
 		int tmp = 0;
+		int cpt = 0;
 		int[] tabPaidLeave = new int[250];
 		int[] id = new int[250];
 		String[][] querytab3 = new String[5][3];
@@ -143,11 +144,11 @@ import data.RecupTab;
 					}
 				}
 			}           
-			for(int i=tmp; i>tmp-6; i--) {
-				 querytab3[i][0] = RecupTab.tabPaySlip[id[i]][2];//prénom
-		    	 querytab3[i][1] = RecupTab.tabPaySlip[id[i]][4];//salaire
-		    	 querytab3[i][2] = RecupTab.tabPaySlip[id[i]][6];//paidLeave	    		 
-		    	 i++;
+			for(int i=tmp; i>tmp-5; i--) {
+				 querytab3[cpt][0] = RecupTab.tabPaySlip[id[i]][2];//prénom
+		    	 querytab3[cpt][1] = RecupTab.tabPaySlip[id[i]][4];//salaire
+		    	 querytab3[cpt][2] = RecupTab.tabPaySlip[id[i]][6];//paidLeave	    		 
+		    	 cpt++;
 				/*we post the 5 biggest salary with max paid leave */
 				System.out.println("salarywithpaidLeave");
 				System.out.println("id : " + RecupTab.tabPaySlip[id[i]][0] + " salaire :" + RecupTab.tabPaySlip[id[i]][4]);
