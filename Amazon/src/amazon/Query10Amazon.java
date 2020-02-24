@@ -23,19 +23,19 @@ public class Query10Amazon {
 			valueA = valueA + Integer.parseInt(usa.query10()[i][1]);
 		}
 		moyenneA = valueA / 40;
-		System.out.println("la moyenne 1 vaut: " + moyenneA);
+		System.out.println("la moyenne de l'age dans l'entreprise Américaine: " + moyenneA);
 		
 		for (int i = 0; i < fr.query10().length == true ; i++) {
 			valueB = valueB + Integer.parseInt(fr.query10()[i][1]);
 		}
 		moyenneB = valueB / 40;
-		System.out.println("la moyenne 2 vaut: " + moyenneB);
+		System.out.println("la moyenne de l'age dans l'entreprise Française vaut: " + moyenneB);
 		
 		for (int i = 0; i < chn.query10().length == true ; i++) {
 			valueC = valueC + Integer.parseInt(chn.query10()[i][1]);
 		}
 		moyenneC = valueC / 40;
-		System.out.println("la moyenne 3 vaut: " + moyenneC);
+		System.out.println("la moyenne de l'age dans l'entreprise Chinoise vaut: " + moyenneC);
 		
 		
 		String valueFinal = "La moyenne 1 est : "+moyenneA+ "La moyenne 1 est : "+ moyenneB + "La moyenne 1 est : "+ moyenneC;

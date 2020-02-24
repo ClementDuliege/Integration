@@ -18,14 +18,14 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import com.sun.xml.internal.messaging.saaj.packaging.mime.util.QEncoderStream;
 
-import amazon.Query10Amazon;
 import amazon.Query1Amazon;
+import amazon.Query2Amazon;
 import amazon.Query3Amazon;
 import amazon.Query4Amazon;
 import amazon.Query5Amazon;
 import amazon.Query6Amazon;
-import amazon.Query7Amazon;
 import amazon.Query9Amazon;
 import query.QueryDaoUSA;
 
@@ -66,7 +66,20 @@ public class QueryPanel extends JPanel implements ActionListener{
 		
 		button.setBackground(Color.white);
         button.addActionListener(this);
-		
+        
+        
+        check1.addActionListener(this);
+        check2.addActionListener(this);
+        check3.addActionListener(this);
+        check4.addActionListener(this);
+        check5.addActionListener(this);
+        check6.addActionListener(this);
+        check7.addActionListener(this);
+        check8.addActionListener(this);
+        check9.addActionListener(this);
+        check10.addActionListener(this);
+        
+
         
         check1.setBackground(amazon2);
         check2.setBackground(amazon2);
@@ -100,6 +113,7 @@ public class QueryPanel extends JPanel implements ActionListener{
         group.add(check8);
         group.add(check9);
         group.add(check10);
+       
         
 		this.add(check1);
         this.add(check2);
@@ -113,7 +127,7 @@ public class QueryPanel extends JPanel implements ActionListener{
         this.add(check10);
         this.add(button);
         this.setLayout(gl);
-		
+        
 	}
     
     
@@ -140,12 +154,12 @@ public class QueryPanel extends JPanel implements ActionListener{
 		Gui.getRp().validate();
     }
     
-    
     @Override
-	public void actionPerformed(ActionEvent e) {
+    public void actionPerformed(ActionEvent e) {
     	try {
 	    	Object source = e.getSource();
-	    	radioVisibility();    	
+	    	Gui.DisplayDescription();
+	    	radioVisibility(); 
 			if(source == button){
 				String str = group.getSelection().getActionCommand();
 				System.out.println(str);
@@ -156,13 +170,13 @@ public class QueryPanel extends JPanel implements ActionListener{
 						System.out.println("requete 1");
 						break;
 					case "2":
-						label.setText("YOUPIIIIIIIII");
+						label.setText(Query2Amazon.query6());
 						displayJlabel();
 						System.out.println("requete 2");
 						break;
 					case "3":
 						table = new JTable(new DefaultTableModel(Query3Amazon.mainSort(), Query3Amazon.getCol()));
-						displayJtable();
+					    displayJtable();
 						System.out.println("requete 3");
 						break;
 					case "4":
@@ -180,34 +194,32 @@ public class QueryPanel extends JPanel implements ActionListener{
 						displayJlabel();
 						break;
 					case "7":
-						table = new JTable(new DefaultTableModel(Query7Amazon.mainSort(), Query7Amazon.getCol()));
+						label.setText("YOUPII    7777");
 						displayJlabel();
 						System.out.println("requete 7");
 						break;
-					case "8":						
+					case "9":
+						table = new JTable(new DefaultTableModel(Query9Amazon.mainSort(), Query9Amazon.getCol()));
+					    displayJtable();
 						System.out.println("requete 8");
 						break;
-					case "9":		
-						table = new JTable(new DefaultTableModel(Query9Amazon.mainSort(), Query9Amazon.getCol()));
-						displayJtable();
-						System.out.println("requete 9");
-						break;
 					case "10":
-						label.setText(Query10Amazon.mainSort());
-						displayJlabel();
-						System.out.println("requete 10");
+						System.out.println("requete 9");
 						break;
 							
 					default:
 						System.out.println("ERREUR DANS LE SWITCH");
 				}
-			} else {
-				System.out.println("Erreur button");	
 			}
     	}catch (NullPointerException se) {
     		//System.err.println(se.getMessage());
     	}
 	}
+    
+//    public void actionPerformed2(ActionEvent e) {
+//    	Gui.DisplayDescription();
+//   	}
+
 
     
     
@@ -226,6 +238,96 @@ public class QueryPanel extends JPanel implements ActionListener{
 	public void setCheck1(JRadioButton check1) {
 		this.check1 = check1;
 	}
+	
+	public JRadioButton getCheck2() {
+		return check2;
+	}
+
+
+	public void setCheck2(JRadioButton check2) {
+		this.check2 = check2;
+	}
+
+
+	public JRadioButton getCheck3() {
+		return check3;
+	}
+
+
+	public void setCheck3(JRadioButton check3) {
+		this.check3 = check3;
+	}
+
+
+	public JRadioButton getCheck4() {
+		return check4;
+	}
+
+
+	public void setCheck4(JRadioButton check4) {
+		this.check4 = check4;
+	}
+
+
+	public JRadioButton getCheck5() {
+		return check5;
+	}
+
+
+	public void setCheck5(JRadioButton check5) {
+		this.check5 = check5;
+	}
+
+
+	public JRadioButton getCheck6() {
+		return check6;
+	}
+
+
+	public void setCheck6(JRadioButton check6) {
+		this.check6 = check6;
+	}
+
+
+	public JRadioButton getCheck7() {
+		return check7;
+	}
+
+
+	public void setCheck7(JRadioButton check7) {
+		this.check7 = check7;
+	}
+
+
+	public JRadioButton getCheck8() {
+		return check8;
+	}
+
+
+	public void setCheck8(JRadioButton check8) {
+		this.check8 = check8;
+	}
+
+
+	public JRadioButton getCheck9() {
+		return check9;
+	}
+
+
+	public void setCheck9(JRadioButton check9) {
+		this.check9 = check9;
+	}
+
+
+	public JRadioButton getCheck10() {
+		return check10;
+	}
+
+
+	public void setCheck10(JRadioButton check10) {
+		this.check10 = check10;
+	}
+
 
 	public ButtonGroup getGroup() {
 		return group;
