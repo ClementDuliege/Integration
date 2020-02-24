@@ -39,8 +39,8 @@ public class Query4Amazon {
 			listRemove = QueryAmazonUsual.getAndDeleteMaxElementTwoDimension(listRemove, 2);
 		}
 		
-		listAll = addListElementTwoDimension (listFirstC, listAll);
-		listRemove = QueryAmazonUsual.getAndDeleteMaxElementTwoDimension(listFirstC, 2);	
+		listAll = addListElementTwoDimension (chn.query4(), listAll);
+		listRemove = QueryAmazonUsual.getAndDeleteMaxElementTwoDimension(chn.query4(), 2);	
 		for (int i=1; i<3; i++) {
 			listAll = addListElementTwoDimension (listRemove, listAll);	
 			listRemove = QueryAmazonUsual.getAndDeleteMaxElementTwoDimension(listRemove, 2);
@@ -62,14 +62,15 @@ public class Query4Amazon {
 		}
 		
 				
-		/*System.out.println("Liste entière triée: ");
+		System.out.println("Liste entière triée: ");
 		for (int i = 0; i < listAllSort.length == true ; i++) {
 			System.out.println("Prenom: " + listAllSort[i][0] + ", Salaire: " + listAllSort[i][1] + ", Bonus: " + listAllSort[i][2]);
+		}
+		
+		/*for (int i = 0; i < chn.query4().length == true ; i++) {
+			System.out.println("Prenom: " + chn.query4()[i][0] + ", Salaire: " + chn.query4()[i][1] + ", Bonus: " + chn.query4()[i][2]);
 		}*/
 		
-		for (int i = 0; i < chn.query4().length == true ; i++) {
-			System.out.println("Prenom: " + chn.query4()[i][0] + ", Salaire: " + chn.query4()[i][1] + ", Bonus: " + chn.query4()[i][2]);
-		}
 	
 	
 		return listAllSort;

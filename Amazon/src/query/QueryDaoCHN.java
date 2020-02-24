@@ -177,7 +177,7 @@ import data.RecupTab;
 		int i = 0, salaryMax = 0;
 		int value = 0;
 		int cpt = 0;
-		String[][] querytab3 = new String[100][3];
+		String[][] querytab3 = new String[3][3];
 		HashMap<Integer,Integer> mapSalaryBonus= new HashMap<Integer,Integer>(); 
 		    
 				for(int k=0; k<RecupTab.sizeTab; k++) {/*we shearch the smallest paidleave*/
@@ -221,7 +221,7 @@ import data.RecupTab;
 	 */
 	public static String[][] query5() {
 			RecupTab.recupTab();
-			String[][] querytab = new String[250][3];
+			String[][] querytab = new String[203][3];
 			
 			for(int i=0; i<RecupTab.sizeTab; i++) {
 				querytab[i][0] = RecupTab.tabPaySlip[i][5];

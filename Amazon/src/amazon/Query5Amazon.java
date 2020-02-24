@@ -20,21 +20,6 @@ public class Query5Amazon {
 		QueryDaoFR fr = new QueryDaoFR();
 		QueryDaoCHN chn = new QueryDaoCHN();
 				
-		String[][] listFirstA = {{"1", "500", "a"}, {"2", "51", "b"}, {"3", "52", "c"}
-		,{"4", "53", "d"}, {"5", "54", "e"}, {"6", "55", "f"}
-		,{"7", "56", "g"}, {"8", "57", "h"}, {"9", "58", "i"}
-		,{"10", "59", "j"}, {"11", "60", "k"}, {"12", "61", "l"}
-		,{"13", "62", "m"}, {"14", "63", "n"}, {"15", "64", "o"}};
-		String[][] listFirstB = {{"16", "65", "aa"}, {"17", "66", "bb"}, {"18", "67", "cc"}
-		,{"19", "68", "dd"}, {"20", "69", "ee"}, {"21", "70", "ff"}
-		,{"22", "71", "gg"}, {"23", "72", "hh"}, {"24", "73", "ii"}
-		,{"25", "74", "jj"}, {"26", "75", "kk"}, {"27", "76", "ll"}
-		,{"28", "77", "mm"}, {"29", "78", "nn"}, {"30", "79", "oo"}};
-		String[][] listFirstC = {{"31", "80", "aaa"}, {"32", "81", "bbb"}, {"33", "82", "ccc"}
-		,{"34", "83", "ddd"}, {"35", "84", "eee"}, {"36", "85", "fff"}
-		,{"37", "86", "ggg"}, {"38", "87", "hhh"}, {"39", "88", "iii"}
-		,{"40", "89", "jjj"}, {"41", "90", "kkk"}, {"42", "91", "lll"}
-		,{"43", "92", "mmm"}, {"44", "93", "nnn"}, {"45", "94", "ooo"}};
 
 		String[][] listMax = new String[15][3];
 		String[][] listMin = new String[15][3];
@@ -120,16 +105,19 @@ public class Query5Amazon {
 		/* Fusion en une liste */
 		String[][] listMerge = QueryAmazonUsual.mergeArrayTwoDimension(listMaxFinal,listMinFinal);
 		listTotFinal = addListElementTwoDimension (listMerge, listTotFinal);
-		String[][] listRemoveTotAll = QueryAmazonUsual.getAndDeleteMinElementTwoDimension(listMerge, 1);	
+		String[][] listRemoveTotAll = QueryAmazonUsual.getAndDeleteMaxElementTwoDimension(listMerge, 1);	
 		for (int i=1; i<10; i++) {
-			listTotFinal = addListMinElementTwoDimension (listRemoveTotAll, listTotFinal);	
-			listRemoveTotAll = QueryAmazonUsual.getAndDeleteMinElementTwoDimension(listRemoveTotAll, 1);
+			listTotFinal = addListElementTwoDimension (listRemoveTotAll, listTotFinal);	
+			listRemoveTotAll = QueryAmazonUsual.getAndDeleteMaxElementTwoDimension(listRemoveTotAll, 1);
 		}
 		
 		System.out.println("Liste Total: ");
 		for (int i = 0; i < listTotFinal.length == true ; i++) {
 			System.out.println("Bonus: " + listTotFinal[i][0] + ", Congé: " + listTotFinal[i][1] + ", Prenom: " + listTotFinal[i][2]);
 		}
+		
+		
+		
 		
 		return listTotFinal;
 	
