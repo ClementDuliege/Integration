@@ -20,51 +20,55 @@ public class Query4Amazon {
 		,{"jjj", "89", "40"}, {"kkk", "90", "41"}, {"lll", "791", "42"}
 		,{"mmm", "92", "43"}, {"nnn", "93", "44"}, {"ooo", "94", "45"}};
 
-		String[][] listAll = new String[15][3];
-		String[][] listAllSort = new String[15][3];
+		String[][] listAll = new String[9][3];
+		String[][] listAllSort = new String[9][3];
 		
 		
 		/* Remplissage liste All */
 		listAll = addListElementTwoDimension (usa.query4(), listAll);	
 		String[][] listRemove = QueryAmazonUsual.getAndDeleteMaxElementTwoDimension(usa.query4(), 2);	
-		for (int i=1; i<5; i++) {
+		for (int i=1; i<3; i++) {
 			listAll = addListElementTwoDimension (listRemove, listAll);	
 			listRemove = QueryAmazonUsual.getAndDeleteMaxElementTwoDimension(listRemove, 2);
 		}
 		
 		listAll = addListElementTwoDimension (fr.query4(), listAll);
 		listRemove = QueryAmazonUsual.getAndDeleteMaxElementTwoDimension(fr.query4(), 2);	
-		for (int i=1; i<5; i++) {
+		for (int i=1; i<3; i++) {
 			listAll = addListElementTwoDimension (listRemove, listAll);	
 			listRemove = QueryAmazonUsual.getAndDeleteMaxElementTwoDimension(listRemove, 2);
 		}
 		
-		listAll = addListElementTwoDimension (chn.query4(), listAll);
-		listRemove = QueryAmazonUsual.getAndDeleteMaxElementTwoDimension(chn.query4(), 2);	
-		for (int i=1; i<5; i++) {
+		listAll = addListElementTwoDimension (listFirstC, listAll);
+		listRemove = QueryAmazonUsual.getAndDeleteMaxElementTwoDimension(listFirstC, 2);	
+		for (int i=1; i<3; i++) {
 			listAll = addListElementTwoDimension (listRemove, listAll);	
 			listRemove = QueryAmazonUsual.getAndDeleteMaxElementTwoDimension(listRemove, 2);
 		}
 		
 		
-		System.out.println("Liste entière non triée MAIS c les 5 plus gros bonus de chaque bdd: ");
+		/*System.out.println("Liste entière non triée MAIS c les 5 plus gros bonus de chaque bdd: ");
 		for (int i = 0; i < listAll.length == true ; i++) {
 			System.out.println("Prenom: " + listAll[i][0] + ", Salaire: " + listAll[i][1] + ", Bonus: " + listAll[i][2]);
-		}
+		}*/
 		
 		
 		/* Remplissage liste All Sort */
 		listAllSort = addListElementTwoDimension2 (listAll, listAllSort);	
 		String[][] listRemoveSort = QueryAmazonUsual.getAndDeleteMaxElementTwoDimension(listAll, 1);	
-		for (int i=1; i<15; i++) {
+		for (int i=1; i<9; i++) {
 			listAllSort = addListElementTwoDimension2 (listRemoveSort, listAllSort);	
 			listRemoveSort = QueryAmazonUsual.getAndDeleteMaxElementTwoDimension(listRemoveSort, 1);
 		}
 		
 				
-		System.out.println("Liste entière triée: ");
+		/*System.out.println("Liste entière triée: ");
 		for (int i = 0; i < listAllSort.length == true ; i++) {
 			System.out.println("Prenom: " + listAllSort[i][0] + ", Salaire: " + listAllSort[i][1] + ", Bonus: " + listAllSort[i][2]);
+		}*/
+		
+		for (int i = 0; i < chn.query4().length == true ; i++) {
+			System.out.println("Prenom: " + chn.query4()[i][0] + ", Salaire: " + chn.query4()[i][1] + ", Bonus: " + chn.query4()[i][2]);
 		}
 	
 	

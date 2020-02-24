@@ -145,13 +145,13 @@ import data.RecupTab;
 				}
 			}           
 			for(int i=tmp; i>tmp-5; i--) {
-				 querytab3[cpt][0] = RecupTab.tabPaySlip[id[i]][2];//prénom
-		    	 querytab3[cpt][1] = RecupTab.tabPaySlip[id[i]][4];//salaire
-		    	 querytab3[cpt][2] = RecupTab.tabPaySlip[id[i]][6];//paidLeave	    		 
+				 querytab3[cpt][0] = RecupTab.tabPaySlip[id[i]][4];//salaire
+		    	 querytab3[cpt][1] = RecupTab.tabPaySlip[id[i]][6];//paidLeave
+		    	 querytab3[cpt][2] = RecupTab.tabPaySlip[id[i]][2];//prénom	    		 
 		    	 cpt++;
 				/*we post the 5 biggest salary with max paid leave */
-				System.out.println("salarywithpaidLeave");
-				System.out.println("id : " + RecupTab.tabPaySlip[id[i]][0] + " salaire :" + RecupTab.tabPaySlip[id[i]][4]);
+				//System.out.println("salarywithpaidLeave");
+				//System.out.println("id : " + RecupTab.tabPaySlip[id[i]][0] + " salaire :" + RecupTab.tabPaySlip[id[i]][4]);
 			}
 		
 		return querytab3;
@@ -201,8 +201,8 @@ import data.RecupTab;
 			   	 	querytab3[j][1] = tabSalaryBonus[j];
 			   	 	querytab3[j][2] = RecupTab.tabPaySlip[id[j]][5];
 					/*We post the 3 best salary with bonus include */
-					System.out.println("salaryBonus");
-					System.out.println("Nom : " + RecupTab.tabPaySlip[id[j]][1] + " : salaire avec bonus: "+tabSalaryBonus[j]);
+					//System.out.println("salaryBonus");
+					//System.out.println("Nom : " + RecupTab.tabPaySlip[id[j]][1] + " : salaire avec bonus: "+tabSalaryBonus[j]);
 				}
 
    	 	return querytab3;

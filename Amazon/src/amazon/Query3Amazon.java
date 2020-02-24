@@ -24,7 +24,7 @@ public class Query3Amazon {
 
 
 		String[][] listMerge1 = QueryAmazonUsual.mergeArrayTwoDimension(usa.query3(), fr.query3());
-		String[][] listMerge2 = QueryAmazonUsual.mergeArrayTwoDimension(listMerge1,listFirstC);		
+		String[][] listMerge2 = QueryAmazonUsual.mergeArrayTwoDimension(listMerge1,chn.query3());		
 		
 		String[][] listFirstMaxPaid_leave = new String[5][3];
 		String[][] listFirstMaxSalary = new String[5][3];
@@ -48,9 +48,14 @@ public class Query3Amazon {
 			listRemovePaid_leave = getAndDeleteMaxElementTwoDimensionSecond(listRemovePaid_leave);
 		  }
 		
-		System.out.println("Toutes les 5 valeurs avec les congés au max et triés par les plus grands salaires sont dans cette liste: ");
+		/*System.out.println("Toutes les 5 valeurs avec les congés au max et triés par les plus grands salaires sont dans cette liste: ");
 		for (int i = 0; i < listFirstMaxSalary.length == true ; i++) {
 			System.out.println("Salaire: " + listFirstMaxSalary[i][0] + ", Congé: " + listFirstMaxSalary[i][1] + ", Prenom:" + listFirstMaxSalary[i][2]);
+		}*/
+		
+		System.out.println("TEST: ");
+		for (int i = 0; i < chn.query3().length == true ; i++) {
+			System.out.println("Salaire: " + chn.query3()[i][0] + ", Congé: " + chn.query3()[i][1] + ", Prenom:" + chn.query3()[i][2]);
 		}
 		
 	
