@@ -364,7 +364,7 @@ import data.RecupTab;
 				Collections.sort(ar, new Sortbyroll());//Sort the ArrayList in function of salary with id corresponding
 				System.err.println("------Requête9--------------minAgeSalary-----------------------");
 				
-				for (int i=ar.size()-1; i>=ar.size()-3; i--) {  
+				for (int i=ar.size()-1; i>=ar.size()-1; i--) {  
 					age =Integer.parseInt(RecupTab.tabPaySlip[ar.get(i).getId()][3]);//we recuperate age with the id of ArrayList
 			        String nom = RecupTab.tabPaySlip[ar.get(i).getId()][1]; 
 			        //String prenom = tabPaySlip[ar.get(i).getId()][1];
