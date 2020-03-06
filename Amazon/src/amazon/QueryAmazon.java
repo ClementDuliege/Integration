@@ -88,6 +88,7 @@ public class QueryAmazon {
 	
 	// JE BUG DESSUS MAIS JVAIS REGLER SA EN BALLE 
 	public static void query8Amazon() {
+		Query8Amazon.mainSort();
 	}
 	
 	/*
@@ -118,7 +119,7 @@ public class QueryAmazon {
 	public static void main (String [] args) {				
 		
 		//mainSort();	
-		query10Amazon();
+		query8Amazon();
 		
 	}
 
