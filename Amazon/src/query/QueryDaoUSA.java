@@ -18,8 +18,7 @@ import connection.JdbcConnectionFR;
 import connection.JdbcConnectionUSA;
 
 public class QueryDaoUSA{
-	private static String cont[][] = new String[10][2];
-	private static String col[] = { "Prenom", "Salaires" };
+	private static String db = "  [USA]";
 	
 	public QueryDaoUSA() {
 		
@@ -64,7 +63,8 @@ public class QueryDaoUSA{
 	
 	}
 	
-	public String[][] query1() {
+	public static String[][] query1() {
+		String cont[][] = new String[10][2];
 		try {
 			String selectQuery = "SELECT firstname, salary FROM payslip INNER JOIN employees ON employees.id_employees = payslip.id_payslip ORDER BY salary DESC LIMIT 10;";                
 			
@@ -78,7 +78,7 @@ public class QueryDaoUSA{
 		        int id = result.getInt("salary");
 		        String prenom = result.getString("firstname");
 		        cont[i][0] = Integer.toString(id);
-		        cont[i][1] = prenom;
+		        cont[i][1] = prenom + db;
 		        
 		        i++;      
 		      }
@@ -277,7 +277,7 @@ public class QueryDaoUSA{
 	
 		
 		
-	public static String[][] query8() {
+	/*public static String[][] query8() {
 		String[][] querytab = new String[5][5];
 		try {
 			String selectQuery = "SELECT lastname, firstname, salary, bonus, paid_leave FROM payslip INNER JOIN employees ON employees.id_employees = payslip.id_payslip WHERE (bonus = (SELECT MAX(bonus) FROM payslip)) AND (paid_leave = (SELECT MIN(paid_leave) FROM payslip)) ORDER BY salary DESC LIMIT 1;";                
@@ -310,7 +310,47 @@ public class QueryDaoUSA{
 			System.err.println(se.getMessage());
 		}
 		return querytab;
+	}*/
+	public static String[][] query8() {
+		String[][] querytab = new String[1][5];
+		try {
+			String Query1 = "SELECT MAX(bonus) FROM payslip;";                
+
+			Connection dbConnection = JdbcConnectionUSA.getConnection();
+			Statement state = dbConnection.createStatement();
+			ResultSet result = state.executeQuery(Query1);
+			
+		   result.next();
+		   int bonus = result.getInt("MAX(bonus)");
+		   System.out.println(bonus);
+		
+		   String Query2 = "SELECT MIN(paid_leave) FROM payslip WHERE bonus="+bonus+"";
+		   ResultSet result2 = state.executeQuery(Query2);
+		   result2.next();
+		   int paid_leave = result2.getInt("MIN(paid_leave)");
+		   System.out.println(paid_leave);
+		   
+		   String Query3 = "SELECT lastname, firstname, salary, bonus, paid_leave FROM payslip INNER JOIN employees ON employees.id_employees = payslip.id_payslip WHERE paid_leave = "+paid_leave+" AND bonus="+bonus+" ORDER by salary DESC LIMIT 1; ";
+		   ResultSet result3 = state.executeQuery(Query3);
+		   result3.next();
+		   int salary = result3.getInt("salary");
+		   int bonus1 = result3.getInt("bonus");
+		   int paidLeave = result3.getInt("paid_leave");
+		   String prenom = result3.getString("firstname");
+		   String nom = result3.getString("lastname");
+		   querytab[0][0] = nom;
+		   querytab[0][1] = prenom;
+		   querytab[0][2] = Integer.toString(salary); 
+		   querytab[0][3] = Integer.toString(bonus1);  		 
+		   querytab[0][4] = Integer.toString(paidLeave); 
+		
+		    
+		} catch (SQLException se) {
+			System.err.println(se.getMessage());
+		}
+		return querytab;
 	}
+	
 	
 	// SOUS FORME DE TABLEAU JE TE DONNE LE PLUS JEUNE SALARIER
 		public static String[][] query9() {
@@ -377,14 +417,6 @@ public class QueryDaoUSA{
 			return querytab;
 			
 		}
-
-	public static String[] getCol() {
-		return col;
-	}
-
-	public static void setCol(String[] col) {
-		QueryDaoUSA.col = col;
-	}
 
 	
 	

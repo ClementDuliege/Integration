@@ -20,6 +20,7 @@ import javax.swing.table.DefaultTableModel;
 
 import com.sun.org.glassfish.gmbal.ParameterNames;
 
+import data.Convert;
 import data.PaySlipCHN;
 import data.Salarier;
 import data.Sortbyroll;
@@ -73,11 +74,11 @@ import data.RecupTab;
 	       			 firstname = name[j];	 
 	       		 } 
 	       	}
-	       
-			cont[debut][0] = hightersalary[i] + "";
+	       	
+			cont[debut][0] = Convert.convertCHNtoUSA(hightersalary[i])+ "";
 	        cont[debut][1] = firstname;
 	        debut++;
-	        //System.out.println("Highter salary : "+ hightersalary[i] + ", Firstname : " + firstname );
+	        System.out.println("Highter salary : "+ Convert.convertCHNtoUSA(hightersalary[i]) + ", Firstname : " + firstname );
 	        }	
 	    
 		return cont;

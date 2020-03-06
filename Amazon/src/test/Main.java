@@ -13,6 +13,7 @@ public class Main {
 
 	public static void main(String[] args) {
 		new Gui();
+		QueryDaoFR.query1();
 		//QueryPanel qp = new QueryPanel();
 		//qp.fr();
 	}

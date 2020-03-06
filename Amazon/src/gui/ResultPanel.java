@@ -15,7 +15,6 @@ import com.mysql.cj.Query;
 import amazon.Query6Amazon;
 
 public class ResultPanel extends JPanel{
-	private Query6Amazon amazon6 = new Query6Amazon();
 	private JLabel label = new JLabel();
 
 	

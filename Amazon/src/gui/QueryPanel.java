@@ -26,7 +26,9 @@ import amazon.Query3Amazon;
 import amazon.Query4Amazon;
 import amazon.Query5Amazon;
 import amazon.Query6Amazon;
+import amazon.Query8Amazon;
 import amazon.Query9Amazon;
+import query.QueryDaoFR;
 import query.QueryDaoUSA;
 
 public class QueryPanel extends JPanel implements ActionListener{
@@ -158,7 +160,7 @@ public class QueryPanel extends JPanel implements ActionListener{
     public void actionPerformed(ActionEvent e) {
     	try {
 	    	Object source = e.getSource();
-	    	Gui.DisplayDescription();
+	    	DescriptionPanel.DisplayDescription();
 	    	radioVisibility(); 
 			if(source == button){
 				String str = group.getSelection().getActionCommand();
@@ -197,6 +199,11 @@ public class QueryPanel extends JPanel implements ActionListener{
 						label.setText("YOUPII    7777");
 						displayJlabel();
 						System.out.println("requete 7");
+						break;
+					case "8":
+						table = new JTable(new DefaultTableModel(Query8Amazon.mainSort(), Query8Amazon.getCol()));
+					    displayJtable();
+						System.out.println("requete 8");
 						break;
 					case "9":
 						table = new JTable(new DefaultTableModel(Query9Amazon.mainSort(), Query9Amazon.getCol()));
