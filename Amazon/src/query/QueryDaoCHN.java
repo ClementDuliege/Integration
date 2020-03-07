@@ -230,14 +230,15 @@ import data.RecupTab;
 			RecupTab.recupTab();
 			String[][] querytab = new String[203][3];
 			int paid_leave;
-			
+		
 			ArrayList<DataPaidLeave> ar = new ArrayList<DataPaidLeave>();
 			for(int i=0; i<RecupTab.sizeTab; i++) {//we recuperate the id and salary associated */
 				paid_leave = Integer.parseInt(RecupTab.tabPaySlip[i][6]);
 				ar.add(new DataPaidLeave(i,paid_leave));
-			}	
+			}
+			System.out.println("bb");
 			Collections.sort(ar, new SortByPaidLeave());
-			for (int i=0; i>=ar.size(); i++) {
+			for (int i=0; i<=ar.size()-1; i++) {
 				querytab[i][0] = RecupTab.tabPaySlip[ar.get(i).getId()][5];
 	   	 		querytab[i][1] = RecupTab.tabPaySlip[ar.get(i).getId()][6];
 	   	 		querytab[i][2] = RecupTab.tabPaySlip[ar.get(i).getId()][2] + db;
