@@ -6,7 +6,20 @@ import query.QueryDaoCHN;
 import query.QueryDaoFR;
 import query.QueryDaoUSA;
 
+/**
+ * The Query7Amazon , sub class of {@link QueryAmazon}.
+ * This class retrieves the three results from each data source, and compare the sum of bonuses from each company.
+ 
+ * @see QueryAmazon 
+ * @author Ben Mansour Fares, Chahboun Taha & Duliège Clément
+ *
+ */
+
 public class Query7Amazon {
+	
+	/**
+	 * table columns of the Gui
+	 */
 	
 	private static String col[] = { "Bonus", "Congé", "Prenom"};
 	

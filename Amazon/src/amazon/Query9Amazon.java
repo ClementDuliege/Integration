@@ -4,9 +4,30 @@ import query.QueryDaoCHN;
 import query.QueryDaoFR;
 import query.QueryDaoUSA;
 
+/**
+ * The Query9Amazon , sub class of {@link QueryAmazon}.
+ * This class retrieves the three results from each data source, and displays the highest salary among the youngest employees of each company.
+ 
+ * @see QueryAmazon 
+ * @author Ben Mansour Fares, Chahboun Taha & Duliège Clément
+ *
+ */
+
 public class Query9Amazon {
 	
+	/**
+	 * table columns of the Gui
+	 */
+	
 	private static String col[] = { "Nom", "Age", "Salaire"};
+	
+	/**
+	 * The main function, 
+	 * first which collects the three results from each data source, 
+	 * and then uses other functions to sort by longest leave
+	 
+	 * @return listAge
+	 */
 	
 	public static String[][] mainSort() {
 		QueryDaoUSA usa = new QueryDaoUSA();
@@ -38,13 +59,20 @@ public class Query9Amazon {
 	}
 	
 	
+	/**
+	 * The addListElementTwoDimension function, 
+	 * which will find the maximum element of the double-dimensional list array, 
+	 * then will insert it at the correct position in the double-dimensional list arrayMax.
+	 * 
+	 * @return arrayMax
+	 */
 	public static String[][] addListElementTwoDimension (String[][] array, String[][] arrayMax) {
 	  	
 		  int max = QueryAmazonUsual.maxValueTwoDimension(array, 1);
 		  String element = QueryAmazonUsual.getElementFromMaxTwoDimension (array, max, 1, 0);
 		  String element2 = QueryAmazonUsual.getElementFromMaxTwoDimension (array, max, 1, 2);
 		  
-		//Ajout de la valeur maximum dans la liste
+
 		  for (int i = 0; i < arrayMax.length; i++) {
 			  if (QueryAmazonUsual.isStringInt(arrayMax, i, 1) == false) {
 				  arrayMax[i][0] = element;
@@ -58,11 +86,17 @@ public class Query9Amazon {
 				
 	}
 	
+	/**
+	 * @return col
+	 */
 	public static String[] getCol() {
 		return col;
 	}
 
-
+	/**
+	 * can modify the content of the column
+	 *@param col
+	 */	
 	public static void setCol(String col[]) {
 		Query9Amazon.col = col;
 	}

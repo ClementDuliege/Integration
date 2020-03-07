@@ -6,7 +6,20 @@ import query.QueryDaoCHN;
 import query.QueryDaoFR;
 import query.QueryDaoUSA;
 
+/**
+ * The Query2Amazon , sub class of {@link QueryAmazon}.
+ * This class retrieves the three results from each data source, and then displays the sum of leaves for each company.
+ 
+ * @see QueryAmazon 
+ * @author Ben Mansour Fares, Chahboun Taha & Duliège Clément
+ *
+ */
+
 public class Query2Amazon {
+
+	/**
+	 * display of the Gui
+	 */
 	
 	private static String display;
 	

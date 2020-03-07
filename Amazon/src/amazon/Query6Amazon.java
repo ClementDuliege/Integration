@@ -9,7 +9,21 @@ import query.QueryDaoCHN;
 import query.QueryDaoFR;
 import query.QueryDaoUSA;
 
+/**
+ * The Query6Amazon , sub class of {@link QueryAmazon}.
+ * This class retrieves the three results from each data source, and displays the average salary of each company.
+ 
+ * @see QueryAmazon 
+ * @author Ben Mansour Fares, Chahboun Taha & Duliège Clément
+ *
+ */
+
 public class Query6Amazon {
+	
+	/**
+	 * display of the Gui
+	 */
+	
 	private static String display;
 	
 	public static String query6() {

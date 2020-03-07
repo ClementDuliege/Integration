@@ -4,9 +4,30 @@ import query.QueryDaoCHN;
 import query.QueryDaoFR;
 import query.QueryDaoUSA;
 
+/**
+ * The Query8Amazon , sub class of {@link QueryAmazon}.
+ * This class retrieves the three results from each data source, and displays the employee with the best bonus and the least vacation.
+ 
+ * @see QueryAmazon 
+ * @author Ben Mansour Fares, Chahboun Taha & Duliège Clément
+ *
+ */
+
 public class Query8Amazon {
+	
+	/**
+	 * table columns of the Gui
+	 */
 
 	private static String col[] = { "Nom", "Prenom", "Salaire", "Bonus", "Congés"};
+	
+	/**
+	 * The main function, 
+	 * first which collects the three results from each data source, 
+	 * and then uses other functions to sort by longest leave
+	 
+	 * @return listFirstMax
+	 */
 
 	
 	public static String[][] mainSort() {
@@ -39,7 +60,13 @@ public class Query8Amazon {
 	
 	}
 
-	
+	/**
+	 * The addListElementTwoDimension function, 
+	 * which will find the maximum element of the double-dimensional list array, 
+	 * then will insert it at the correct position in the double-dimensional list arrayMax.
+	 * 
+	 * @return arrayMax
+	 */
 	public static String[][] addListElementTwoDimension (String[][] array, String[][] arrayMax) {
 	  	
 		  int max = QueryAmazonUsual.maxValueTwoDimension(array, 2);
@@ -48,7 +75,6 @@ public class Query8Amazon {
 		  String element3 = QueryAmazonUsual.getElementFromMaxTwoDimension (array, max, 2, 3);
 		  String element4 = QueryAmazonUsual.getElementFromMaxTwoDimension (array, max, 2, 4);
 		  
-		//Ajout de la valeur maximum dans la liste
 		  for (int i = 0; i < arrayMax.length; i++) {
 			  if (QueryAmazonUsual.isStringInt(arrayMax, i, 2) == false) {
 				  arrayMax[i][0] = element;
@@ -64,11 +90,17 @@ public class Query8Amazon {
 				
 		}
 	
-	
+	/**
+	 * @return col
+	 */
 	public static String[] getCol() {
 		return col;
 	}
 
+	/**
+	 * can modify the content of the column
+	 *@param col
+	 */	
 	public static void setCol(String[] col) {
 		Query8Amazon.col = col;
 	}

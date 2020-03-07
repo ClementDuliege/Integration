@@ -4,9 +4,31 @@ import query.QueryDaoCHN;
 import query.QueryDaoFR;
 import query.QueryDaoUSA;
 
+
+/**
+ * The Query10Amazon , sub class of {@link QueryAmazon}.
+ * This class retrieves the three results from each data source, and displays the average age of the best salaries of each company.
+ 
+ * @see QueryAmazon 
+ * @author Ben Mansour Fares, Chahboun Taha & Duliège Clément
+ *
+ */
+
 public class Query10Amazon {
 	
+	/**
+	 * table columns of the Gui
+	 */
+	
 	private static String col[] = { "Moyenne"};
+	
+	/**
+	 * The main function, 
+	 * first which collects the three results from each data source, 
+	 * and then uses other functions to sort by longest leave
+	 
+	 * @return valueFinal
+	 */
 	
 	public static String mainSort() {
 		QueryDaoUSA usa = new QueryDaoUSA();
@@ -45,6 +67,13 @@ public class Query10Amazon {
 	}
 	
 	
+	/**
+	 * The addListElementTwoDimension function, 
+	 * which will find the maximum element of the double-dimensional list array, 
+	 * then will insert it at the correct position in the double-dimensional list arrayMax.
+	 * 
+	 * @return arrayMax
+	 */
 	public static String[][] addListElementTwoDimension (String[][] array, String[][] arrayMax) {
 	  	
 		  int max = QueryAmazonUsual.maxValueTwoDimension(array, 1);
@@ -65,11 +94,18 @@ public class Query10Amazon {
 				
 	}
 	
+	/**
+	 * @return col
+	 */
 	public static String[] getCol() {
 		return col;
 	}
 
 
+	/**
+	 * can modify the content of the column
+	 *@param col
+	 */	
 	public static void setCol(String col[]) {
 		Query10Amazon.col = col;
 	}

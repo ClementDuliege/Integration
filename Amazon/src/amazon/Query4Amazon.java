@@ -4,27 +4,45 @@ import query.QueryDaoCHN;
 import query.QueryDaoFR;
 import query.QueryDaoUSA;
 
+/**
+ * The Query4Amazon , sub class of {@link QueryAmazon}.
+ * This class retrieves the three results from each data source, and then displays the 9 best salaries with bonuses included.
+ 
+ * @see QueryAmazon 
+ * @author Ben Mansour Fares, Chahboun Taha & Duliège Clément
+ *
+ */
+
 public class Query4Amazon {
+	
+	/**
+	 * table columns of the Gui
+	 */
 	
 	private static String col[] = { "Prenom", "Salaire", "Bonus"};
 
+	/**
+	 * The main function, 
+	 * first which collects the three results from each data source, 
+	 * and then uses other functions to sort by salary
+	 
+	 * @return listAllSort
+	 */
+	
 	public static String[][] mainSort() {
 		QueryDaoUSA usa = new QueryDaoUSA();
 		QueryDaoFR fr = new QueryDaoFR();
 		QueryDaoCHN chn = new QueryDaoCHN();
 		
-		
-		String[][] listFirstC = {{"aaa", "80", "31"}, {"bbb", "81", "32"}, {"ccc", "82", "33"}
-		,{"ddd", "83", "34"}, {"eee", "84", "35"}, {"fff", "85", "36"}
-		,{"ggg", "86", "37"}, {"hhh", "817", "38"}, {"iii", "88", "39"}
-		,{"jjj", "89", "40"}, {"kkk", "90", "41"}, {"lll", "791", "42"}
-		,{"mmm", "92", "43"}, {"nnn", "93", "44"}, {"ooo", "94", "45"}};
-
+		/* We create the list which will contain the maximum values
+		 * The first will contain the elements with the greatest bonus
+		 * And the second the 9 biggest salaries among the biggest bonuses
+		*/
 		String[][] listAll = new String[9][3];
 		String[][] listAllSort = new String[9][3];
 		
 		
-		/* Remplissage liste All */
+
 		listAll = addListElementTwoDimension (usa.query4(), listAll);	
 		String[][] listRemove = QueryAmazonUsual.getAndDeleteMaxElementTwoDimension(usa.query4(), 2);	
 		for (int i=1; i<3; i++) {
@@ -46,14 +64,7 @@ public class Query4Amazon {
 			listRemove = QueryAmazonUsual.getAndDeleteMaxElementTwoDimension(listRemove, 2);
 		}
 		
-		
-		/*System.out.println("Liste entière non triée MAIS c les 5 plus gros bonus de chaque bdd: ");
-		for (int i = 0; i < listAll.length == true ; i++) {
-			System.out.println("Prenom: " + listAll[i][0] + ", Salaire: " + listAll[i][1] + ", Bonus: " + listAll[i][2]);
-		}*/
-		
-		
-		/* Remplissage liste All Sort */
+
 		listAllSort = addListElementTwoDimension2 (listAll, listAllSort);	
 		String[][] listRemoveSort = QueryAmazonUsual.getAndDeleteMaxElementTwoDimension(listAll, 1);	
 		for (int i=1; i<9; i++) {
@@ -67,24 +78,25 @@ public class Query4Amazon {
 			System.out.println("Prenom: " + listAllSort[i][0] + ", Salaire: " + listAllSort[i][1] + ", Bonus: " + listAllSort[i][2]);
 		}
 		
-		/*for (int i = 0; i < chn.query4().length == true ; i++) {
-			System.out.println("Prenom: " + chn.query4()[i][0] + ", Salaire: " + chn.query4()[i][1] + ", Bonus: " + chn.query4()[i][2]);
-		}*/
-		
-	
-	
 		return listAllSort;
 	
 	}
 
 	
+	/**
+	 * The addListElementTwoDimension function, 
+	 * which will find the maximum element of the double-dimensional list array, 
+	 * then will insert it at the correct position in the double-dimensional list arrayMax.
+	 * 
+	 * @return arrayMax
+	 */
 	public static String[][] addListElementTwoDimension (String[][] array, String[][] arrayMax) {
 	  	
 		  int max = QueryAmazonUsual.maxValueTwoDimension(array, 2);
 		  String element = QueryAmazonUsual.getElementFromMaxTwoDimension (array, max, 2, 0);
 		  String element2 = QueryAmazonUsual.getElementFromMaxTwoDimension (array, max, 2, 1);
 		  
-		//Ajout de la valeur maximum dans la liste
+		  
 		  for (int i = 0; i < arrayMax.length; i++) {
 			  if (QueryAmazonUsual.isStringInt(arrayMax, i, 2) == false) {
 				  arrayMax[i][0] = element;
@@ -98,13 +110,24 @@ public class Query4Amazon {
 				
 		}
 	
+	
+	/**
+	 * The addListElementTwoDimension2 function, 
+	 * which will find the maximum element of the double-dimensional list array, 
+	 * then will insert it at the correct position in the double-dimensional list arrayMax.
+	 * 
+	 * In this query, we need two different functions because when we are looking for the maximum of the list, 
+	 * in the case of the first list we are looking for it according to the biggest bonuses, 
+	 * and in the second according to the salary
+	 * 
+	 * @return arrayMax
+	 */
 	public static String[][] addListElementTwoDimension2 (String[][] array, String[][] arrayMax) {
 	  	
 		  int max = QueryAmazonUsual.maxValueTwoDimension(array, 1);
 		  String element = QueryAmazonUsual.getElementFromMaxTwoDimension (array, max, 1, 0);
 		  String element2 = QueryAmazonUsual.getElementFromMaxTwoDimension (array, max, 1, 2);
 		  
-		//Ajout de la valeur maximum dans la liste
 		  for (int i = 0; i < arrayMax.length; i++) {
 			  if (QueryAmazonUsual.isStringInt(arrayMax, i, 1) == false) {
 				  arrayMax[i][0] = element;
@@ -118,12 +141,19 @@ public class Query4Amazon {
 				
 		}
 
-
+	
+	/**
+	 * @return col
+	 */
 	public static String[] getCol() {
 		return col;
 	}
 
 
+	/**
+	 * can modify the content of the column
+	 *@param col
+	 */	
 	public static void setCol(String[] col) {
 		Query4Amazon.col = col;
 	}

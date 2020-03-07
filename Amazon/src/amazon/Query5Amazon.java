@@ -10,10 +10,32 @@ import query.QueryDaoCHN;
 import query.QueryDaoFR;
 import query.QueryDaoUSA;
 
+
+/**
+ * The Query5Amazon , sub class of {@link QueryAmazon}.
+ * This class retrieves the three results from each data source, and then displays two lists; the first sorted by the longest leave, and the second by the smallest.
+ 
+ * @see QueryAmazon 
+ * @author Ben Mansour Fares, Chahboun Taha & Duliège Clément
+ *
+ */
+
+
 public class Query5Amazon {
+	
+	/**
+	 * table columns of the Gui
+	 */
 	
 	private static String col[] = { "Bonus", "Congé", "Prenom"};
 
+	/**
+	 * The main function, 
+	 * first which collects the three results from each data source, 
+	 * and then uses other functions to sort by longest leave
+	 
+	 * @return listMax
+	 */
 	
 	public static String[][] mainSort() {
 		QueryDaoUSA usa = new QueryDaoUSA();
@@ -23,7 +45,6 @@ public class Query5Amazon {
 		String[][] listMax = new String[15][3];
 		
 		
-		/* Remplissage liste Max */
 		listMax = addListElementTwoDimension (usa.query5(), listMax);	
 		String[][] listRemoveMax = QueryAmazonUsual.getAndDeleteMaxElementTwoDimension(usa.query5(), 1);	
 		for (int i=1; i<5; i++) {
@@ -57,6 +78,14 @@ public class Query5Amazon {
 	
 	}
 	
+	
+	/**
+	 * The main function, 
+	 * first which collects the three results from each data source, 
+	 * and then uses other functions to sort by smallest leave
+	 
+	 * @return listMin
+	 */
 	public static String[][] mainSort2() {
 		QueryDaoUSA usa = new QueryDaoUSA();
 		QueryDaoFR fr = new QueryDaoFR();
@@ -64,7 +93,6 @@ public class Query5Amazon {
 
 		String[][] listMin = new String[15][3];
 
-		/* Remplissage liste Min */
 		listMin = addListMinElementTwoDimension (usa.query5(), listMin);	
 		String[][] listRemoveMin = QueryAmazonUsual.getAndDeleteMinElementTwoDimension(usa.query5(), 1);	
 		for (int i=1; i<5; i++) {
@@ -98,7 +126,13 @@ public class Query5Amazon {
 	
 	}
 
-	
+	/**
+	 * The addListElementTwoDimension function, 
+	 * which will find the maximum element of the double-dimensional list array, 
+	 * then will insert it at the correct position in the double-dimensional list arrayMax.
+	 * 
+	 * @return arrayMax
+	 */
 	public static String[][] addListElementTwoDimension (String[][] array, String[][] arrayMax) {
 	  	
 		  int max = QueryAmazonUsual.maxValueTwoDimension(array, 1);
@@ -119,6 +153,13 @@ public class Query5Amazon {
 				
 		}
 	
+	/**
+	 * The addListMinElementTwoDimension function, 
+	 * which will find the minimum element of the double-dimensional list array, 
+	 * then will insert it at the correct position in the double-dimensional list arrayMax.
+	 * 
+	 * @return arrayMax
+	 */
 	public static String[][] addListMinElementTwoDimension (String[][] array, String[][] arrayMax) {
 	  	
 		  int min = QueryAmazonUsual.minValueTwoDimension(array, 1);
@@ -139,12 +180,17 @@ public class Query5Amazon {
 				
 		}
 
-
+	/**
+	 * @return col
+	 */
 	public static String[] getCol() {
 		return col;
 	}
 
-
+	/**
+	 * can modify the content of the column
+	 *@param col
+	 */	
 	public static void setCol(String[] col) {
 		Query5Amazon.col = col;
 	}
