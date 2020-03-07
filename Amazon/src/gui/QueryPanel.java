@@ -20,12 +20,14 @@ import javax.swing.table.DefaultTableModel;
 
 import com.sun.xml.internal.messaging.saaj.packaging.mime.util.QEncoderStream;
 
+import amazon.Query10Amazon;
 import amazon.Query1Amazon;
 import amazon.Query2Amazon;
 import amazon.Query3Amazon;
 import amazon.Query4Amazon;
 import amazon.Query5Amazon;
 import amazon.Query6Amazon;
+import amazon.Query7Amazon;
 import amazon.Query8Amazon;
 import amazon.Query9Amazon;
 import query.QueryDaoFR;
@@ -133,18 +135,11 @@ public class QueryPanel extends JPanel implements ActionListener{
 	}
     
     
-    public void radioVisibility() {
-		if(group.getSelection().getActionCommand()=="2" || group.getSelection().getActionCommand()=="6" || group.getSelection().getActionCommand()=="7") {
-			label.setVisible(true);			
-			pane.setVisible(false);
-		} else {
-			label.setVisible(false);
-		}
-    }
-    
     public void displayJlabel() {
     	Gui.getRp().add(label, BorderLayout.CENTER);
 		Gui.getRp().validate();
+		label.setVisible(true);	
+		pane.setVisible(false);
     }
     
     public void displayJtable() {
@@ -153,6 +148,7 @@ public class QueryPanel extends JPanel implements ActionListener{
 		pane.getViewport().add(table);
 		Gui.getRp().add(pane);
 		pane.setVisible(true);
+		label.setVisible(false);
 		Gui.getRp().validate();
     }
     
@@ -161,7 +157,6 @@ public class QueryPanel extends JPanel implements ActionListener{
     	try {
 	    	Object source = e.getSource();
 	    	DescriptionPanel.DisplayDescription();
-	    	radioVisibility(); 
 			if(source == button){
 				String str = group.getSelection().getActionCommand();
 				System.out.println(str);
@@ -196,9 +191,8 @@ public class QueryPanel extends JPanel implements ActionListener{
 						displayJlabel();
 						break;
 					case "7":
-						label.setText("YOUPII    7777");
+						label.setText(Query7Amazon.mainSort());
 						displayJlabel();
-						System.out.println("requete 7");
 						break;
 					case "8":
 						table = new JTable(new DefaultTableModel(Query8Amazon.mainSort(), Query8Amazon.getCol()));
@@ -211,7 +205,8 @@ public class QueryPanel extends JPanel implements ActionListener{
 						System.out.println("requete 8");
 						break;
 					case "10":
-						System.out.println("requete 9");
+						label.setText(Query10Amazon.mainSort());
+						displayJlabel();
 						break;
 							
 					default:
@@ -222,10 +217,6 @@ public class QueryPanel extends JPanel implements ActionListener{
     		//System.err.println(se.getMessage());
     	}
 	}
-    
-//    public void actionPerformed2(ActionEvent e) {
-//    	Gui.DisplayDescription();
-//   	}
 
 
     

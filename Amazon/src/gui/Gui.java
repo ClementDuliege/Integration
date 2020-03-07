@@ -37,8 +37,7 @@ public class Gui extends JFrame{
 	private static QueryPanel qp = new QueryPanel();
 	private static DescriptionPanel dp = new DescriptionPanel();
 	private static ResultPanel rp = new ResultPanel();
-	private JPanel converter = new JPanel();
-	//private static JPanel resultpanel = new JPanel();
+	private static ConverterPanel cp = new ConverterPanel();
 	private JPanel title = new JPanel();
 
 	private JLabel label = new JLabel("Amazon");
@@ -55,16 +54,15 @@ public class Gui extends JFrame{
 		this.getContentPane().add(rp, BorderLayout.CENTER);
 		this.getContentPane().add(qp, BorderLayout.WEST);
 		this.getContentPane().add(dp, BorderLayout.SOUTH);
-		this.getContentPane().add(converter, BorderLayout.EAST);
+		this.getContentPane().add(cp, BorderLayout.EAST);
 		this.add(title, BorderLayout.NORTH);
 		
-		converter.setBackground(amazon);
-		converter.setBorder(BorderFactory.createEmptyBorder(40,40,40,40));
 		
 		label.setFont(police);
         label.setForeground(Color.WHITE);
 		
 		title.setBackground(amazon);
+		label.setFont(new Font(Font.SERIF,Font.BOLD,34));
 		title.setBorder(BorderFactory.createEmptyBorder(40,40,40,40)); 
         title.add(label);
         

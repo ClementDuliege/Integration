@@ -38,7 +38,7 @@ public class Query10Amazon {
 		System.out.println("la moyenne de l'age dans l'entreprise Chinoise vaut: " + moyenneC);
 		
 		
-		String valueFinal = "La moyenne 1 est : "+moyenneA+ "La moyenne 1 est : "+ moyenneB + "La moyenne 1 est : "+ moyenneC;
+		String valueFinal = "<html>La moyenne d'age dans l'entreprise Américaine : "+moyenneA+ "<br/>La moyenne d'age dans l'entreprise Française : "+ moyenneB + "<br/>La moyenne d'age dans l'entreprise chinoise : "+ moyenneC;
 			
 		return valueFinal;
 	

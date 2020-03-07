@@ -18,7 +18,7 @@ import connection.JdbcConnectionFR;
 import connection.JdbcConnectionUSA;
 
 public class QueryDaoUSA{
-	private static String db = "  [USA]";
+	private static String db = "		  [USA]";
 	
 	public QueryDaoUSA() {
 		
@@ -142,7 +142,7 @@ public class QueryDaoUSA{
 		    	 String prenom = result.getString("firstname");
 		    	 querytab3[i][0] = Integer.toString(salaire);
 		    	 querytab3[i][1] = Integer.toString(paidLeave);
-		    	 querytab3[i][2] = prenom;	    		 
+		    	 querytab3[i][2] = prenom + db;	    		 
 		    	 i++;
 		   	    }
 		    
@@ -171,7 +171,7 @@ public class QueryDaoUSA{
 			    	 int bonus = result.getInt("bonus");
 			    	 String prenom = result.getString("firstname");
 			    	 salaire =salaire + (salaire * bonus)/100;
-			    	 querytab[i][0] = prenom;
+			    	 querytab[i][0] = prenom + db;
 			    	 querytab[i][1] = Integer.toString(salaire);
 			    	 querytab[i][2] = Integer.toString(bonus);	    		 
 			    	 i++;
@@ -204,7 +204,7 @@ public class QueryDaoUSA{
 		    	 String prenom = result.getString("firstname");
 		    	 querytab[i][0] = Integer.toString(bonus);
 		    	 querytab[i][1] = Integer.toString(paidLeave);
-		    	 querytab[i][2] = prenom;	    		 
+		    	 querytab[i][2] = prenom + db;	    		 
 		    	 i++;
 		   	    }
 		    
@@ -338,7 +338,7 @@ public class QueryDaoUSA{
 		   int paidLeave = result3.getInt("paid_leave");
 		   String prenom = result3.getString("firstname");
 		   String nom = result3.getString("lastname");
-		   querytab[0][0] = nom;
+		   querytab[0][0] = nom + db;
 		   querytab[0][1] = prenom;
 		   querytab[0][2] = Integer.toString(salary); 
 		   querytab[0][3] = Integer.toString(bonus1);  		 
@@ -370,7 +370,7 @@ public class QueryDaoUSA{
 			    	 int salary = result.getInt("salary");
 			    	 String nom = result.getString("lastname");
 			    	 // Remplissage du tableau avec pour colonnes : 1=nom, 2=age, 3=salaire
-			    	 querytab[i][0] = nom;
+			    	 querytab[i][0] = nom + db;
 			    	 querytab[i][1] = Integer.toString(age);  		 
 			    	 querytab[i][2] = Integer.toString(salary);  		 
 			    	 i++;
@@ -402,7 +402,7 @@ public class QueryDaoUSA{
 					int age = result.getInt("age");
 				    int salary = result.getInt("salary");
 				    	 // Remplissage du tableau avec pour colonnes : 1=nom, 2=age, 3=salaire
-				    querytab[i][0] = Integer.toString(salary);
+				    querytab[i][0] = Integer.toString(salary) + db;
 				    querytab[i][1] = Integer.toString(age);  		 
 				    i++;
 				   

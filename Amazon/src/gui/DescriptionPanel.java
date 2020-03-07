@@ -22,7 +22,6 @@ public class DescriptionPanel extends JPanel{
 		this.setLayout(gl);
         this.setBackground(amazon2);
 		this.setBorder(BorderFactory.createEmptyBorder(40,40,40,40));
-		this.setVisible(true);
 		
 		label = new JLabel("Description");
 		label.setForeground(Color.BLACK);
@@ -43,6 +42,8 @@ public class DescriptionPanel extends JPanel{
 		this.add(label);
 		this.add(label3);
 		this.add(label2);
+		this.setVisible(true);
+
 	}
 	
 
