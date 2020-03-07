@@ -34,7 +34,6 @@ public class QueryDaoFR{
 		      while (result.next()) {
 		        int id = result.getInt("salary");
 		        String prenom = result.getString("firstname");
-		        System.out.println(Convert.convertFRtoUSA(id));
 		        cont[i][0] = Integer.toString(id);
 		        cont[i][1] = prenom + db;
 		        i++;

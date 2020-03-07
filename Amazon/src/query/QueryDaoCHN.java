@@ -75,10 +75,10 @@ import data.RecupTab;
 	       		 } 
 	       	}
 	       	
-			cont[debut][0] = Convert.convertCHNtoUSA(hightersalary[i])+ "";
+			cont[debut][0] = Convert.convertIntCHNtoUSA(hightersalary[i])+ "";
 	        cont[debut][1] = firstname;
 	        debut++;
-	        System.out.println("Highter salary : "+ Convert.convertCHNtoUSA(hightersalary[i]) + ", Firstname : " + firstname );
+	        System.out.println("Highter salary : "+ Convert.convertIntCHNtoUSA(hightersalary[i]) + ", Firstname : " + firstname );
 	        }	
 	    
 		return cont;
@@ -146,7 +146,7 @@ import data.RecupTab;
 				}
 			}           
 			for(int i=tmp; i>tmp-5; i--) {
-				 querytab3[cpt][0] = RecupTab.tabPaySlip[id[i]][4];//salaire
+				 querytab3[cpt][0] = Convert.convertStringCHNtoUSA(RecupTab.tabPaySlip[id[i]][4]);//salaire
 		    	 querytab3[cpt][1] = RecupTab.tabPaySlip[id[i]][6];//paidLeave
 		    	 querytab3[cpt][2] = RecupTab.tabPaySlip[id[i]][2];//prénom	    		 
 		    	 cpt++;
@@ -199,7 +199,7 @@ import data.RecupTab;
 				}		
 				for(int j=i-1; j>i-4; j--) {
 					querytab3[cpt][0] = RecupTab.tabPaySlip[id[j]][1];
-			   	 	querytab3[cpt][1] = tabSalaryBonus[j];
+			   	 	querytab3[cpt][1] = Convert.convertStringCHNtoUSA(tabSalaryBonus[j]);
 			   	 	querytab3[cpt][2] = RecupTab.tabPaySlip[id[j]][5];
 			   	 	cpt++;
 					/*We post the 3 best salary with bonus include */
@@ -326,7 +326,7 @@ import data.RecupTab;
 					}
 					 querytab[0][0] = RecupTab.tabPaySlip[tmp][1];//name
 			    	 querytab[0][1] = RecupTab.tabPaySlip[tmp][2];//firstname
-			    	 querytab[0][2] = RecupTab.tabPaySlip[tmp][4];//salary
+			    	 querytab[0][2] = Convert.convertStringCHNtoUSA(RecupTab.tabPaySlip[tmp][4]);//salary
 			    	 querytab[0][3] = RecupTab.tabPaySlip[tmp][5];//bonus
 			    	 querytab[0][4] = RecupTab.tabPaySlip[tmp][6];//paid leave
 			return querytab;
@@ -373,7 +373,7 @@ import data.RecupTab;
 			        salary = ar.get(i).getSalary();
 			        querytab[cpt][0] = nom;
 			    	querytab[cpt][1] = Integer.toString(age);  		 
-			    	querytab[cpt][2] = Integer.toString(salary);
+			    	querytab[cpt][2] = Convert.convertStringCHNtoUSA(Integer.toString(salary));
 				
 			return querytab;
 		}
@@ -406,7 +406,7 @@ import data.RecupTab;
 		            salary = Integer.parseInt(RecupTab.tabPaySlip[ar.get(i).getId()][4]);
 		            sommeAge += age;
 		            moyAge = sommeAge/40;   
-		            querytab[cpt][0] = Integer.toString(salary);
+		            querytab[cpt][0] = Convert.convertStringCHNtoUSA(Integer.toString(salary));
 				    querytab[cpt][1] = Integer.toString(age);
 				    cpt++;
 		    } 

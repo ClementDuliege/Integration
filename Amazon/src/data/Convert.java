@@ -4,17 +4,34 @@ import gui.ConverterPanel;
 
 public class Convert {
 	
-	public static double convertCHNtoUSA(double salary) {
+	public static int convertIntCHNtoUSA(double salary) {
 		double quotient = 0.47;
 		salary*=quotient;
-		//int value = salary;
-		return salary;
+		return (int)salary;
 		
 	}
-	public static double convertFRtoUSA(double salary) {
+	public static int convertIntFRtoUSA(double salary) {
 		double quotient = 0.89;
 		salary/=quotient;
 		return (int)salary;
+	}
+	
+	public static String convertStringCHNtoUSA(String value) {
+		double quotient = 0.47;
+		double salary = Double.parseDouble(value);
+		salary*=quotient;
+		int intSalary = (int)salary;
+		String strSalary = Integer.toString(intSalary);
+		return strSalary;
+		
+	}
+	public static String convertStringFRtoUSA(String value) {
+		double quotient = 0.89;
+		double salary = Double.parseDouble(value);
+		salary/=quotient;
+		int intSalary = (int)salary;
+		String strSalary = Integer.toString(intSalary);
+		return strSalary;
 	}
 	
 	public void convertEuros() {
