@@ -254,7 +254,7 @@ import data.RecupTab;
 		          
 		       averageSalary = sommeSalary/(RecupTab.sizeTab);
 		       System.out.println(salary);
-		       return averageSalary;
+		       return Convert.convertIntCHNtoUSA(averageSalary);
 		}
 		
 		
