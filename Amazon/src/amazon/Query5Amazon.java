@@ -18,15 +18,9 @@ public class Query5Amazon {
 	public static String[][] mainSort() {
 		QueryDaoUSA usa = new QueryDaoUSA();
 		QueryDaoFR fr = new QueryDaoFR();
-		QueryDaoCHN chn = new QueryDaoCHN();
-				
+		QueryDaoCHN chn = new QueryDaoCHN();		
 
 		String[][] listMax = new String[15][3];
-		String[][] listMin = new String[15][3];
-		
-		String[][] listMaxFinal = new String[5][3];
-		String[][] listMinFinal = new String[5][3];
-		String[][] listTotFinal = new String[10][3];
 		
 		
 		/* Remplissage liste Max */
@@ -51,20 +45,25 @@ public class Query5Amazon {
 			listRemoveMax = QueryAmazonUsual.getAndDeleteMaxElementTwoDimension(listRemoveMax, 1);
 		}
 		
-		
-		/* Remplissage liste Max Finale */
-		listMaxFinal = addListElementTwoDimension (listMax, listMaxFinal);	
-		String[][] listRemoveMaxAll = QueryAmazonUsual.getAndDeleteMaxElementTwoDimension(listMax, 1);	
-		for (int i=1; i<5; i++) {
-			listMaxFinal = addListElementTwoDimension (listRemoveMaxAll, listMaxFinal);	
-			listRemoveMaxAll = QueryAmazonUsual.getAndDeleteMaxElementTwoDimension(listRemoveMaxAll, 1);
-		}
 				
-		System.out.println("Liste Max All, que les 5 premières valeurs: ");
-		for (int i = 0; i < listMaxFinal.length == true ; i++) {
-			System.out.println("Bonus: " + listMaxFinal[i][0] + ", Congé: " + listMaxFinal[i][1] + ", Prenom: " + listMaxFinal[i][2]);
+		System.out.println("Liste Max congé, que les 15 premières valeurs: ");
+		for (int i = 0; i < listMax.length == true ; i++) {
+			System.out.println("Bonus: " + listMax[i][0] + ", Congé: " + listMax[i][1] + ", Prenom: " + listMax[i][2]);
 		}
 		
+		
+		return listMax;
+	
+	
+	}
+	
+	public static String[][] mainSort2() {
+		QueryDaoUSA usa = new QueryDaoUSA();
+		QueryDaoFR fr = new QueryDaoFR();
+		QueryDaoCHN chn = new QueryDaoCHN();
+
+		String[][] listMin = new String[15][3];
+
 		/* Remplissage liste Min */
 		listMin = addListMinElementTwoDimension (usa.query5(), listMin);	
 		String[][] listRemoveMin = QueryAmazonUsual.getAndDeleteMinElementTwoDimension(usa.query5(), 1);	
@@ -88,38 +87,13 @@ public class Query5Amazon {
 			listRemoveMin = QueryAmazonUsual.getAndDeleteMinElementTwoDimension(listRemoveMin, 1);
 		}
 		
-		
-		/* Remplissage liste Min Finale */
-		listMinFinal = addListMinElementTwoDimension (listMin, listMinFinal);	
-		String[][] listRemoveMinAll = QueryAmazonUsual.getAndDeleteMinElementTwoDimension(listMin, 1);	
-		for (int i=1; i<5; i++) {
-			listMinFinal = addListMinElementTwoDimension (listRemoveMinAll, listMinFinal);	
-			listRemoveMinAll = QueryAmazonUsual.getAndDeleteMinElementTwoDimension(listRemoveMinAll, 1);
+
+		System.out.println("Liste Min congé, que les 5 dernières valeurs: ");
+		for (int i = 0; i < listMin.length == true ; i++) {
+			System.out.println("Bonus: " + listMin[i][0] + ", Congé: " + listMin[i][1] + ", Prenom: " + listMin[i][2]);
 		}
 		
-		System.out.println("Liste Min All, que les 5 dernières valeurs: ");
-		for (int i = 0; i < listMinFinal.length == true ; i++) {
-			System.out.println("Bonus: " + listMinFinal[i][0] + ", Congé: " + listMinFinal[i][1] + ", Prenom: " + listMinFinal[i][2]);
-		}
-		
-		/* Fusion en une liste */
-		String[][] listMerge = QueryAmazonUsual.mergeArrayTwoDimension(listMaxFinal,listMinFinal);
-		listTotFinal = addListElementTwoDimension (listMerge, listTotFinal);
-		String[][] listRemoveTotAll = QueryAmazonUsual.getAndDeleteMaxElementTwoDimension(listMerge, 1);	
-		for (int i=1; i<10; i++) {
-			listTotFinal = addListElementTwoDimension (listRemoveTotAll, listTotFinal);	
-			listRemoveTotAll = QueryAmazonUsual.getAndDeleteMaxElementTwoDimension(listRemoveTotAll, 1);
-		}
-		
-		System.out.println("Liste Total: ");
-		for (int i = 0; i < listTotFinal.length == true ; i++) {
-			System.out.println("Bonus: " + listTotFinal[i][0] + ", Congé: " + listTotFinal[i][1] + ", Prenom: " + listTotFinal[i][2]);
-		}
-		
-		
-		
-		
-		return listTotFinal;
+		return listMin;
 	
 	
 	}

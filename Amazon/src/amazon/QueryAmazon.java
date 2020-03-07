@@ -119,7 +119,7 @@ public class QueryAmazon {
 	public static void main (String [] args) {				
 		
 		//mainSort();	
-		query8Amazon();
+		query5Amazon();
 		
 	}
 
