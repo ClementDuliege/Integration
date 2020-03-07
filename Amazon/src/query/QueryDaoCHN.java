@@ -30,7 +30,7 @@ import data.RecupTab;
 
 
 	public class QueryDaoCHN {
-	
+		private static String db = "		  [CHN]";
 
 /*Requête1----------------------------------------------------------------------------------------------------------------------------------------------	
 	 
@@ -76,7 +76,7 @@ import data.RecupTab;
 	       	}
 	       	
 			cont[debut][0] = Convert.convertIntCHNtoUSA(hightersalary[i])+ "";
-	        cont[debut][1] = firstname;
+	        cont[debut][1] = firstname + db;
 	        debut++;
 	        System.out.println("Highter salary : "+ Convert.convertIntCHNtoUSA(hightersalary[i]) + ", Firstname : " + firstname );
 	        }	
@@ -148,7 +148,7 @@ import data.RecupTab;
 			for(int i=tmp; i>tmp-5; i--) {
 				 querytab3[cpt][0] = Convert.convertStringCHNtoUSA(RecupTab.tabPaySlip[id[i]][4]);//salaire
 		    	 querytab3[cpt][1] = RecupTab.tabPaySlip[id[i]][6];//paidLeave
-		    	 querytab3[cpt][2] = RecupTab.tabPaySlip[id[i]][2];//prénom	    		 
+		    	 querytab3[cpt][2] = RecupTab.tabPaySlip[id[i]][2] + db;//prénom	    		 
 		    	 cpt++;
 				/*we post the 5 biggest salary with max paid leave */
 				//System.out.println("salarywithpaidLeave");
@@ -198,7 +198,7 @@ import data.RecupTab;
 					}
 				}		
 				for(int j=i-1; j>i-4; j--) {
-					querytab3[cpt][0] = RecupTab.tabPaySlip[id[j]][1];
+					querytab3[cpt][0] = RecupTab.tabPaySlip[id[j]][1] + db;
 			   	 	querytab3[cpt][1] = Convert.convertStringCHNtoUSA(tabSalaryBonus[j]);
 			   	 	querytab3[cpt][2] = RecupTab.tabPaySlip[id[j]][5];
 			   	 	cpt++;
@@ -227,7 +227,7 @@ import data.RecupTab;
 			for(int i=0; i<RecupTab.sizeTab; i++) {
 				querytab[i][0] = RecupTab.tabPaySlip[i][5];
 	   	 		querytab[i][1] = RecupTab.tabPaySlip[i][6];
-	   	 		querytab[i][2] = RecupTab.tabPaySlip[i][2];
+	   	 		querytab[i][2] = RecupTab.tabPaySlip[i][2] + db;
 			}
 			return querytab;
 		}
@@ -324,7 +324,7 @@ import data.RecupTab;
 							}
 						}
 					}
-					 querytab[0][0] = RecupTab.tabPaySlip[tmp][1];//name
+					 querytab[0][0] = RecupTab.tabPaySlip[tmp][1] + db;//name
 			    	 querytab[0][1] = RecupTab.tabPaySlip[tmp][2];//firstname
 			    	 querytab[0][2] = Convert.convertStringCHNtoUSA(RecupTab.tabPaySlip[tmp][4]);//salary
 			    	 querytab[0][3] = RecupTab.tabPaySlip[tmp][5];//bonus
@@ -371,7 +371,7 @@ import data.RecupTab;
 			        String nom = RecupTab.tabPaySlip[ar.get(i).getId()][1]; 
 			        //String prenom = tabPaySlip[ar.get(i).getId()][1];
 			        salary = ar.get(i).getSalary();
-			        querytab[cpt][0] = nom;
+			        querytab[cpt][0] = nom + db;
 			    	querytab[cpt][1] = Integer.toString(age);  		 
 			    	querytab[cpt][2] = Convert.convertStringCHNtoUSA(Integer.toString(salary));
 				
@@ -406,7 +406,7 @@ import data.RecupTab;
 		            salary = Integer.parseInt(RecupTab.tabPaySlip[ar.get(i).getId()][4]);
 		            sommeAge += age;
 		            moyAge = sommeAge/40;   
-		            querytab[cpt][0] = Convert.convertStringCHNtoUSA(Integer.toString(salary));
+		            querytab[cpt][0] = Convert.convertStringCHNtoUSA(Integer.toString(salary)) + db;
 				    querytab[cpt][1] = Integer.toString(age);
 				    cpt++;
 		    } 
