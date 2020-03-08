@@ -2,7 +2,6 @@ package test;
 
 import amazon.Query1Amazon;
 import amazon.Query6Amazon;
-import amazon.QueryAmazon;
 import gui.Gui;
 import gui.QueryPanel;
 import query.QueryDaoCHN;
