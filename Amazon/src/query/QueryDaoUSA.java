@@ -63,6 +63,12 @@ public class QueryDaoUSA{
 	
 	}
 	
+	/**
+	 * Method allowing to get the higher salary.
+	 */
+	/**
+	 * @return tab with higher salary and the name to the person associated.
+	 */
 	public static String[][] query1() {
 		String cont[][] = new String[10][2];
 		try {
@@ -90,6 +96,12 @@ public class QueryDaoUSA{
 		return cont;
 	}
 	
+	/**
+	 * Method allowing to get the sum of paid leave.
+	 */
+	/**
+	 * @return the sum of paid leave with number of persons in the society.
+	 */
 	public static int query2() {	
 		int sum = 0;
 		try {
@@ -126,6 +138,12 @@ public class QueryDaoUSA{
 
 	
 	// Requête 3 : Affichage croissant des 5 salaires les plus gros en fonction des plus gros congés.
+	/**
+	 * Method allowing to get the 5 best salaries with biggest paid leave.
+	 */
+	/**
+	 * @return tab of the 5 best salaries with biggest paid leave.
+	 */
 	public static String[][] query3() {
 		String[][] querytab3 = new String[5][3];
 		try {
@@ -156,6 +174,12 @@ public class QueryDaoUSA{
 	}
 	
 	// Affichage croissant des plus gros salaires avec les bonus compris
+	/**
+	 * Method allowing to get the 3 best salaries with bonus included.
+	 */
+	/**
+	 * @return tab of the 3 best salaries with bonus included.
+	 */
 		public static String[][] query4() {
 			String[][] querytab = new String[100][3];
 			try {
@@ -188,6 +212,12 @@ public class QueryDaoUSA{
 	
 		
 	// LA YA UN AFFICHAGE CROISSANT EN FONCTION DES CONGES
+		/**
+		 * Method allowing to get the average bonus for the biggest paid leave and the smallest paid leave
+		 */
+		/**
+		 * @return the average bonus for the biggest paid leave and the smallest paid leave
+		 */
 	public static String[][] query5() {
 		String[][] querytab = new String[100][3];
 		try {
@@ -217,7 +247,12 @@ public class QueryDaoUSA{
 		return querytab;
 	}
 	
-	
+	/**
+	 * Method allowing to get the meduim salary to the society
+	 */
+	/**
+	 * @return the meduim salary to the society
+	 */
 	public static int query6() {
 		int averageSalary = 0;
 		int allSalary = 0;
@@ -247,6 +282,12 @@ public class QueryDaoUSA{
 
 	
 	// Somme des bonus
+	/**
+	 * Method allowing to get the sum of employees of society
+	 */
+	/**
+	 * @return the sum of employees of society
+	 */
 	public static int query7() {
 		int allBonus = 0;
 		try {
@@ -311,6 +352,12 @@ public class QueryDaoUSA{
 		}
 		return querytab;
 	}*/
+	/**
+	 * Method allowing to get the best employee in function of his bonus and paid leave
+	 */
+	/**
+	 * @return the best employee in function of his bonus and paid leave
+	 */
 	public static String[][] query8() {
 		String[][] querytab = new String[1][5];
 		try {
@@ -353,6 +400,12 @@ public class QueryDaoUSA{
 	
 	
 	// SOUS FORME DE TABLEAU JE TE DONNE LE PLUS JEUNE SALARIER
+	/**
+	 * Method allowing to get the 3 best salary for the youngest peoples
+	 */
+	/**
+	 * @return tab of the 3 best salaries for the youngest peoples
+	 */
 		public static String[][] query9() {
 			String[][] querytab = new String[1][3];
 			try {
@@ -385,7 +438,13 @@ public class QueryDaoUSA{
 				return querytab;
 		}
 			
-		// JE SORT UN TABLEAU A 2 COLONNE AVEC 40 ELEMENT 	
+		// JE SORT UN TABLEAU A 2 COLONNE AVEC 40 ELEMENT
+		/**
+		 * Method allowing to get the medium age with the best salary
+		 */
+		/**
+		 * @return tab of 40 salaries with age corresponding 
+		 */
 		public static String[][] query10() {
 			String[][] querytab = new String[40][2];
 			try {

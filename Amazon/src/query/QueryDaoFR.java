@@ -20,6 +20,12 @@ import data.Convert;
 public class QueryDaoFR{
 	private static String db = "		  [FRA]";
 	
+	/**
+	 * Method allowing to get the higher salary.
+	 */
+	/**
+	 * @return tab with higher salary and the name to the person associated.
+	 */
 	public static String[][] query1() {
 		String cont[][] = new String[10][2];
 		try {
@@ -34,7 +40,7 @@ public class QueryDaoFR{
 		      while (result.next()) {
 		        int id = result.getInt("salary");
 		        String prenom = result.getString("firstname");
-		        cont[i][0] = Integer.toString(id);
+		        cont[i][0] = Convert.convertStringFRtoUSA(Integer.toString(id));
 		        cont[i][1] = prenom + db;
 		        i++;
 		      }
@@ -45,6 +51,12 @@ public class QueryDaoFR{
 		return cont;
 	}
 	
+	/**
+	 * Method allowing to get the sum of paid leave.
+	 */
+	/**
+	 * @return the sum of paid leave with number of persons in the society.
+	 */
 	public static int query2() {	
 		int sum = 0;
 		try {
@@ -81,6 +93,12 @@ public class QueryDaoFR{
 
 	
 	// Requête 3 : Affichage croissant des 5 salaires les plus gros en fonction des plus gros congés.
+	/**
+	 * Method allowing to get the 5 best salaries with biggest paid leave.
+	 */
+	/**
+	 * @return tab of the 5 best salaries with biggest paid leave.
+	 */
 	public static String[][] query3() {
 		String[][] querytab3 = new String[5][3];
 		try {
@@ -95,7 +113,7 @@ public class QueryDaoFR{
 		    	 int salaire = result.getInt("salary");
 		    	 int paidLeave = result.getInt("paid_leave");
 		    	 String prenom = result.getString("firstname");
-		    	 querytab3[i][0] = Integer.toString(salaire);
+		    	 querytab3[i][0] = Convert.convertStringFRtoUSA(Integer.toString(salaire));
 		    	 querytab3[i][1] = Integer.toString(paidLeave);
 		    	 querytab3[i][2] = prenom + db;	    		 
 		    	 i++;
@@ -111,6 +129,12 @@ public class QueryDaoFR{
 	}
 	
 	// Affichage TRIER des salaires ayant les bonus compris dedans
+	/**
+	 * Method allowing to get the 3 best salaries with bonus included.
+	 */
+	/**
+	 * @return tab of the 3 best salaries with bonus included.
+	 */
 		public static String[][] query4() {
 			String[][] querytab3 = new String[100][3];
 			try {
@@ -129,7 +153,7 @@ public class QueryDaoFR{
 			    	 String prenom = result.getString("firstname");
 			    	 // Remplissag du tableau avec pour colonnes : 1=prenom, 2=salaire, 3=bonus
 			    	 querytab3[i][0] = prenom + db;
-			    	 querytab3[i][1] = Integer.toString(salaire);
+			    	 querytab3[i][1] = Convert.convertStringFRtoUSA(Integer.toString(salaire));
 			    	 querytab3[i][2] = Integer.toString(bonus);	    		 
 			    	 i++;
 			   	}
@@ -145,6 +169,12 @@ public class QueryDaoFR{
 	
 		
 	// LA YA UN AFFICHAGE CROISSANT EN FONCTION DES CONGES
+		/**
+		 * Method allowing to get the average bonus for the biggest paid leave and the smallest paid leave
+		 */
+		/**
+		 * @return the average bonus for the biggest paid leave and the smallest paid leave
+		 */
 	public static String[][] query5() {
 		String[][] querytab = new String[100][3];
 		try {
@@ -176,6 +206,12 @@ public class QueryDaoFR{
 	}
 	
 	// Retourn un entier qui serat la moyenne
+	/**
+	 * Method allowing to get the meduim salary to the society
+	 */
+	/**
+	 * @return the meduim salary to the society
+	 */
 	public static int query6() {
 		int averageSalary = 0;
 		int allSalary = 0;
@@ -201,10 +237,16 @@ public class QueryDaoFR{
 		} catch (SQLException se) {
 			System.err.println(se.getMessage());
 		}
-		return averageSalary;
+		return Convert.convertIntFRtoUSA(averageSalary);
 	}
 	
 	// Somme des bonus je retourne un entier
+	/**
+	 * Method allowing to get the sum of employees of society
+	 */
+	/**
+	 * @return the sum of employees of society
+	 */
 	public static int query7() {
 		int allBonus = 0;
 		try {
@@ -234,7 +276,12 @@ public class QueryDaoFR{
 	}
 	
 	
-	
+	/**
+	 * Method allowing to get the best employee in function of his bonus and paid leave
+	 */
+	/**
+	 * @return the best employee in function of his bonus and paid leave
+	 */
 	public static String[][] query8() {
 		String[][] querytab = new String[1][5];
 		try {
@@ -265,7 +312,7 @@ public class QueryDaoFR{
 		   String nom = result3.getString("lastname");
 		   querytab[0][0] = nom + db;
 		   querytab[0][1] = prenom;
-		   querytab[0][2] = Integer.toString(salary); 
+		   querytab[0][2] = Convert.convertStringFRtoUSA(Integer.toString(salary)); 
 		   querytab[0][3] = Integer.toString(bonus1);  		 
 		   querytab[0][4] = Integer.toString(paidLeave); 
 		
@@ -277,6 +324,12 @@ public class QueryDaoFR{
 	}
 	
 	// SOUS FORME DE TABLEAU JE TE DONNE LE PLUS JEUNE SALARIER
+	/**
+	 * Method allowing to get the 3 best salary for the youngest peoples
+	 */
+	/**
+	 * @return tab of the 3 best salaries for the youngest peoples
+	 */
 	public static String[][] query9() {
 		String[][] querytab = new String[1][3];
 		try {
@@ -296,7 +349,7 @@ public class QueryDaoFR{
 		    	 // Remplissage du tableau avec pour colonnes : 1=nom, 2=age, 3=salaire   	 
 		    	 querytab[i][0] = nom + db;
 		    	 querytab[i][1] = Integer.toString(age);  		 
-		    	 querytab[i][2] = Integer.toString(salary);  		 
+		    	 querytab[i][2] = Convert.convertStringFRtoUSA(Integer.toString(salary));  		 
 		    	 i++;
 		   	}
 		    
@@ -309,7 +362,13 @@ public class QueryDaoFR{
 			return querytab;
 	}
 		
-	// JE SORT UN TABLEAU A 2 COLONNE AVEC 40 ELEMENT 	
+	// JE SORT UN TABLEAU A 2 COLONNE AVEC 40 ELEMENT
+	/**
+	 * Method allowing to get the medium age with the best salary
+	 */
+	/**
+	 * @return tab of 40 salaries with age corresponding 
+	 */
 	public static String[][] query10() {
 		String[][] querytab = new String[40][2];
 		try {
@@ -326,7 +385,7 @@ public class QueryDaoFR{
 				int age = result.getInt("age");
 			    int salary = result.getInt("salary");
 			    	 // Remplissage du tableau avec pour colonnes : 1=nom, 2=age, 3=salaire
-			    querytab[i][0] = Integer.toString(salary) + db;
+			    querytab[i][0] = Convert.convertStringFRtoUSA(Integer.toString(salary)) + db;
 			    querytab[i][1] = Integer.toString(age);  		 
 			    i++;
 			   

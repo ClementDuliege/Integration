@@ -133,13 +133,13 @@ import data.RecupTab;
 		int[] tabPaidLeave = new int[250];
 		int[] id = new int[250];
 		String[][] querytab3 = new String[5][3];
-		   for(int k=0; k<RecupTab.sizeTab; k++) {/*we shearch the smallest paidleave*/
+		   for(int k=0; k<RecupTab.sizeTab; k++) {/*we search the biggest paidleave*/
 			   paidLeave = Integer.parseInt(RecupTab.tabPaySlip[k][6]);
 			   if(paidLeave > paidLeaveMax) {
 				   paidLeaveMax = paidLeave;
 		    	}
 		    }
-		    for(int j=0; j<RecupTab.sizeTab; j++) {/*we shearch the smallest paidleave*/
+		    for(int j=0; j<RecupTab.sizeTab; j++) {
 				salary = Integer.parseInt(RecupTab.tabPaySlip[j][4]);
 				paidLeave = Integer.parseInt(RecupTab.tabPaySlip[j][6]);
 				if(paidLeave == paidLeaveMax) {

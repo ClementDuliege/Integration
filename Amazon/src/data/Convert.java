@@ -35,9 +35,9 @@ public class Convert {
 	}
 	
 	public void convertEuros() {
-		double quotientdollars=1.13;
-		double quotientyen=0.47;
-		int dollars = (int) (Integer.parseInt(ConverterPanel.getTf().getText())*quotientdollars);
+		double quotientdollars=0.89;
+		double quotientyen=0.418;
+		int dollars = (int) (Integer.parseInt(ConverterPanel.getTf().getText())/quotientdollars);
 		int yen = (int) (Integer.parseInt(ConverterPanel.getTf().getText())/quotientyen);
 
 		ConverterPanel.getConvert().setText("<html>"+ dollars+" Dollars <br/>" +yen+" Yen </html>");
@@ -56,9 +56,9 @@ public class Convert {
 	
 	public void convertYen() {
 		double quotientdollars=0.47;
-		double quotienteuros=0.36;
-		int dollars = (int) (Integer.parseInt(ConverterPanel.getTf().getText())*quotienteuros);
-		int euros = (int) (Integer.parseInt(ConverterPanel.getTf().getText())*quotientdollars);
+		double quotienteuros=0.418;
+		int euros = (int) (Integer.parseInt(ConverterPanel.getTf().getText())*quotienteuros);
+		int dollars = (int) (Integer.parseInt(ConverterPanel.getTf().getText())*quotientdollars);
 		
 		ConverterPanel.getConvert().setText("<html>"+ euros+" Euros <br/>" +dollars+" Dollars </html>");
 	
