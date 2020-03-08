@@ -39,7 +39,7 @@ public class Query4Amazon {
 		 * And the second the 9 biggest salaries among the biggest bonuses
 		*/
 		String[][] listAll = new String[9][3];
-		String[][] listAllSort = new String[9][3];
+		String[][] listAllSort = new String[3][3];
 		
 		
 
@@ -67,7 +67,7 @@ public class Query4Amazon {
 
 		listAllSort = addListElementTwoDimension2 (listAll, listAllSort);	
 		String[][] listRemoveSort = QueryAmazonUsual.getAndDeleteMaxElementTwoDimension(listAll, 1);	
-		for (int i=1; i<9; i++) {
+		for (int i=1; i<3; i++) {
 			listAllSort = addListElementTwoDimension2 (listRemoveSort, listAllSort);	
 			listRemoveSort = QueryAmazonUsual.getAndDeleteMaxElementTwoDimension(listRemoveSort, 1);
 		}
