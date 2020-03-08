@@ -31,30 +31,28 @@ public class Query10Amazon {
 	 */
 	
 	public static String mainSort() {
-		QueryDaoUSA usa = new QueryDaoUSA();
-		QueryDaoFR fr = new QueryDaoFR();
-		QueryDaoCHN chn = new QueryDaoCHN();
+		
 
 
-		String[][] listMerge1 = QueryAmazonUsual.mergeArrayTwoDimension(usa.query10(), fr.query10());
-		String[][] listMerge2 = QueryAmazonUsual.mergeArrayTwoDimension(listMerge1,chn.query10());		
+		String[][] listMerge1 = QueryAmazonUsual.mergeArrayTwoDimension(QueryDaoUSA.query10(), QueryDaoFR.query10());
+		String[][] listMerge2 = QueryAmazonUsual.mergeArrayTwoDimension(listMerge1,QueryDaoCHN.query10());		
 			
 
 		int valueA = 0, valueB = 0, valueC = 0, moyenneA = 0, moyenneB = 0, moyenneC = 0;
-		for (int i = 0; i < usa.query10().length == true ; i++) {
-			valueA = valueA + Integer.parseInt(usa.query10()[i][1]);
+		for (int i = 0; i < QueryDaoUSA.query10().length == true ; i++) {
+			valueA = valueA + Integer.parseInt(QueryDaoUSA.query10()[i][1]);
 		}
 		moyenneA = valueA / 40;
 		System.out.println("la moyenne de l'age dans l'entreprise Américaine: " + moyenneA);
 		
-		for (int i = 0; i < fr.query10().length == true ; i++) {
-			valueB = valueB + Integer.parseInt(fr.query10()[i][1]);
+		for (int i = 0; i < QueryDaoFR.query10().length == true ; i++) {
+			valueB = valueB + Integer.parseInt(QueryDaoFR.query10()[i][1]);
 		}
 		moyenneB = valueB / 40;
 		System.out.println("la moyenne de l'age dans l'entreprise Française vaut: " + moyenneB);
 		
-		for (int i = 0; i < chn.query10().length == true ; i++) {
-			valueC = valueC + Integer.parseInt(chn.query10()[i][1]);
+		for (int i = 0; i < QueryDaoCHN.query10().length == true ; i++) {
+			valueC = valueC + Integer.parseInt(QueryDaoCHN.query10()[i][1]);
 		}
 		moyenneC = valueC / 40;
 		System.out.println("la moyenne de l'age dans l'entreprise Chinoise vaut: " + moyenneC);

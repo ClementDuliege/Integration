@@ -21,7 +21,7 @@ public class ResultPanel extends JPanel{
 	public ResultPanel() {
 		this.setBackground(Color.WHITE);
 		this.setBorder(new LineBorder(Color.BLACK, 30));
-		this.setLayout(new BorderLayout());
+		this.setLayout(null);
 		this.add(label);
 	
 		this.setVisible(true);

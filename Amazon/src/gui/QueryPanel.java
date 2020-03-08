@@ -2,6 +2,7 @@ package gui;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -41,8 +42,10 @@ public class QueryPanel extends JPanel implements ActionListener{
 	private Color amazon2 = new Color(245,195,79);
 	
 	private JTable table = new JTable();
-    private JScrollPane pane = new JScrollPane();
+	private JTable table1 = new JTable();
 
+    private JScrollPane pane = new JScrollPane();
+    private JScrollPane pane1 = new JScrollPane();
 	
 	private JButton button = new JButton("Valider");
 	
@@ -66,7 +69,9 @@ public class QueryPanel extends JPanel implements ActionListener{
 		this.setBorder(BorderFactory.createEmptyBorder(40,40,40,40));
 				
 		label = new JLabel();
+		label.setBounds(570,120,500,500);
 		label.setForeground(Color.BLACK);
+	    label.setFont(new Font(Font.SERIF,Font.BOLD,24));
 		
 		button.setBackground(Color.white);
         button.addActionListener(this);
@@ -131,23 +136,37 @@ public class QueryPanel extends JPanel implements ActionListener{
         this.add(check10);
         this.add(button);
         this.setLayout(gl);
-        
+        this.setVisible(true);
 	}
     
     
     public void displayJlabel() {
-    	Gui.getRp().add(label, BorderLayout.CENTER);
-		Gui.getRp().validate();
-		label.setVisible(true);	
+    	Gui.getRp().add(label);
+		label.setVisible(true);
 		pane.setVisible(false);
-    }
+		pane1.setVisible(false);
+		Gui.getRp().revalidate();
+	}
     
     public void displayJtable() {
-		table.setShowGrid(true);
+ 	    pane.setBounds(40,100,1400,200);
+    	table.setShowGrid(true);
 		table.setShowVerticalLines(true);
 		pane.getViewport().add(table);
 		Gui.getRp().add(pane);
 		pane.setVisible(true);
+		pane1.setVisible(false);
+		label.setVisible(false);
+		Gui.getRp().validate();
+    }
+    
+    public void displayJtable1() {
+ 	    pane1.setBounds(40,400,1400,200);
+    	table1.setShowGrid(true);
+		table1.setShowVerticalLines(true);
+		pane1.getViewport().add(table1);
+		Gui.getRp().add(pane1);
+		pane1.setVisible(true);
 		label.setVisible(false);
 		Gui.getRp().validate();
     }
@@ -167,8 +186,8 @@ public class QueryPanel extends JPanel implements ActionListener{
 						System.out.println("requete 1");
 						break;
 					case "2":
-						label.setText(Query2Amazon.query6());
 						displayJlabel();
+						label.setText(Query2Amazon.query6());
 						System.out.println("requete 2");
 						break;
 					case "3":
@@ -182,17 +201,20 @@ public class QueryPanel extends JPanel implements ActionListener{
 						System.out.println("requete 4");
 						break;
 					case "5":
-						table = new JTable(new DefaultTableModel(Query5Amazon.mainSort(), Query5Amazon.getCol()));
+						table = new JTable(new DefaultTableModel(Query5Amazon.mainSort2(), Query5Amazon.getCol()));
+						table1 = new JTable(new DefaultTableModel(Query5Amazon.mainSort(), Query5Amazon.getCol()));
 					    displayJtable();
+					    displayJtable1();
+
 						System.out.println("requete 5");
 						break;
 					case "6":
-						label.setText(Query6Amazon.query6());
 						displayJlabel();
+						label.setText(Query6Amazon.query6());
 						break;
 					case "7":
-						label.setText(Query7Amazon.mainSort());
 						displayJlabel();
+						label.setText(Query7Amazon.mainSort());
 						break;
 					case "8":
 						table = new JTable(new DefaultTableModel(Query8Amazon.mainSort(), Query8Amazon.getCol()));
@@ -205,8 +227,8 @@ public class QueryPanel extends JPanel implements ActionListener{
 						System.out.println("requete 8");
 						break;
 					case "10":
-						label.setText(Query10Amazon.mainSort());
 						displayJlabel();
+						label.setText(Query10Amazon.mainSort());
 						break;
 							
 					default:

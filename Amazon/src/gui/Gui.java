@@ -7,6 +7,7 @@ import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -47,9 +48,9 @@ public class Gui extends JFrame{
 	
 	public Gui() {
 		this.setTitle("Amazon");
+		this.setSize((int)getToolkit().getScreenSize().getWidth(), ((int)getToolkit().getScreenSize().getHeight() - 40));
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setLayout(new BorderLayout());
-		rp.setBorder(new LineBorder(Color.black));
 		
 		this.getContentPane().add(rp, BorderLayout.CENTER);
 		this.getContentPane().add(qp, BorderLayout.WEST);
@@ -70,8 +71,6 @@ public class Gui extends JFrame{
 		title.add(label);
         
         
-        this.setSize(1200, 700);
-		this.setLocationByPlatform(true);
 		this.setVisible(true);
  	    	  
 	}

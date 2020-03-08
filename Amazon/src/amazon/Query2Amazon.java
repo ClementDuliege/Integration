@@ -33,7 +33,7 @@ public class Query2Amazon {
 		
 		sum = query.get("États-Unis") + query.get("France") + query.get("Chine");
 		
-		display = "Somme des congés :\nÉtats-Unis : "+query.get("États-Unis")+"\n France : "+query.get("France")+"\n Chine : "+query.get("Chine")+" \nSomme des congés totales : "+sum;
+		display = "<html> SOMME DES CONGÉS : <br/>États-Unis : "+query.get("États-Unis")+"<br/> France : "+query.get("France")+"<br/> Chine : "+query.get("Chine")+" <br/>Somme des congés totales : "+sum+"</html>";
 		System.out.println(display);
 	    return display;
 	}

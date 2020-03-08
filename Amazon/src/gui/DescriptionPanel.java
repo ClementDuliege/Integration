@@ -53,7 +53,7 @@ public class DescriptionPanel extends JPanel{
 			label.setText("<html> La requête 1 consiste à afficher les 10 salariés <br/> ayant les plus gros salaires parmi les sources de données <br/> d'Amazon France, Chine et États-Unis.</html>");
 			label3.setText("<html> Ce tableau est trié par ordre décroissant <br/> en fonction du salaire de chaque employé. </html>");
 		}if(Gui.getQp().getCheck2().isSelected()) {
-			label.setText("<html> La requête 2 consiste à afficher la somme de tout les congés pour tout les employés de chaque source de donnée.</html>");
+			label.setText("<html> La requête 2 consiste à afficher la somme de <br/> tout les congés pour tout les employés de chaque source de donnée.</html>");
 			label3.setText("<html> Nous affichons également la somme de ses congés par pays <br/>(France, Chine et États-unis). </html>");
 
 		}if(Gui.getQp().getCheck3().isSelected()) {
@@ -65,28 +65,28 @@ public class DescriptionPanel extends JPanel{
 			label3.setText("<html> Ce tableau est trié par ordre décroissant <br/> en fonction du salaire de chaque employé. </html>");
 
 		}if(Gui.getQp().getCheck5().isSelected()) {
-			label.setText("<html> La requête 5 consiste à effectuer une comparaison entre deux requêtes à l'aide d'un tableau: <br/>on récupére le bonus des salariés qui ont prit le moins et le plus de congés parmi nos 3 entreprises, puis on compare pour chaque entreprise la différence entre le nombre de congés et le nombre de bonus. </html>");
-			label3.setText("<html> Ce tableau est trié par ordre décroissant <br/> en fonction du salaire de chaque employé. </html>");
+			label.setText("<html> La requête 5 consiste à effectuer une comparaison entre deux requêtes :<br/> a) on récupére le bonus des salariés qui ont prit le moins de congés <br/> b) on récupére le bonus des salariés qui ont prit le plus de congés <br/> Chaque requête dispose de 5 employés de chaque entreprise.</html>");
+			label3.setText("<html> Tableau 1 : affiche la requête a) par ordre croissant en fonction des congés <br/> Tableau 2 : affiche la requête b) par ordre décroissant en fonction des congés </html>");
 
 		}if(Gui.getQp().getCheck6().isSelected()) {
-			label.setText("<html> La requête 6 consiste à afficher le salaire moyen des entreprises <br/> et les classer dans l’ordre. <br/>La moyenne pour chaque entreprise s'effectue en additionnant le salaire de chaque employé et en divisant cette somme par le nombre d'employés.<html>");
-			label3.setText("<html> Ce tableau est trié par ordre décroissant <br/> en fonction du salaire de chaque employé. </html>");
+			label.setText("<html> La requête 6 consiste à afficher <br/> le salaire moyen des employés de chaque entreprise. <br/> Nous afficherons également le nombre d'employés par entreprise. <html>");
+			label3.setText("<html> Affichage textuelle de la requête. </html>");
 
 		}if(Gui.getQp().getCheck7().isSelected()) {
 			label.setText("<html> La requête 7 consiste à effectuer une comparaison entre plusieurs requêtes:<br/> a. Récupérer la somme des bonus de la première entreprise. <br/> b. Récupérer la somme des bonus de la seconde entreprise. <br/> c. Récupérer la somme des bonus de la troisième entreprise.</html>");
-			label3.setText("<html> Ce tableau est trié par ordre décroissant <br/> en fonction du salaire de chaque employé. </html>");
+			label3.setText("<html> Affichage textuelle de la requête. </html>");
 
 		}if(Gui.getQp().getCheck8().isSelected()) {
-			label.setText("<html> La requête 8 consiste à afficher le salarié ayant le meilleur bonus<br/> et le moins de congés.</html>");
-			label3.setText("<html> Ce tableau est trié par ordre décroissant <br/> en fonction du salaire de chaque employé. </html>");
+			label.setText("<html> La requête 8 consiste à afficher l'employé du moi de chaque entreprise. <br/> L'employé du moi à le meilleur bonus,<br/> le moins de congés et le meilleur salaire.</html>");
+			label3.setText("<html> Affichage sous forme de tableau trié par ordre décroissant <br/> en fonction du salaire de chaque employé. </html>");
 
 		}if(Gui.getQp().getCheck9().isSelected()) {
-			label.setText("<html>La requête 9 consiste à afficher le plus gros salaire parmi les plus <br/>jeunes salariés de chaque entreprise.</html>");
-			label3.setText("<html> Ce tableau est trié par ordre décroissant <br/> en fonction du salaire de chaque employé. </html>");
+			label.setText("<html>La requête 9 consiste à afficher l'employé qui à le plus gros salaire. <br/> parmi les plus jeunes salariés de chaque entreprise.</html>");
+			label3.setText("<html> Ce tableau est trié par ordre décroissant <br/> en fonction de l'âge de chaque employé. </html>");
 
 		}if(Gui.getQp().getCheck10().isSelected()) {
 			label.setText("<html>La requête 10 consiste à afficher la moyenne d’âge qui a le<br/> meilleur salaire.</html>");
-			label3.setText("<html> Ce tableau est trié par ordre décroissant <br/> en fonction du salaire de chaque employé. </html>");
+			label3.setText("<html> Affichage textuelle de la requête. </html>");
 
 		}
 	}
