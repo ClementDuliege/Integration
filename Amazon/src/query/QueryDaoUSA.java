@@ -304,7 +304,6 @@ public class QueryDaoUSA{
 			
 			int i=0;
 		    while(result.next()){ 
-		    	// somme des bonus de la colonne 'bonus'
 		    	 int bonus = result.getInt("bonus");
 		    	 allBonus += bonus;
 		    	 i++;

@@ -15,14 +15,12 @@ import com.mysql.cj.Query;
 import amazon.Query6Amazon;
 
 public class ResultPanel extends JPanel{
-	private JLabel label = new JLabel();
 
 	
 	public ResultPanel() {
 		this.setBackground(Color.WHITE);
 		this.setBorder(new LineBorder(Color.BLACK, 30));
 		this.setLayout(null);
-		this.add(label);
 	
 		this.setVisible(true);
 	}

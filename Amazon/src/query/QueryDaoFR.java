@@ -142,7 +142,6 @@ public class QueryDaoFR{
 		public static String[][] query4() {
 			String[][] querytab3 = new String[100][3];
 			try {
-				// Affichage decroissant du nom, salire, bonus en fonction du salaire calculer avec les bonus
 				String selectQuery = "SELECT firstname, (salary+(salary*bonus)/100)AS salary, bonus FROM payslip INNER JOIN employees ON employees.id_employees = payslip.id_payslip ORDER BY salary DESC;";                
 				
 				Connection dbConnection = JdbcConnectionFR.getConnection();
@@ -151,11 +150,9 @@ public class QueryDaoFR{
 				
 				int i=0;
 			    while(result.next()){ 
-			    	 // initialisation des colonne qu'on utilise
 			    	 int salaire = result.getInt("salary");
 			    	 int bonus = result.getInt("bonus");
 			    	 String prenom = result.getString("firstname");
-			    	 // Remplissag du tableau avec pour colonnes : 1=prenom, 2=salaire, 3=bonus
 			    	 querytab3[i][0] = prenom + db;
 			    	 querytab3[i][1] = Convert.convertStringFRtoUSA(Integer.toString(salaire));
 			    	 querytab3[i][2] = Integer.toString(bonus);	    		 
@@ -193,7 +190,6 @@ public class QueryDaoFR{
 		    	 int bonus = result.getInt("bonus");
 		    	 int paidLeave = result.getInt("paid_leave");
 		    	 String prenom = result.getString("firstname");
-		    	 // Remplissage du tableau avec pour colonnes : 1=prenom, 2=bonus, 3=conges
 		    	 querytab[i][0] = Integer.toString(bonus);
 		    	 querytab[i][1] = Integer.toString(paidLeave);
 		    	 querytab[i][2] = prenom + db;	    		 
@@ -228,7 +224,6 @@ public class QueryDaoFR{
 			
 			int i=0;
 		    while(result.next()){ 
-		    	// Moyenne des salaires de la colonne 'salary'
 		    	 int salary = result.getInt("salary");
 		    	 allSalary += salary;
 		    	 i++;
@@ -262,7 +257,6 @@ public class QueryDaoFR{
 			
 			int i=0;
 		    while(result.next()){ 
-		    	// somme des bonus de la colonne 'bonus'
 		    	 int bonus = result.getInt("bonus");
 		    	 allBonus += bonus;
 		    	 i++;
@@ -337,7 +331,6 @@ public class QueryDaoFR{
 	public static String[][] query9() {
 		String[][] querytab = new String[1][3];
 		try {
-			// JE SORT LE PLUS JEUNES SALARIERS AVEC LE PLUS GROS SALAIRE 
 			String selectQuery = "SELECT lastname, salary, age FROM payslip INNER JOIN employees ON employees.id_employees = payslip.id_payslip ORDER BY age ASC, salary DESC LIMIT 1;";
 			
 			
