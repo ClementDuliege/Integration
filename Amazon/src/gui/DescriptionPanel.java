@@ -69,7 +69,7 @@ public class DescriptionPanel extends JPanel{
 			label3.setText("<html> Tableau 1 : affiche la requête a) par ordre croissant en fonction des congés <br/> Tableau 2 : affiche la requête b) par ordre décroissant en fonction des congés </html>");
 
 		}if(Gui.getQp().getCheck6().isSelected()) {
-			label.setText("<html> La requête 6 consiste à afficher <br/> le salaire moyen des employés de chaque entreprise. <br/> Nous afficherons également le nombre d'employés par entreprise. <html>");
+			label.setText("<html> La requête 6 consiste à afficher le salaire <br/> moyen des employés de chaque entreprise. <br/> Nous afficherons également le nombre d'employés par entreprise. <html>");
 			label3.setText("<html> Affichage textuelle de la requête. </html>");
 
 		}if(Gui.getQp().getCheck7().isSelected()) {

@@ -316,42 +316,7 @@ public class QueryDaoUSA{
 		return allBonus;
 	}
 	
-		
-		
-	/*public static String[][] query8() {
-		String[][] querytab = new String[5][5];
-		try {
-			String selectQuery = "SELECT lastname, firstname, salary, bonus, paid_leave FROM payslip INNER JOIN employees ON employees.id_employees = payslip.id_payslip WHERE (bonus = (SELECT MAX(bonus) FROM payslip)) AND (paid_leave = (SELECT MIN(paid_leave) FROM payslip)) ORDER BY salary DESC LIMIT 1;";                
 
-			Connection dbConnection = JdbcConnectionUSA.getConnection();
-			Statement state = dbConnection.createStatement();
-			ResultSet result = state.executeQuery(selectQuery);
-			
-		    int i=0;
-			while(result.next()){ 	
-		    	 int bonus = result.getInt("bonus");
-		    	 int paidLeave = result.getInt("paid_leave");
-		    	 int salary = result.getInt("salary");
-		    	 String prenom = result.getString("firstname");
-		    	 String nom = result.getString("lastname");
-		    	 // Remplissage du tableau avec pour colonnes : 1=nom, 2=prenom, 3=salaire, 4=bonus, 5=paid_leave
-		    	 
-		    	 querytab[i][0] = nom;
-		    	 querytab[i][1] = prenom;
-		    	 querytab[i][2] = Integer.toString(salary);
-		    	 querytab[i][3] = Integer.toString(bonus);
-		    	 querytab[i][4] = Integer.toString(paidLeave);   
-		    	 i++;
-		   	}
-			
-		    result.close();
-		    state.close();
-		    
-		} catch (SQLException se) {
-			System.err.println(se.getMessage());
-		}
-		return querytab;
-	}*/
 	/**
 	 * Method allowing to get the best employee in function of his bonus and paid leave
 	 */
