@@ -17,6 +17,11 @@ import javax.swing.table.DefaultTableModel;
 import connection.JdbcConnectionFR;
 import connection.JdbcConnectionUSA;
 
+/**
+ * 
+ * @author Ben Mansour Fares, Chahboun Taha, Duliege Clément
+ *
+ */
 public class QueryDaoUSA{
 	private static String db = "		  [USA]";
 	
@@ -137,7 +142,7 @@ public class QueryDaoUSA{
 	}
 
 	
-	// Requête 3 : Affichage croissant des 5 salaires les plus gros en fonction des plus gros congés.
+	
 	/**
 	 * Method allowing to get the 5 best salaries with biggest paid leave.
 	 */
@@ -173,7 +178,7 @@ public class QueryDaoUSA{
 		return querytab3;
 	}
 	
-	// Affichage croissant des plus gros salaires avec les bonus compris
+
 	/**
 	 * Method allowing to get the 3 best salaries with bonus included.
 	 */
@@ -211,7 +216,7 @@ public class QueryDaoUSA{
 		}
 	
 		
-	// LA YA UN AFFICHAGE CROISSANT EN FONCTION DES CONGES
+
 		/**
 		 * Method allowing to get the average bonus for the biggest paid leave and the smallest paid leave
 		 */
@@ -281,7 +286,7 @@ public class QueryDaoUSA{
 	}
 
 	
-	// Somme des bonus
+
 	/**
 	 * Method allowing to get the sum of employees of society
 	 */
@@ -364,7 +369,7 @@ public class QueryDaoUSA{
 	}
 	
 	
-	// SOUS FORME DE TABLEAU JE TE DONNE LE PLUS JEUNE SALARIER
+
 	/**
 	 * Method allowing to get the 3 best salary for the youngest peoples
 	 */
@@ -374,7 +379,6 @@ public class QueryDaoUSA{
 		public static String[][] query9() {
 			String[][] querytab = new String[1][3];
 			try {
-				// JE SORT LE PLUS JEUNES SALARIERS AVEC LE PLUS GROS SALAIRE 
 				String selectQuery = "SELECT lastname, salary, age FROM payslip INNER JOIN employees ON employees.id_employees = payslip.id_payslip ORDER BY age ASC, salary DESC LIMIT 1;";
 				
 				
@@ -387,7 +391,6 @@ public class QueryDaoUSA{
 			    	 int age = result.getInt("age");
 			    	 int salary = result.getInt("salary");
 			    	 String nom = result.getString("lastname");
-			    	 // Remplissage du tableau avec pour colonnes : 1=nom, 2=age, 3=salaire
 			    	 querytab[i][0] = nom + db;
 			    	 querytab[i][1] = Integer.toString(age);  		 
 			    	 querytab[i][2] = Integer.toString(salary);  		 
@@ -403,7 +406,7 @@ public class QueryDaoUSA{
 				return querytab;
 		}
 			
-		// JE SORT UN TABLEAU A 2 COLONNE AVEC 40 ELEMENT
+
 		/**
 		 * Method allowing to get the medium age with the best salary
 		 */
@@ -413,7 +416,6 @@ public class QueryDaoUSA{
 		public static String[][] query10() {
 			String[][] querytab = new String[40][2];
 			try {
-				// JE RECUPERE LES 40 PLUS GROS SALAIRE EN AFFICHANT LES AGE
 				String selectQuery = "SELECT salary, age FROM payslip INNER JOIN employees ON employees.id_employees = payslip.id_payslip ORDER BY salary DESC LIMIT 40;";
 					
 				
@@ -425,7 +427,6 @@ public class QueryDaoUSA{
 				while(result.next()){ 
 					int age = result.getInt("age");
 				    int salary = result.getInt("salary");
-				    	 // Remplissage du tableau avec pour colonnes : 1=nom, 2=age, 3=salaire
 				    querytab[i][0] = Integer.toString(salary) + db;
 				    querytab[i][1] = Integer.toString(age);  		 
 				    i++;
